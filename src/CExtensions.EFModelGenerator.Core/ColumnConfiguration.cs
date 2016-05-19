@@ -1,10 +1,11 @@
-﻿using System;
+﻿using CExtensions.EFModelGenerator.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CExtensions.EFModelGenerator.Common
+namespace CExtensions.EFModelGenerator.Core
 {
     public class ColumnConfiguration
     {

@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColumnConfiguration.cs" />
     <Compile Include="EFMGSettings.cs" />
     <Compile Include="GeneratorOptions.cs" />
     <Compile Include="Impl\Column.cs" />
