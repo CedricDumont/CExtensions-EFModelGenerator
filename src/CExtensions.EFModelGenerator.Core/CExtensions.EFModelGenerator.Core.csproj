@@ -36,10 +36,6 @@
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CExtensions.EFModelGenerator.Common, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CExtensions.EFModelGenerator.Common.0.1.0-CI00000\lib\net45\CExtensions.EFModelGenerator.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Humanizer, Version=2.0.1.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
       <HintPath>..\packages\Humanizer.Core.2.0.1\lib\dotnet\Humanizer.dll</HintPath>
       <Private>True</Private>
@@ -68,6 +64,12 @@
   <ItemGroup>
     <None Include="Key.snk" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CExtensions.EFModelGenerator.Common\CExtensions.EFModelGenerator.Common.csproj">
+      <Project>{730a558d-13f2-45de-a960-b292d827d996}</Project>
+      <Name>CExtensions.EFModelGenerator.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

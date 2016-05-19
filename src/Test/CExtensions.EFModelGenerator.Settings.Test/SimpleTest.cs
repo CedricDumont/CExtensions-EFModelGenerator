@@ -20,7 +20,7 @@ namespace CExtensions.EFModelGenerator.Settings.Test
 
             var obj = EFMGSettings.Build(content);
 
-            obj.Options.ProviderType.ShouldBe("SomeType");
+            obj.Options.ProviderType.ShouldBe("CExtensions.EFModelGenerator.SqlServer.SqlDataProvider, CExtensions.EFModelGenerator.SqlServer");
         }
     }
 }

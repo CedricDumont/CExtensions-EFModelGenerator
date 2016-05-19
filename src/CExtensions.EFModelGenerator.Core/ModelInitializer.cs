@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CExtensions.EFModelGenerator.Core
 {
@@ -46,7 +47,9 @@ namespace CExtensions.EFModelGenerator.Core
         {
             foreach (var item in Options.IgnoreTableRegex)
             {
-                if(item.IsMatch(table))
+                var regex = new Regex(item, RegexOptions.IgnoreCase);
+
+                if (regex.IsMatch(table))
                 {
                     return true;
                 }
