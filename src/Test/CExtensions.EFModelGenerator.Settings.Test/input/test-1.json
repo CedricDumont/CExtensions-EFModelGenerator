@@ -1,0 +1,12 @@
+﻿{
+  "FilePath": "Models.cs",
+  "Options": {
+    "SchemaName": "dbo",
+    "ProviderType": "CExtensions.EFModelGenerator.SqlServer.SqlDataProvider, CExtensions.EFModelGenerator.SqlServer",
+    "ProviderTypeArguments": [ "Server=MC0QKBSC\\SQLEXPRESS;Database=FSEND_NET;Trusted_Connection=True;", "dbo" ],
+    "SerializerType": "",
+    "SerializerTypeArguments": [ "my.business.space" ],
+    "IgnoreTableRegex": [ "^backup" ]
+  }
+
+}

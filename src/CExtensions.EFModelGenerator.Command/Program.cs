@@ -25,9 +25,9 @@ namespace CExtensions_EFModelGenerator.Command
 
             String schema = "dbo";
 
-
             GenerationOptions options = new GenerationOptions();
-            options.IgnoreTableRegex.Add(new Regex("^backup", RegexOptions.IgnoreCase));
+            //options.IgnoreTableRegex.Add(new Regex("^backup", RegexOptions.IgnoreCase));
+            options.IgnoreTableRegex.Add("^backup");
             options.ProviderType = providerType;
             options.ProviderTypeArguments = providerArguments;
             options.SchemaName = schema;
@@ -50,7 +50,6 @@ namespace CExtensions_EFModelGenerator.Command
                 Generator generator = new Generator(options);
                 generator.Generate(tw);
             }
-
         }
     }
 }

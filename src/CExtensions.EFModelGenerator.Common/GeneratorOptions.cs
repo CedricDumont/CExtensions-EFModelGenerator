@@ -12,12 +12,12 @@ namespace CExtensions.EFModelGenerator.Common
         public GenerationOptions()
         {
             ColumnConfiguration = new ColumnConfiguration();
-            IgnoreTableRegex = new List<Regex>();
+            IgnoreTableRegex = new List<String>();
         }
 
         public ColumnConfiguration ColumnConfiguration { get; set; }
 
-        public IList<Regex> IgnoreTableRegex { get; set; }
+        public IList<String> IgnoreTableRegex { get; set; }
 
         public String ProviderType { get; set; }
 

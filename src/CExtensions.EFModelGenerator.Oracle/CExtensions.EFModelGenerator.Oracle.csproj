@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CExtensions.EFModelGenerator.Common, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CExtensions.EFModelGenerator.Common.0.1.0-CI00000\lib\net45\CExtensions.EFModelGenerator.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.2400\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
       <Private>True</Private>
@@ -46,12 +50,6 @@
   <ItemGroup>
     <Compile Include="OracleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CExtensions.EFModelGenerator.Common\CExtensions.EFModelGenerator.Common.csproj">
-      <Project>{730a558d-13f2-45de-a960-b292d827d996}</Project>
-      <Name>CExtensions.EFModelGenerator.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
