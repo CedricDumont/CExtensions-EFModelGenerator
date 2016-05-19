@@ -57,6 +57,7 @@
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Key.snk" />
     <None Include="packages.config" />
     <None Include="source.extension.vsixmanifest">
@@ -73,10 +74,6 @@
     <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="CExtensions.EFModelGenerator.Common, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CExtensions.EFModelGenerator.Common.0.1.0-CI00000\lib\net45\CExtensions.EFModelGenerator.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
@@ -186,13 +183,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CExtensions.EFModelGenerator.Common\CExtensions.EFModelGenerator.Common.csproj">
+      <Project>{730a558d-13f2-45de-a960-b292d827d996}</Project>
+      <Name>CExtensions.EFModelGenerator.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CExtensions.EFModelGenerator.Core\CExtensions.EFModelGenerator.Core.csproj">
       <Project>{570e27db-b255-4541-b211-34f124ad4a8e}</Project>
       <Name>CExtensions.EFModelGenerator.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CExtensions.EFModelGenerator.Settings\CExtensions.EFModelGenerator.Settings.csproj">
-      <Project>{fe1990b8-4d22-4554-a675-28e64a8946f9}</Project>
-      <Name>CExtensions.EFModelGenerator.Settings</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

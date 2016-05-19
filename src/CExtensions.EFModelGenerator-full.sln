@@ -16,8 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator.VSExtension", "CExtensions.EFModelGenerator.VSExtension\CExtensions.EFModelGenerator.VSExtension.csproj", "{0761DD11-1F39-414B-B25B-2C34E2073621}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator.Settings", "CExtensions.EFModelGenerator.Settings\CExtensions.EFModelGenerator.Settings.csproj", "{FE1990B8-4D22-4554-A675-28E64A8946F9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{6EE87156-05D8-4F39-99FA-F467239F06B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator.Settings.Test", "Test\CExtensions.EFModelGenerator.Settings.Test\CExtensions.EFModelGenerator.Settings.Test.csproj", "{8FC8344B-F9D4-4D31-8C45-025A556FEAA2}"
@@ -88,14 +86,6 @@ Global
 		{0761DD11-1F39-414B-B25B-2C34E2073621}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0761DD11-1F39-414B-B25B-2C34E2073621}.Release|x86.ActiveCfg = Release|Any CPU
 		{0761DD11-1F39-414B-B25B-2C34E2073621}.Release|x86.Build.0 = Release|Any CPU
-		{FE1990B8-4D22-4554-A675-28E64A8946F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE1990B8-4D22-4554-A675-28E64A8946F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE1990B8-4D22-4554-A675-28E64A8946F9}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FE1990B8-4D22-4554-A675-28E64A8946F9}.Debug|x86.Build.0 = Debug|Any CPU
-		{FE1990B8-4D22-4554-A675-28E64A8946F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE1990B8-4D22-4554-A675-28E64A8946F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE1990B8-4D22-4554-A675-28E64A8946F9}.Release|x86.ActiveCfg = Release|Any CPU
-		{FE1990B8-4D22-4554-A675-28E64A8946F9}.Release|x86.Build.0 = Release|Any CPU
 		{8FC8344B-F9D4-4D31-8C45-025A556FEAA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8FC8344B-F9D4-4D31-8C45-025A556FEAA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FC8344B-F9D4-4D31-8C45-025A556FEAA2}.Debug|x86.ActiveCfg = Debug|Any CPU

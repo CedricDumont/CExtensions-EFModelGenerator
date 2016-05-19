@@ -1,7 +1,7 @@
-﻿using CExtensions.EFModelGenerator.Core;
+﻿using CExtensions.EFModelGenerator.Common;
+using CExtensions.EFModelGenerator.Core;
 using System;
 using System.IO;
-using CExtensions.EFModelGenerator.Common;
 using System.Text.RegularExpressions;
 
 namespace CExtensions_EFModelGenerator.Command

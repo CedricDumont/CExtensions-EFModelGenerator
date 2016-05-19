@@ -181,6 +181,11 @@ namespace CExtensions.EFModelGenerator.VSExtension
 
             EFMGSettings settings = EFMGSettings.Build(fileContent);
 
+            if(settings.Options.ImplementingClassPath == null)
+            {
+                settings.Options.ImplementingClassPath = Path.Combine(projectPath, "bin", "Debug");
+            }
+
             String FileName = projectItem.Document.Name;
 
             if (settings.FilePath != null)
@@ -201,9 +206,8 @@ namespace CExtensions.EFModelGenerator.VSExtension
             using (var tw = File.CreateText(newFilePath))
             {
                 tw.WriteLine("hello");
-                //GenerationOptions options = new GenerationOptions();
-                //Generator generator = new Generator(options);
-                //generator.Generate(tw);
+                Generator generator = new Generator(settings.Options);
+                generator.Generate(tw);
             }
 
             ProjectItem item = projectItem.ContainingProject.ProjectItems.AddFromFile(newFilePath);

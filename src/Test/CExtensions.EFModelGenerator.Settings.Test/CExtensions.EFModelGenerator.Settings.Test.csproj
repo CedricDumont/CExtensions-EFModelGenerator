@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AppDomainToolkit, Version=1.0.4.1, Culture=neutral, PublicKeyToken=f2fc7ab5180cf5c4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AppDomainToolkit.1.0.4.3\lib\net\AppDomainToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Shouldly, Version=2.7.0.0, Culture=neutral, PublicKeyToken=6042cbcb05cbc941, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Shouldly.2.7.0\lib\net40\Shouldly.dll</HintPath>
       <Private>True</Private>
@@ -77,9 +81,9 @@
       <Project>{730a558d-13f2-45de-a960-b292d827d996}</Project>
       <Name>CExtensions.EFModelGenerator.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CExtensions.EFModelGenerator.Settings\CExtensions.EFModelGenerator.Settings.csproj">
-      <Project>{fe1990b8-4d22-4554-a675-28e64a8946f9}</Project>
-      <Name>CExtensions.EFModelGenerator.Settings</Name>
+    <ProjectReference Include="..\..\CExtensions.EFModelGenerator.Core\CExtensions.EFModelGenerator.Core.csproj">
+      <Project>{570e27db-b255-4541-b211-34f124ad4a8e}</Project>
+      <Name>CExtensions.EFModelGenerator.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Test.Helpers\Test.Helpers.csproj">
       <Project>{a2d088c9-56f6-4318-af5b-da25ca18e198}</Project>
