@@ -55,6 +55,7 @@ namespace CExtensions.EFModelGenerator.VSExtension
             this.package = package;
 
             OleMenuCommandService commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+
             if (commandService != null)
             {
                 var menuCommandID = new CommandID(CommandSet, CommandId);
@@ -91,72 +92,7 @@ namespace CExtensions.EFModelGenerator.VSExtension
         /// <param name="package">Owner package, not null.</param>
         public static void Initialize(Package package)
         {
-
             Instance = new GenerateEfModelCommand(package);
-        }
-
-        public static bool IsSingleProjectItemSelection(out IVsHierarchy hierarchy, out uint itemid)
-        {
-            var dte2 = (DTE2)Package.GetGlobalService(typeof(SDTE));
-
-            Debug.WriteLine("in IsSingleProjectItemSelection " + dte2.SelectedItems.Count);
-            hierarchy = null;
-            itemid = VSConstants.VSITEMID_NIL;
-            int hr = VSConstants.S_OK;
-
-            var monitorSelection = Package.GetGlobalService(typeof(SVsShellMonitorSelection)) as IVsMonitorSelection;
-            var solution = Package.GetGlobalService(typeof(SVsSolution)) as IVsSolution;
-            if (monitorSelection == null || solution == null)
-            {
-                return false;
-            }
-
-            IVsMultiItemSelect multiItemSelect = null;
-            IntPtr hierarchyPtr = IntPtr.Zero;
-            IntPtr selectionContainerPtr = IntPtr.Zero;
-
-            try
-            {
-                hr = monitorSelection.GetCurrentSelection(out hierarchyPtr, out itemid, out multiItemSelect, out selectionContainerPtr);
-
-                if (ErrorHandler.Failed(hr) || hierarchyPtr == IntPtr.Zero || itemid == VSConstants.VSITEMID_NIL)
-                {
-                    // there is no selection
-                    return false;
-                }
-
-                // multiple items are selected
-                if (multiItemSelect != null) return false;
-
-                // there is a hierarchy root node selected, thus it is not a single item inside a project
-
-                if (itemid == VSConstants.VSITEMID_ROOT) return false;
-
-                hierarchy = Marshal.GetObjectForIUnknown(hierarchyPtr) as IVsHierarchy;
-                if (hierarchy == null) return false;
-
-                Guid guidProjectID = Guid.Empty;
-
-                if (ErrorHandler.Failed(solution.GetGuidOfProject(hierarchy, out guidProjectID)))
-                {
-                    return false; // hierarchy is not a project inside the Solution if it does not have a ProjectID Guid
-                }
-
-                // if we got this far then there is a single project item selected
-                return true;
-            }
-            finally
-            {
-                if (selectionContainerPtr != IntPtr.Zero)
-                {
-                    Marshal.Release(selectionContainerPtr);
-                }
-
-                if (hierarchyPtr != IntPtr.Zero)
-                {
-                    Marshal.Release(hierarchyPtr);
-                }
-            }
         }
 
         /// <summary>
@@ -168,49 +104,62 @@ namespace CExtensions.EFModelGenerator.VSExtension
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            var _dte = (DTE2)Package.GetGlobalService(typeof(SDTE));
-            
-            ProjectItem projectItem = Utils.GetSelectedProjectItem(_dte);
-
-            if (projectItem == null)
-                return;
-
-            string projectPath = Utils.GetItemProjectPath(projectItem);
-
-            string fileContent =  File.ReadAllText(projectItem.Document.FullName);
-
-            EFMGSettings settings = EFMGSettings.Build(fileContent);
-
-            if(settings.Options.ImplementingClassPath == null)
+            try
             {
-                settings.Options.ImplementingClassPath = Path.Combine(projectPath, "bin", "Debug");
+                //get the selected item and some more info
+                var _dte = (DTE2)Package.GetGlobalService(typeof(SDTE));
+
+                ProjectItem projectItem = Utils.GetSelectedProjectItem(_dte);
+
+                if (projectItem == null)
+                    return;
+
+                //init some props
+                string projectPath = Utils.GetItemProjectPath(projectItem);
+
+                String selectedItemFullPath = (string)projectItem.Properties.Item("FullPath").Value;
+
+                string newFileName = projectItem.Name;
+
+                //create the config settings
+                string fileContent = File.ReadAllText(selectedItemFullPath);
+
+                EFMGSettings settings = EFMGSettings.Build(fileContent);
+
+                if (settings.Options.ImplementingClassPath == null)
+                {
+                    settings.Options.ImplementingClassPath = Path.Combine(projectPath, "bin", "Debug");
+                }
+
+                if (settings.FilePath != null)
+                {
+                    newFileName = settings.FilePath;
+                }
+
+                //ensure it's a csharp file
+                newFileName = newFileName.EndsWith(".cs") ? newFileName : newFileName + ".cs";
+
+                string newFilePath = Path.Combine(projectPath, newFileName);
+
+                if (File.Exists(newFilePath))
+                {
+                    File.Delete(newFilePath);
+                }
+
+                //generate the code
+                using (var tw = File.CreateText(newFilePath))
+                {
+                    Generator generator = new Generator(settings.Options);
+                    generator.Generate(tw);
+                }
+
+                //add the generated file to project
+                ProjectItem item = projectItem.ContainingProject.ProjectItems.AddFromFile(newFilePath);
             }
-
-            String FileName = projectItem.Document.Name;
-
-            if (settings.FilePath != null)
+            catch(Exception ex)
             {
-                FileName = settings.FilePath;
+                throw new Exception("An error occured while generating the sources. You should use this tool on a proper config file", ex);
             }
-
-            //ensure csharp file
-            FileName = FileName.EndsWith(".cs") ? FileName : FileName + ".cs";
-
-            string newFilePath = Path.Combine(projectPath, FileName);
-
-            if(File.Exists(newFilePath))
-            {
-                File.Delete(newFilePath);
-            }
-
-            using (var tw = File.CreateText(newFilePath))
-            {
-                tw.WriteLine("hello");
-                Generator generator = new Generator(settings.Options);
-                generator.Generate(tw);
-            }
-
-            ProjectItem item = projectItem.ContainingProject.ProjectItems.AddFromFile(newFilePath);
 
         }
 
