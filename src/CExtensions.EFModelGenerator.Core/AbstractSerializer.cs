@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator.Common
 {
-    public abstract class AbstractSerializer : ISerializer
+    public abstract class AbstractSerializer 
     {
         public string CallSerializeWith(string serializedSchema)
         {

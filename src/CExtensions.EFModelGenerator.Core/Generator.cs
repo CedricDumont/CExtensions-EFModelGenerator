@@ -20,7 +20,7 @@ namespace CExtensions.EFModelGenerator.Core
             Serializer = createInstance(generatorOptions.SerializerType, generatorOptions.SerializerTypeArguments);
         }
 
-        public Generator(IProvider provider, ISerializer serializer, GenerationOptions generatorOptions = null)
+        public Generator(AbstractProvider provider, AbstractSerializer serializer, GenerationOptions generatorOptions = null)
         {
             Provider = provider;
             Serializer = serializer;

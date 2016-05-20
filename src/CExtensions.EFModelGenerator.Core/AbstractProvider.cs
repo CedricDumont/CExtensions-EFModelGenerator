@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator.Common
 {
-    public abstract class AbstractProvider : IProvider
+    public abstract class AbstractProvider 
     {
 
         public string SerializedTableList()

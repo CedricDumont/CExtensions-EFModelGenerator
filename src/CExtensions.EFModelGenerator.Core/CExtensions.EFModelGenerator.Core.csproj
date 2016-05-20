@@ -65,14 +65,11 @@
     <Compile Include="Generator.cs" />
     <Compile Include="Impl\InverseProperty.cs" />
     <Compile Include="Interfaces\ColumnMetadata.cs" />
-    <Compile Include="Interfaces\IColumn.cs" />
     <Compile Include="Interfaces\IForeignKey.cs" />
     <Compile Include="Interfaces\IInverseProperty.cs" />
     <Compile Include="Interfaces\INameFormatter.cs" />
     <Compile Include="Interfaces\IProvider.cs" />
-    <Compile Include="Interfaces\ISchema.cs" />
     <Compile Include="Interfaces\ISerializer.cs" />
-    <Compile Include="Interfaces\ITable.cs" />
     <Compile Include="ModelInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Impl\Schema.cs" />
