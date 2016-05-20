@@ -1,8 +1,11 @@
 ﻿using CExtensions.EFModelGenerator.Common;
+using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Policy;
 
 namespace CExtensions.EFModelGenerator.Core
 {
@@ -12,13 +15,10 @@ namespace CExtensions.EFModelGenerator.Core
         {
             GeneratorOptions = generatorOptions;
 
-            Provider = createInstance<IProvider>(generatorOptions.ProviderType, generatorOptions.ProviderTypeArguments);
+            Provider = createInstance(generatorOptions.ProviderType, generatorOptions.ProviderTypeArguments);
 
-            Serializer = createInstance<ISerializer>(generatorOptions.SerializerType, generatorOptions.SerializerTypeArguments);
-
-            
+            Serializer = createInstance(generatorOptions.SerializerType, generatorOptions.SerializerTypeArguments);
         }
-
 
         public Generator(IProvider provider, ISerializer serializer, GenerationOptions generatorOptions = null)
         {
@@ -27,7 +27,7 @@ namespace CExtensions.EFModelGenerator.Core
             GeneratorOptions = generatorOptions ?? new GenerationOptions();
         }
 
-        private T createInstance<T>(string typename, object[] arguments) where T : class
+        private Object createInstance(string typename, object[] arguments)
         {
             if (GeneratorOptions.ImplementingClassPath != null)
             {
@@ -36,6 +36,7 @@ namespace CExtensions.EFModelGenerator.Core
 
                 AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
                 {
+                    Debug.WriteLine("received name to load " + args.Name);
                     var name = args.Name.Split(',');
 
                     var dll = customizationDlls.FirstOrDefault(fi => fi.Name == name[0] + ".dll");
@@ -43,6 +44,8 @@ namespace CExtensions.EFModelGenerator.Core
                     {
                         return null;
                     }
+
+                    Debug.WriteLine("loading " + dll.FullName);
 
                     Assembly assem = Assembly.LoadFile(dll.FullName);
 
@@ -54,26 +57,34 @@ namespace CExtensions.EFModelGenerator.Core
 
             if (instanceType == null)
             {
-                throw new ArgumentException("Did you forget to reference assembly to create : " + typeof(T));
+                throw new ArgumentException("Did you forget to reference assembly to create : " + typename);
             }
+
+            Evidence currEvidence = AppDomain.CurrentDomain.Evidence;
+
+            //var temporary = AppDomain.CurrentDomain.CreateInstanceAndUnwrap(instanceType.Assembly.FullName, 
+            //    instanceType.FullName, true, BindingFlags.CreateInstance,
+            //    null, arguments, null, new object[] { });
 
             var objectinstance = Activator.CreateInstance(instanceType, arguments);
 
-            T result = objectinstance as T;
+            return objectinstance;
 
-            if (result == null)
-            {
-                throw new ArgumentException("Should implement must implement : " + typeof(T));
-            }
+            //T result = temporary as T;
 
-            return result;
+            //if (result == null)
+            //{
+            //    throw new ArgumentException("Should implement must implement : " + typeof(T));
+            //}
+
+            //return result;
         }
 
         public GenerationOptions GeneratorOptions { get; private set; }
 
-        public IProvider Provider { get; private set; }
+        public Object Provider { get; private set; }
 
-        public ISerializer Serializer { get; private set; }
+        public Object Serializer { get; private set; }
 
         public void Generate(TextWriter writer)
         {
@@ -83,7 +94,13 @@ namespace CExtensions.EFModelGenerator.Core
 
                 Schema schema = initializer.Initialize(GeneratorOptions.SchemaName);
 
-                String serializedModel = Serializer.Serialize(schema);
+                string serializedSchema = JsonConvert.SerializeObject(
+                                                        schema,
+                                                        Formatting.None
+                                                        );
+
+                //String serializedModel =  Serializer.Serialize(schema);
+                String serializedModel = (string)Utils.CallMethodOnObject(Serializer, "CallSerializeWith", new object[] { serializedSchema });
 
                 writer.Write(serializedModel);
             }

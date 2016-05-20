@@ -9,13 +9,13 @@ namespace CExtensions.EFModelGenerator.Core
 {
     public class ColumnConfiguration
     {
-        Dictionary<string, List<INameFormatter<IColumn>>> _tableColumnFormatters = new Dictionary<string, List<INameFormatter<IColumn>>>();
+        Dictionary<string, List<INameFormatter<Column>>> _tableColumnFormatters = new Dictionary<string, List<INameFormatter<Column>>>();
 
-        List<INameFormatter<IColumn>> _generalFormattersList = new List<INameFormatter<IColumn>>();
+        List<INameFormatter<Column>> _generalFormattersList = new List<INameFormatter<Column>>();
 
-        public IList<INameFormatter<IColumn>> GetFormattersFor(string tableName)
+        public IList<INameFormatter<Column>> GetFormattersFor(string tableName)
         {
-            List<INameFormatter<IColumn>> mergedList = new List<INameFormatter<IColumn>>();
+            List<INameFormatter<Column>> mergedList = new List<INameFormatter<Column>>();
             mergedList.AddRange(_generalFormattersList);
 
             if (_tableColumnFormatters.ContainsKey(tableName))
@@ -26,16 +26,16 @@ namespace CExtensions.EFModelGenerator.Core
             return mergedList;
         }
 
-        public void AddFormatter(INameFormatter<IColumn> formatter)
+        public void AddFormatter(INameFormatter<Column> formatter)
         {
             _generalFormattersList.Add(formatter);
         }
 
-        public void AddFormatter(String tableName, INameFormatter<IColumn> formatter)
+        public void AddFormatter(String tableName, INameFormatter<Column> formatter)
         {
             if (!_tableColumnFormatters.ContainsKey(tableName))
             {
-                _tableColumnFormatters[tableName] = new List<INameFormatter<IColumn>>();
+                _tableColumnFormatters[tableName] = new List<INameFormatter<Column>>();
 
             }
             _tableColumnFormatters[tableName].Add(formatter);

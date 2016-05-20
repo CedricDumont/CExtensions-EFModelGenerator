@@ -1,11 +1,12 @@
 ﻿using CExtensions.EFModelGenerator.Common;
+using CExtensions.EFModelGenerator.Core;
 using System;
 using System.Linq;
 using System.Text;
 
 namespace CExtensions.EFModelGenerator.Serializers
 {
-    public class ModelSerializer : ISerializer
+    public class ModelSerializer : AbstractSerializer
     {
 
         public ModelSerializer(string _nameSpace)
@@ -15,7 +16,7 @@ namespace CExtensions.EFModelGenerator.Serializers
 
         public String NameSpace { get; set; }
 
-        public String Serialize(ISchema schema)
+        public override String Serialize(Schema schema)
         {
             StringBuilder sb = new StringBuilder();
             string TabClass = "   ";
@@ -77,11 +78,11 @@ namespace CExtensions.EFModelGenerator.Serializers
                     }
                 }
 
-                if (table.InverseProperties.Count() > 0)
+                if (schema.InversePropertiesFor(table).Count() > 0)
                 {
                     sb.AppendLine("");
                     sb.AppendLine(TabProperty + "// Reverse Navigation");
-                    foreach (var reverseNavigation in table.InverseProperties)
+                    foreach (var reverseNavigation in schema.InversePropertiesFor(table))
                     {
                         sb.AppendLine("");
                         sb.AppendLine(TabProperty + $"[InverseProperty(\"{reverseNavigation.ReversePropertyName}\")]");

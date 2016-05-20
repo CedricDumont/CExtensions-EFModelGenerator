@@ -9,12 +9,15 @@ namespace CExtensions.EFModelGenerator.Core
 {
     public class ForeignKey : IForeignKey
     {
-        public ForeignKey(IColumn column)
+        internal ForeignKey(Table table, Column column)
         {
+            this.Table = table;
             this.Column = column;
         }
 
-        public IColumn Column { get; set; }
+        public Table Table { get; set; }
+
+        public Column Column { get; set; }
 
         public String ColumnCLRType => Column.CLRType;
 
@@ -24,16 +27,16 @@ namespace CExtensions.EFModelGenerator.Core
 
         public String PropertyName => ComputeReferencedName();
 
-        public String ReferencedCLRName => Column.ForeignTable.CLRTypeName;
+        public String ReferencedCLRName => Column.ForeignTableClrTypeName;
 
-        public String Comment => $" // {Column.Table.Name}.{ColumnName} (ForeignKey)";
+        public String Comment => $" // {Column.TableName}.{ColumnName} (ForeignKey)";
 
 
 
         private String ComputeReferencedName()
         {
-            var referencedTableName = Column.ForeignTable.CLRTypeName
-                       + ((Column.ForeignTable.CLRTypeName == Column.Table.CLRTypeName || Column.Table.ContainsTwoSameForeignReference) ? "_" + Column.FormattedName : "");
+            var referencedTableName = Column.ForeignTableClrTypeName
+                       + ((Column.ForeignTableClrTypeName == Column.TableCLRTypeName || Table.ContainsTwoSameForeignReference) ? "_" + Column.FormattedName : "");
             return referencedTableName;
         }
 

@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractProvider.cs" />
+    <Compile Include="AbstractSerializer.cs" />
     <Compile Include="ColumnConfiguration.cs" />
     <Compile Include="EFMGSettings.cs" />
     <Compile Include="GeneratorOptions.cs" />
@@ -62,6 +64,15 @@
     <Compile Include="Impl\ForeignKey.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Impl\InverseProperty.cs" />
+    <Compile Include="Interfaces\ColumnMetadata.cs" />
+    <Compile Include="Interfaces\IColumn.cs" />
+    <Compile Include="Interfaces\IForeignKey.cs" />
+    <Compile Include="Interfaces\IInverseProperty.cs" />
+    <Compile Include="Interfaces\INameFormatter.cs" />
+    <Compile Include="Interfaces\IProvider.cs" />
+    <Compile Include="Interfaces\ISchema.cs" />
+    <Compile Include="Interfaces\ISerializer.cs" />
+    <Compile Include="Interfaces\ITable.cs" />
     <Compile Include="ModelInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Impl\Schema.cs" />
@@ -71,12 +82,6 @@
   <ItemGroup>
     <None Include="Key.snk" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CExtensions.EFModelGenerator.Common\CExtensions.EFModelGenerator.Common.csproj">
-      <Project>{730a558d-13f2-45de-a960-b292d827d996}</Project>
-      <Name>CExtensions.EFModelGenerator.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

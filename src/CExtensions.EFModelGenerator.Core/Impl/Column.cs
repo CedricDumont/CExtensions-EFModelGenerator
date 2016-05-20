@@ -1,4 +1,5 @@
 ﻿using CExtensions.EFModelGenerator.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,44 +8,46 @@ using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator.Core
 {
-    public class Column : IColumn
+    public class Column : ColumnMetadata
     {
         private IDictionary<string, Func<Column, string>> formatters = new Dictionary<string, Func<Column, string>>();
 
         private ColumnNameFormatter DEFAULT_FORMATTER = new RemoveUnderscoreNameFormatter();
 
-        internal Column(ITable table, ColumnMetadata metadata, ColumnConfiguration columnConfiguration)
+        internal Column()
         {
-            Table = table;
-            Name = metadata.Name;
-            DBType = metadata.DataType;
-            DBDataScale = metadata.DataScale;
-            IsNullable = metadata.IsNullable;
-            ColumnConfiguration = columnConfiguration;
+            ColumnConfiguration = new ColumnConfiguration();
         }
 
+        internal Column(string tableName, ColumnMetadata metadata)
+        {
+            TableName = tableName;
+            Name = metadata.Name;
+            DBType = metadata.DBType;
+            DBDataScale = metadata.DBDataScale;
+            IsNullable = metadata.IsNullable;
+        }
+
+        [JsonIgnore]
         internal ColumnConfiguration ColumnConfiguration { get; private set; }
 
-        public ITable Table { get; private set; }
-
-        public String Name { get; private set; }
-
-        public String DBType { get; set; }
-
-        public String DBDataScale { get; set; }
-
-        public String CLRType => GetPropertyType(DBType, DBDataScale);
-
-        public String FormattedName => FormatColumnName();
-
-        public bool IsNullable { get; internal set; }
+        [JsonIgnore]
+        public Table Table { get; internal set; }
 
         public bool IsPrimaryKey { get; set; }
 
         public bool IsForeignKey { get; set; }
 
-        public ITable ForeignTable { get; set; }
+        [JsonIgnore]
+        public String CLRType => GetPropertyType(DBType, DBDataScale);
 
+        [JsonIgnore]
+        public String FormattedName => FormatColumnName();
+
+        //[JsonIgnore]
+        //public Table ForeignTable { get; set; }
+
+        [JsonIgnore]
         public bool IsRequired
         {
             get
@@ -53,6 +56,26 @@ namespace CExtensions.EFModelGenerator.Core
             }
         }
 
+
+
+        [JsonIgnore]
+        public string TableCLRTypeName
+        {
+            get
+            {
+                return Table.CLRTypeName;
+            }
+        }
+
+        public string ForeignTableClrTypeName
+        {
+            get; set;
+        }
+
+        public string ForeignTableName
+        {
+            get; set;
+        }
 
         public void AddFormatter(String pattern, Func<Column, string> ColumnFormatter)
         {
@@ -64,7 +87,7 @@ namespace CExtensions.EFModelGenerator.Core
 
         private String FormatColumnName()
         {
-            var formatters = ColumnConfiguration.GetFormattersFor(this.Table.Name);
+            var formatters = ColumnConfiguration.GetFormattersFor(this.TableName);
 
             foreach (var formatter in formatters)
             {

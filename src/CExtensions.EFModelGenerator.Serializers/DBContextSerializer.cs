@@ -1,10 +1,11 @@
 ﻿using CExtensions.EFModelGenerator.Common;
+using CExtensions.EFModelGenerator.Core;
 using System;
 using System.Text;
 
 namespace CExtensions.EFModelGenerator.Serializers
 {
-    public class DBContextSerializer : ISerializer
+    public class DBContextSerializer : AbstractSerializer
     {
         private const string TabClassDef = "   ";
         private const string TabClass = TabClassDef + "   ";
@@ -20,7 +21,7 @@ namespace CExtensions.EFModelGenerator.Serializers
 
         public String NameSpace { get; set; }
 
-        public String Serialize(ISchema schema)
+        public override String Serialize(Schema schema)
         {
             StringBuilder sb = new StringBuilder();
 

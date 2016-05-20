@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace CExtensions.EFModelGenerator.SqlServer
 {
-    public class SqlDataProvider : IProvider
+    public class SqlDataProvider : AbstractProvider
     {
         #region queries
 
@@ -63,7 +63,7 @@ namespace CExtensions.EFModelGenerator.SqlServer
 
         public String Schema { get; private set; }
 
-        public IList<string> ListTableNames()
+        public override IList<string> ListTableNames()
         {
             SqlConnection dbcon = new SqlConnection(ConnectionString);
 
@@ -94,7 +94,7 @@ namespace CExtensions.EFModelGenerator.SqlServer
             return result;
         }
 
-        public IList<ColumnMetadata> ListColumnsFor(string tableName)
+        public override IList<ColumnMetadata> ListColumnsFor(string tableName)
         {
             SqlConnection dbcon = new SqlConnection(ConnectionString);
 
@@ -115,8 +115,8 @@ namespace CExtensions.EFModelGenerator.SqlServer
                             var col = new ColumnMetadata()
                             {
                                 Name = colRdr["ColumnName"].ToString(),
-                                DataType = colRdr["DataType"].ToString(),
-                                DataScale = colRdr["DataScale"].ToString(),
+                                DBType = colRdr["DataType"].ToString(),
+                                DBDataScale = colRdr["DataScale"].ToString(),
                                 IsNullable = "Y".Equals(colRdr["IsNullable"].ToString())
                             };
 
@@ -133,7 +133,7 @@ namespace CExtensions.EFModelGenerator.SqlServer
             return result;
         }
 
-        public IList<Tuple<string,string>> ListAllPrimaryKeys()
+        public override IList<Tuple<string,string>> ListAllPrimaryKeys()
         {
             SqlConnection dbcon = new SqlConnection(ConnectionString);
 
@@ -164,7 +164,7 @@ namespace CExtensions.EFModelGenerator.SqlServer
             return result;
         }
 
-        public IList<Tuple<string, string, string>> ListAllForeignKeys()
+        public override IList<Tuple<string, string, string>> ListAllForeignKeys()
         {
             SqlConnection dbcon = new SqlConnection(ConnectionString);
 

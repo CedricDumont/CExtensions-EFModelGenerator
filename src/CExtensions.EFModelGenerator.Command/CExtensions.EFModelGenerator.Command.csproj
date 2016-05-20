@@ -66,10 +66,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CExtensions.EFModelGenerator.Common\CExtensions.EFModelGenerator.Common.csproj">
-      <Project>{730a558d-13f2-45de-a960-b292d827d996}</Project>
-      <Name>CExtensions.EFModelGenerator.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CExtensions.EFModelGenerator.Core\CExtensions.EFModelGenerator.Core.csproj">
       <Project>{570e27db-b255-4541-b211-34f124ad4a8e}</Project>
       <Name>CExtensions.EFModelGenerator.Core</Name>

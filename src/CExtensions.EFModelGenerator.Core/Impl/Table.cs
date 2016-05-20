@@ -1,31 +1,41 @@
 ﻿using CExtensions.EFModelGenerator.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator.Core
 {
-    public class Table : ITable
+    public class Table
     {
-        private Func<string, string> _NameFormatter;
-
-        internal Table(ISchema schema, String name, Func<string, string> NameFormatter)
+        private Func<String, String> _NameFormatter = str =>
         {
-            _NameFormatter = NameFormatter;
-            Columns = new List<IColumn>();
-            Schema = schema;
+            var yourString = str.ToLower().Replace("_", " ");
+            TextInfo info = CultureInfo.CurrentCulture.TextInfo;
+            yourString = info.ToTitleCase(yourString).Replace(" ", string.Empty);
+            return yourString;
+        };
+
+        internal Table()
+        {
+            Columns = new List<Column>();
+        }
+
+
+        internal void Init(String name)
+        {
             Name = name;
         }
 
-        public ISchema Schema { get; private set; }
+        public String Name { get; set; }
 
-        public String Name { get; private set; }
+        public IList<Column> Columns { get; set; }
 
-        public IList<IColumn> Columns { get; set; }
-
-        public IEnumerable<IColumn> PrimaryKeys
+        [JsonIgnore]
+        public IEnumerable<Column> PrimaryKeys
         {
             get
             {
@@ -33,6 +43,7 @@ namespace CExtensions.EFModelGenerator.Core
             }
         }
 
+        [JsonIgnore]
         public IEnumerable<IForeignKey> ForeignKeys
         {
             get
@@ -43,7 +54,7 @@ namespace CExtensions.EFModelGenerator.Core
 
                 foreach (var col in list)
                 {
-                    var key = new ForeignKey(col);
+                    var key = new ForeignKey(this, col);
 
                     result.Add(key);
                 }
@@ -52,42 +63,13 @@ namespace CExtensions.EFModelGenerator.Core
             }
         }
 
-        public IEnumerable<IInverseProperty> InverseProperties
-        {
-            get
-            {
-                List<InverseProperty> result = new List<InverseProperty>();
 
-                if (this.RelatedTables.Count() > 0)
-                {
-                    int counter = 1;
-                    List<String> tracker = new List<string>();
-                    foreach (var reverseNavigation in this.RelatedTables)
-                    {
-                        var propertyName = reverseNavigation.Table.CLRTypeName + ((reverseNavigation.Table.CLRTypeName == this.CLRTypeName) ? $"_{counter++}" : "");
-                        if (tracker.Contains(propertyName))
-                        {
-                            propertyName += counter++;
-                        }
-                        tracker.Add(propertyName);
-
-                        result.Add(new InverseProperty() {
-                            PropertyName = propertyName,
-                            ReversePropertyName = reverseNavigation.FormattedName,
-                            ReverseCLRType = reverseNavigation.Table.CLRTypeName
-                        });
-                    }
-
-                }
-
-                return result;
-            }
-        }
 
         /// <summary>
         /// All columns of the table except Foreign and Primary keys
         /// </summary>
-        public IEnumerable<IColumn> DataColumns
+        [JsonIgnore]
+        public IEnumerable<Column> DataColumns
         {
             get
             {
@@ -95,13 +77,14 @@ namespace CExtensions.EFModelGenerator.Core
             }
         }
 
+        [JsonIgnore]
         public bool ContainsTwoSameForeignReference
         {
             get{
                 if (ForeignKeys.Count() > 0)
                 {
                     var result = from f in ForeignKeys
-                                 group f by f.Column.ForeignTable?.Name into g
+                                 group f by f.Column.ForeignTableName into g
                                  where g.Count() > 1
                                  select new { Count = g.Count() };
 
@@ -111,22 +94,13 @@ namespace CExtensions.EFModelGenerator.Core
             }
         }
 
-        public List<IColumn> RelatedTables{
-            get{
-                var tables = from c in this.Schema.AllColumns
-                             where c.ForeignTable?.Name == this.Name
-                             select c;
-
-                return tables.ToList();
-            }
-        } 
-
-
-
+        [JsonIgnore]
         public String CLRTypeName => _NameFormatter(Name) + Info;
 
+        [JsonIgnore]
         internal string Info { get; set; }
 
+        [JsonIgnore]
         public string CollectionName => Utils.Pluralize(CLRTypeName);
 
         public override string ToString()

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,5 +14,17 @@ namespace CExtensions.EFModelGenerator.Core
         {
             return s.Pluralize();
         }
+
+        public static Object CallMethodOnObject(Object obj, string method, Object[] mparams)
+        {
+            MethodInfo myMethod = obj.GetType().GetMethod(method);
+
+            return myMethod.Invoke(obj, mparams);
+
+
+        }
+
     }
+
+   
 }

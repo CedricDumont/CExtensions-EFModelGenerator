@@ -161,8 +161,6 @@ namespace CExtensions.EFModelGenerator.VSExtension
                 throw new Exception("An error occured while generating the sources. You should use this tool on a proper config file" + ex.Message, ex);
             }
 
-        }
-
-         
+        }         
     }
 }

@@ -1,8 +1,10 @@
-﻿namespace CExtensions.EFModelGenerator.Common
+﻿using CExtensions.EFModelGenerator.Core;
+
+namespace CExtensions.EFModelGenerator.Common
 {
     public interface IForeignKey
     {
-        IColumn Column { get; set; }
+        Column Column { get; set; }
         string ColumnCLRType { get; }
         string ColumnName { get; }
         string Comment { get; }

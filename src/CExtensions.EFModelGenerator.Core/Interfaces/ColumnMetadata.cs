@@ -8,11 +8,13 @@ namespace CExtensions.EFModelGenerator.Common
 {
     public class ColumnMetadata
     {
+        public string TableName { get; set; }
+
         public String Name { get; set; }
 
-        public String DataType { get; set; }
+        public String DBType { get; set; }
 
-        public String DataScale { get; set; }
+        public String DBDataScale { get; set; }
 
         public bool IsNullable { get; set; }
 

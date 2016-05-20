@@ -1,4 +1,5 @@
 ﻿using CExtensions.EFModelGenerator.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,11 +10,11 @@ namespace CExtensions.EFModelGenerator.Core
 {
     internal class ModelInitializer
     {
-        public IProvider Provider { get; set; }
+        public Object Provider { get; set; }
 
         public GenerationOptions Options { get; set; }
 
-        internal ModelInitializer(IProvider provider, GenerationOptions options)
+        internal ModelInitializer(Object provider, GenerationOptions options)
         {
             Options = options;
             Provider = provider;
@@ -31,13 +32,18 @@ namespace CExtensions.EFModelGenerator.Core
 
         }
 
-        private void LoadTables(ISchema schema)
+        private void LoadTables(Schema schema)
         {
-            foreach (var table in Provider.ListTableNames())
+            var SerializedTableList = (string)Utils.CallMethodOnObject(Provider, "SerializedTableList", null);
+
+            var tableList = (IList<string>)JsonConvert.DeserializeObject< IList<string>>(SerializedTableList);
+
+            foreach (var table in tableList)
             {
                 if (!IgnoreTable(table))
                 {
-                    ITable tbl = new Table(schema, table, DefaultNameFormatter);
+                    Table tbl = new Table();
+                    tbl.Init(table);
                     schema.Tables.Add(tbl);
                 }
             }
@@ -62,9 +68,13 @@ namespace CExtensions.EFModelGenerator.Core
         {
             foreach (var table in schema.Tables)
             {
-                foreach (var columnMetadata in Provider.ListColumnsFor(table.Name))
+                var serializedColumnList = (string)Utils.CallMethodOnObject(Provider, "SerializedColumnsFor", new object[] { table.Name });
+
+                IList<ColumnMetadata> columnList = JsonConvert.DeserializeObject<IList<ColumnMetadata>>(serializedColumnList);
+
+                foreach (var columnMetadata in columnList)
                 {
-                    Column col = new Column(table, columnMetadata, schema.GeneratorOptions.ColumnConfiguration);
+                    Column col = new Column(table.Name, columnMetadata);
                     table.Columns.Add(col);
                 }
             }
@@ -72,12 +82,16 @@ namespace CExtensions.EFModelGenerator.Core
 
         private void LoadPrimaryKeys(Schema schema)
         {
-            IList<Tuple<string,string>> allPks = Provider.ListAllPrimaryKeys();
+            var SeruializedallPks = (string)Utils.CallMethodOnObject(Provider, "SerializedPrimaryKeys", null);
+
+            IList<Tuple<string, string>> allPks = JsonConvert.DeserializeObject< IList<Tuple<string, string>>>(SeruializedallPks);
+
+            //IList<Tuple<string,string>> allPks = Provider.ListAllPrimaryKeys();
 
             var allPkColumns = from table in schema.Tables
                                from column in table.Columns
                                from pk in allPks
-                               where (pk.Item1 == column.Table.Name
+                               where (pk.Item1 == column.TableName
                                && column.Name == pk.Item2)
                                select column;
 
@@ -90,12 +104,15 @@ namespace CExtensions.EFModelGenerator.Core
 
         private void LoadForeignKeys(Schema schema)
         {
-            IList<Tuple<string, string, string>> allFks = Provider.ListAllForeignKeys();
+            var SerializedAllFks = (string)Utils.CallMethodOnObject(Provider, "SerializedForeignKeys", null);
+
+            IList<Tuple<string, string, string>> allFks = JsonConvert.DeserializeObject< IList<Tuple<string, string, string>>>(SerializedAllFks);
+
 
             var allFsColumn = from table in schema.Tables
                               from column in table.Columns
                               from fk in allFks
-                              where (fk.Item1 == column.Table.Name
+                              where (fk.Item1 == column.TableName
                               && column.Name == fk.Item2)
                               select new { Column = column, ReferencedTable = fk.Item3 };
 
@@ -104,7 +121,7 @@ namespace CExtensions.EFModelGenerator.Core
                 item.Column.IsForeignKey = true;
                 //find correcponding relational table in already loaded tables
                 var referencedTable = (from t in schema.Tables where t.Name == item.ReferencedTable select t).FirstOrDefault();
-                item.Column.ForeignTable = referencedTable;
+                item.Column.ForeignTableClrTypeName = referencedTable.CLRTypeName;
             }
 
         }
@@ -128,12 +145,6 @@ namespace CExtensions.EFModelGenerator.Core
             }
         }
 
-        private Func<String, String> DefaultNameFormatter = str =>
-        {
-            var yourString = str.ToLower().Replace("_", " ");
-            TextInfo info = CultureInfo.CurrentCulture.TextInfo;
-            yourString = info.ToTitleCase(yourString).Replace(" ", string.Empty);
-            return yourString;
-        };
+       
     }
 }

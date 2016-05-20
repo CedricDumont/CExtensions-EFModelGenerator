@@ -1,4 +1,6 @@
-﻿namespace CExtensions.EFModelGenerator.Common
+﻿using CExtensions.EFModelGenerator.Core;
+
+namespace CExtensions.EFModelGenerator.Common
 {
     public interface ISerializer
     {
@@ -9,6 +11,6 @@
         /// </summary>
         /// <param name="schema"></param>
         /// <returns></returns>
-        string Serialize(ISchema schema);
+        string Serialize(Schema schema);
     }
 }

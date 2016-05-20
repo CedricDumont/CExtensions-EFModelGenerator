@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator.Core
 {
-    public class ColumnNameFormatter : INameFormatter<IColumn>
+    public class ColumnNameFormatter : INameFormatter<Column>
     {
-        public virtual bool IsApplicable(IColumn input)
+        public virtual bool IsApplicable(Column input)
         {
             return true;
         }
 
-        public virtual String Apply(IColumn input)
+        public virtual String Apply(Column input)
         {
             return input.Name;
         }
@@ -25,7 +25,7 @@ namespace CExtensions.EFModelGenerator.Core
 
     public class RemoveUnderscoreNameFormatter : ColumnNameFormatter
     {
-        public override String Apply(IColumn col)
+        public override String Apply(Column col)
         {
             var yourString = col.Name;
             yourString = yourString.ToLower().Replace("_", " ");
@@ -37,7 +37,7 @@ namespace CExtensions.EFModelGenerator.Core
 
     public class KeepIdColumnNameFormatter : ColumnNameFormatter
     {
-        public override bool IsApplicable(IColumn input)
+        public override bool IsApplicable(Column input)
         {
             if (!input.IsPrimaryKey)
             {
@@ -51,7 +51,7 @@ namespace CExtensions.EFModelGenerator.Core
             return false;
         }
 
-        public override String Apply(IColumn col)
+        public override String Apply(Column col)
         {
             var yourString = col.Name;
             yourString = yourString.ToLower().Replace("_", " ");
@@ -63,16 +63,16 @@ namespace CExtensions.EFModelGenerator.Core
 
     public class IDColumnFormatter : ColumnNameFormatter
     {
-        public override bool IsApplicable(IColumn input)
+        public override bool IsApplicable(Column input)
         {
-            if (input.IsPrimaryKey && input.Table.PrimaryKeys.Count() == 1)
+            if (input.IsPrimaryKey)
             {
                 return true;
             }
             return false;
         }
 
-        public override String Apply(IColumn col)
+        public override String Apply(Column col)
         {
             return "ID";
         }

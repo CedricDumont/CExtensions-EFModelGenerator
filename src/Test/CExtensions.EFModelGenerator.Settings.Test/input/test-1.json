@@ -1,6 +1,7 @@
 ﻿{
   "FilePath": "Models.cs",
   "Options": {
+    "ImplementingClassPath": "C:\\projects\\cextensions\\CExtensions-EFModelGenerator\\src\\CExtensions.EFModelGenerator.Command\\bin\\Debug",
     "SchemaName": "dbo",
     "ProviderType": "CExtensions.EFModelGenerator.SqlServer.SqlDataProvider, CExtensions.EFModelGenerator.SqlServer",
     "ProviderTypeArguments": [ "Server=MC0QKBSC\\SQLEXPRESS;Database=FSEND_NET;Trusted_Connection=True;", "dbo" ],
