@@ -119,7 +119,7 @@ namespace CExtensions.EFModelGenerator.VSExtension
 
                 String selectedItemFullPath = (string)projectItem.Properties.Item("FullPath").Value;
 
-                string newFileName = projectItem.Name;
+                string newFileName = projectItem.Name.Replace(".json", "");
 
                 //create the config settings
                 string fileContent = File.ReadAllText(selectedItemFullPath);

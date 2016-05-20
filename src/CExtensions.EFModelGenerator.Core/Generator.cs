@@ -15,7 +15,22 @@ namespace CExtensions.EFModelGenerator.Core
         {
             GeneratorOptions = generatorOptions;
 
+            //Initialize the provider
+            if(generatorOptions.ProviderType == null)
+            {
+                //default to sqlserver provider
+                generatorOptions.ProviderType = "CExtensions.EFModelGenerator.SqlServer.SqlDataProvider, CExtensions.EFModelGenerator.SqlServer";
+                generatorOptions.ProviderTypeArguments = new Object[] { generatorOptions.ConnectionString, generatorOptions.SchemaName };
+            }
+
             Provider = createInstance(generatorOptions.ProviderType, generatorOptions.ProviderTypeArguments);
+
+            //initialize the serializer
+            if(generatorOptions.SerializerType == null)
+            {
+                generatorOptions.SerializerType = "CExtensions.EFModelGenerator.Serializers.ModelSerializer, CExtensions.EFModelGenerator.Serializers";
+                generatorOptions.SerializerTypeArguments = new Object[] { generatorOptions.Namespace };
+            }
 
             Serializer = createInstance(generatorOptions.SerializerType, generatorOptions.SerializerTypeArguments);
         }

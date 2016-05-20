@@ -19,10 +19,8 @@ you will need a config file with some information to generate the code:
   "FilePath": "Models.cs",
   "Options": {
     "SchemaName": "dbo",
-    "ProviderType": "CExtensions.EFModelGenerator.SqlServer.SqlDataProvider, CExtensions.EFModelGenerator.SqlServer",
-    "ProviderTypeArguments": [ "Server=MC0QKBSC\\SQLEXPRESS;Database=FSEND_NET;Trusted_Connection=True;", "dbo" ],
-    "SerializerType": "CExtensions.EFModelGenerator.Serializers.ModelSerializer, CExtensions.EFModelGenerator.Serializers",
-    "SerializerTypeArguments": [ "my.business.space" ],
+    "ConnectionString": "Server=MyServer;Database=MYDB;Trusted_Connection=True;",
+    "Namespace": "my.business.space",
     "IgnoreTableRegex": [ "^backup" ]
   }
 

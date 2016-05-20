@@ -15,6 +15,11 @@ namespace CExtensions.EFModelGenerator.Core
             ColumnConfiguration = new ColumnConfiguration();
             IgnoreTableRegex = new List<String>();
         }
+        public String ConnectionString { get; set; }
+
+        public string SchemaName { get; set; }
+
+        public string Namespace { get; set; }
 
         public string ImplementingClassPath { get; set; }
 
@@ -30,6 +35,6 @@ namespace CExtensions.EFModelGenerator.Core
 
         public Object[] SerializerTypeArguments { get; set; }
 
-        public string SchemaName { get; set; }
+        
     }
 }

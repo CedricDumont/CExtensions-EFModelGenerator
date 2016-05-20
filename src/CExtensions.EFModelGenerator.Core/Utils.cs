@@ -17,11 +17,16 @@ namespace CExtensions.EFModelGenerator.Core
 
         public static Object CallMethodOnObject(Object obj, string method, Object[] mparams)
         {
-            MethodInfo myMethod = obj.GetType().GetMethod(method, BindingFlags.FlattenHierarchy);
+            MethodInfo myMethod = obj.GetType().GetMethod(method);
 
             if (myMethod == null)
             {
-                throw new Exception($"Could not find method: {method} in {obj.GetType()}");
+                myMethod = obj.GetType().BaseType.GetMethod(method);
+
+                if (myMethod == null)
+                {
+                    throw new Exception($"Could not find method: {method} in {obj.GetType()} or in basetype");
+                }
             }
 
             return myMethod.Invoke(obj, mparams);

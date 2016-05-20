@@ -70,6 +70,7 @@
     <None Include="input\test-1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="input\test-2.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
