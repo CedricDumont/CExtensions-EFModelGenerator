@@ -1,0 +1,9 @@
+﻿{
+  "Options": {
+    "SchemaName": "dbo",
+    "ConnectionString": "Server=MC0QKBSC\\SQLEXPRESS;Database=FSEND_NET;Trusted_Connection=True;",
+    "Namespace": "my.business.space",
+    "IgnoreTableRegex": [ "^backup" ]
+  }
+
+}

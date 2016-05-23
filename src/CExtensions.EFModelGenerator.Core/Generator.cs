@@ -1,22 +1,76 @@
 ﻿using CExtensions.EFModelGenerator.Common;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Policy;
 
-namespace CExtensions.EFModelGenerator.Core
+namespace CExtensions.EFModelGenerator.Core 
 {
-    public class Generator
+    public class Generator : IDisposable
     {
+
+        public static FileInfo Generate(String configFilePath)
+        {
+            if(!File.Exists(configFilePath))
+            {
+                throw new Exception($"The file passed as paralms does not exists : {configFilePath}");
+            }
+
+            string fileContent = File.ReadAllText(configFilePath);
+
+            EFMGSettings settings = EFMGSettings.Build(fileContent);
+
+            if (settings.FilePath == null)
+            {
+                string newFileName = configFilePath;
+
+                if (configFilePath.EndsWith(".json"))
+                {
+                    newFileName = configFilePath.Replace(".json", "");
+                }
+
+                newFileName = newFileName.EndsWith(".cs") ? newFileName : newFileName + ".cs";
+
+                settings.FilePath = newFileName;
+               
+            }
+
+            return Generate(settings);
+        }
+
+        public static FileInfo Generate(EFMGSettings settings)
+        {
+            Debug.WriteLine($"Generating file : {settings.FilePath}");
+
+            var  newFileName = settings.FilePath;
+
+            if (File.Exists(newFileName))
+            {
+                File.Delete(newFileName);
+            }
+
+            //generate the code
+            using (var tw = File.CreateText(newFileName))
+            {
+                using (Generator generator = new Generator(settings.Options))
+                {
+                    generator.Generate(tw);
+                }
+            }
+
+            return new FileInfo(newFileName);
+        }
+
         public Generator(GenerationOptions generatorOptions)
         {
             GeneratorOptions = generatorOptions;
 
             //Initialize the provider
-            if(generatorOptions.ProviderType == null)
+            if (generatorOptions.ProviderType == null)
             {
                 //default to sqlserver provider
                 generatorOptions.ProviderType = "CExtensions.EFModelGenerator.SqlServer.SqlDataProvider, CExtensions.EFModelGenerator.SqlServer";
@@ -26,7 +80,7 @@ namespace CExtensions.EFModelGenerator.Core
             Provider = createInstance(generatorOptions.ProviderType, generatorOptions.ProviderTypeArguments);
 
             //initialize the serializer
-            if(generatorOptions.SerializerType == null)
+            if (generatorOptions.SerializerType == null)
             {
                 generatorOptions.SerializerType = "CExtensions.EFModelGenerator.Serializers.ModelSerializer, CExtensions.EFModelGenerator.Serializers";
                 generatorOptions.SerializerTypeArguments = new Object[] { generatorOptions.Namespace };
@@ -47,24 +101,35 @@ namespace CExtensions.EFModelGenerator.Core
             if (GeneratorOptions.ImplementingClassPath != null)
             {
                 //add a resolver to load the assemblies implementing the customization
-                var customizationDlls = new DirectoryInfo(GeneratorOptions.ImplementingClassPath).GetFiles("*.dll");
+                var externalPathDLLs = new DirectoryInfo(GeneratorOptions.ImplementingClassPath).GetFiles("*.dll");
+
 
                 AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
                 {
-                    Debug.WriteLine("received name to load " + args.Name);
-                    var name = args.Name.Split(',');
-
-                    var dll = customizationDlls.FirstOrDefault(fi => fi.Name == name[0] + ".dll");
-                    if (dll == null)
+                    try
                     {
-                        return null;
+                        Debug.WriteLine("received name to load " + args.Name);
+                        var name = args.Name.Split(',');
+
+                        var dll = externalPathDLLs.FirstOrDefault(fi => fi.Name == name[0] + ".dll");
+                        if (dll == null)
+                        {
+                            return null;
+                        }
+
+                        Debug.WriteLine("loading " + dll.FullName);
+
+                        //_LoadedDlls.Add(dll);
+
+                        Assembly assem = Assembly.LoadFile(dll.FullName);
+
+                        return assem;
                     }
-
-                    Debug.WriteLine("loading " + dll.FullName);
-
-                    Assembly assem = Assembly.LoadFile(dll.FullName);
-
-                    return assem;
+                    catch(Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                    return null;
                 };
             }
 
@@ -75,8 +140,6 @@ namespace CExtensions.EFModelGenerator.Core
                 throw new ArgumentException("Did you forget to reference assembly to create : " + typename);
             }
 
-            Evidence currEvidence = AppDomain.CurrentDomain.Evidence;
-
             //var temporary = AppDomain.CurrentDomain.CreateInstanceAndUnwrap(instanceType.Assembly.FullName, 
             //    instanceType.FullName, true, BindingFlags.CreateInstance,
             //    null, arguments, null, new object[] { });
@@ -85,15 +148,8 @@ namespace CExtensions.EFModelGenerator.Core
 
             return objectinstance;
 
-            //T result = temporary as T;
-
-            //if (result == null)
-            //{
-            //    throw new ArgumentException("Should implement must implement : " + typeof(T));
-            //}
-
-            //return result;
         }
+
 
         public GenerationOptions GeneratorOptions { get; private set; }
 
@@ -125,6 +181,10 @@ namespace CExtensions.EFModelGenerator.Core
                 throw ex;
             }
 
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

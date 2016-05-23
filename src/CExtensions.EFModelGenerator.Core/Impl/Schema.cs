@@ -34,7 +34,6 @@ namespace CExtensions.EFModelGenerator.Core
 
         public List<Table> Tables { get; set; }
 
-
         [JsonIgnore]
         public List<Column> AllColumns
         {
@@ -55,9 +54,6 @@ namespace CExtensions.EFModelGenerator.Core
 
             return table;
         }
-
-
-       
 
         public List<Column> RelatedTablesFor(Table table)
         {

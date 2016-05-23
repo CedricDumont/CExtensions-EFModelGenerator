@@ -116,14 +116,9 @@ namespace CExtensions.EFModelGenerator.VSExtension
 
                 //init some props
                 string projectPath = Utils.GetItemProjectPath(projectItem);
-
                 String selectedItemFullPath = (string)projectItem.Properties.Item("FullPath").Value;
 
-                string newFileName = projectItem.Name.Replace(".json", "");
-
-                //create the config settings
                 string fileContent = File.ReadAllText(selectedItemFullPath);
-
                 EFMGSettings settings = EFMGSettings.Build(fileContent);
 
                 if (settings.Options.ImplementingClassPath == null)
@@ -131,34 +126,14 @@ namespace CExtensions.EFModelGenerator.VSExtension
                     settings.Options.ImplementingClassPath = Path.Combine(projectPath, "bin", "Debug");
                 }
 
-                if (settings.FilePath != null)
-                {
-                    newFileName = settings.FilePath;
-                }
+                var resultFile = Generator.Generate(settings);
 
-                //ensure it's a csharp file
-                newFileName = newFileName.EndsWith(".cs") ? newFileName : newFileName + ".cs";
+                ProjectItem item = projectItem.ContainingProject.ProjectItems.AddFromFile(resultFile.FullName);
 
-                string newFilePath = Path.Combine(projectPath, newFileName);
-
-                if (File.Exists(newFilePath))
-                {
-                    File.Delete(newFilePath);
-                }
-
-                //generate the code
-                using (var tw = File.CreateText(newFilePath))
-                {
-                    Generator generator = new Generator(settings.Options);
-                    generator.Generate(tw);
-                }
-
-                //add the generated file to project
-                ProjectItem item = projectItem.ContainingProject.ProjectItems.AddFromFile(newFilePath);
             }
             catch(Exception ex)
             {
-                throw new Exception("An error occured while generating the sources. You should use this tool on a proper config file" + ex.Message, ex);
+                throw new Exception("An error occured while generating the sources : " + ex.Message, ex);
             }
 
         }         
