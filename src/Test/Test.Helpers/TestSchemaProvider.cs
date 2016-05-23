@@ -28,7 +28,7 @@ namespace Test.Helpers
 
                 while (reader.Read())
                 {
-                    string type = reader.GetField<string>(0);
+                    string type = reader.GetField<string>(0).Trim();
                     if(type == "TABLE")
                     {
                         Tables.Add(reader.GetField<string>(1));

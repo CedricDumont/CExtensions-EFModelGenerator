@@ -42,7 +42,7 @@ namespace CExtensions.EFModelGenerator.Core
         public override String Apply(Column col, string currentName)
         {
             var yourString = currentName;
-            yourString = yourString.Replace("_", " ");
+            yourString = yourString.ToLower().Replace("_", " ");
             TextInfo info = CultureInfo.CurrentCulture.TextInfo;
             yourString = info.ToTitleCase(yourString).Replace(" ", string.Empty);
             return yourString;

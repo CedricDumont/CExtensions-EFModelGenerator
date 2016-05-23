@@ -15,9 +15,10 @@ namespace CExtensions.EFModelGenerator.Settings.Test
     public class SimpleTest : BaseUnitTest
     {
         [Theory(DisplayName = "ShouldSerializeModel")]
-        [InlineData("input\\withrelations", null, null, null)]
+        [InlineData("input\\withRelations", null, null, null)]
         [InlineData("input\\skipTable", null, null, null)]
         [InlineData("input\\sameNameAsEnclosingType", null, null, null)]
+        [InlineData("input\\nameFormatters", null, null, null)]
         public void ShouldSerializeModel(string folder, string configFile =null, string schemaFile = null, string expectedFile = null)
         {
             //1. Arrange
