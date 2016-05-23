@@ -3,7 +3,14 @@
     "SchemaName": "dbo",
     "ConnectionString": "Server=MC0QKBSC\\SQLEXPRESS;Database=FSEND_NET;Trusted_Connection=True;",
     "Namespace": "my.business.space",
-    "IgnoreTableRegex": [ "^backup" ]
+    "IgnoreTableRegex": [ "^backup" ],
+    "NameFormatters": [
+      "CExtensions.EFModelGenerator.Core.IDColumnFormatter",
+      "CExtensions.EFModelGenerator.Core.SafeIdColumnNameFormatter",
+      "CExtensions.EFModelGenerator.Core.RemoveTillFirstUnderscoreNameFormatter",
+      "CExtensions.EFModelGenerator.Core.UpperFirstLetterNameFormatter"
+    ]
+
   }
 
 }

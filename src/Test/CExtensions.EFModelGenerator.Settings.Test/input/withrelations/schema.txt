@@ -1,0 +1,4 @@
+﻿COLUMN, Person, Pers_Id, number, 0, false
+COLUMN, Person, Person, varchar, 0, true
+COLUMN, Person, PERS_LAST_NAME, varchar, 0, false
+PK,Person, Pers_Id

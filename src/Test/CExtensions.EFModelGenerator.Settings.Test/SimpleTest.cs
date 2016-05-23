@@ -14,31 +14,35 @@ namespace CExtensions.EFModelGenerator.Settings.Test
 {
     public class SimpleTest : BaseUnitTest
     {
-
-        //[Fact]
-        public void ShouldSerializeSettings()
+        [Theory(DisplayName = "ShouldSerializeModel")]
+        [InlineData("input\\withrelations", null, null, null)]
+        [InlineData("input\\skipTable", null, null, null)]
+        [InlineData("input\\sameNameAsEnclosingType", null, null, null)]
+        public void ShouldSerializeModel(string folder, string configFile =null, string schemaFile = null, string expectedFile = null)
         {
-            GenerationOptions options = new GenerationOptions();
+            //1. Arrange
+            string content = GetFileContent(configFile ?? "config.json", folder);
+            string schema = GetFileContent(schemaFile ?? "schema.txt", folder);
+            string expectedOutput = GetFileContent(expectedFile ?? "expected.cs", folder);
 
-            string content = GetFileContent("test-1");
+            //Configure the test provider
+            var settings = EFMGSettings.Build(content);
+            settings.Options.ProviderType = "Test.Helpers.TestSchemaProvider, Test.Helpers";
+            settings.Options.ProviderTypeArguments = new string[] { schema };
 
-            var obj = EFMGSettings.Build(content);
-
-            obj.Options.ProviderType.ShouldBe("CExtensions.EFModelGenerator.SqlServer.SqlDataProvider, CExtensions.EFModelGenerator.SqlServer");
-
+            //2. Act
             StringBuilder sb = new StringBuilder();
 
-            using (StringWriter sw = new StringWriter(sb))
+            using (TextWriter sw = new StringWriter(sb))
             {
-
-                Generator generator = new Generator(obj.Options);
-                generator.Generate(sw);
-
+                Generator.Generate(settings, sw);
             }
 
-            sb.ShouldNotBeNull();
-
-
+            //3. Assert
+            string a = System.Text.RegularExpressions.Regex.Replace(sb.ToString(), @"\s", "");
+            string b = System.Text.RegularExpressions.Regex.Replace(expectedOutput, @"\s", "");
+            bool isTheSame = String.Compare(a, b) == 0;
+            isTheSame.ShouldBe(true, $"Should be {Environment.NewLine}{b}{Environment.NewLine} but was {Environment.NewLine}{a}{Environment.NewLine}");
         }
     }
 }

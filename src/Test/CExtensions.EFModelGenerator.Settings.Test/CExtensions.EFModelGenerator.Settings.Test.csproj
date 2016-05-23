@@ -38,6 +38,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,20 +64,47 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="input\sameNameAsEnclosingType\expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="input\withrelations\expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="input\skipTable\expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="SimpleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="input\test-1.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="input\sameNameAsEnclosingType\schema.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\withrelations\schema.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\skipTable\schema.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="input\sameNameAsEnclosingType\config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="input\test-2.json" />
+    <None Include="input\withrelations\config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="input\skipTable\config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CExtensions.EFModelGenerator.Core\CExtensions.EFModelGenerator.Core.csproj">
       <Project>{570e27db-b255-4541-b211-34f124ad4a8e}</Project>
       <Name>CExtensions.EFModelGenerator.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CExtensions.EFModelGenerator.Serializers\CExtensions.EFModelGenerator.Serializers.csproj">
+      <Project>{b462e903-48de-4d7c-9cae-16926c7d19ab}</Project>
+      <Name>CExtensions.EFModelGenerator.Serializers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Test.Helpers\Test.Helpers.csproj">
       <Project>{a2d088c9-56f6-4318-af5b-da25ca18e198}</Project>

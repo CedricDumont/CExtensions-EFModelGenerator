@@ -128,7 +128,7 @@ namespace CExtensions.EFModelGenerator.VSExtension
 
                 var resultFile = Generator.Generate(settings);
 
-                ProjectItem item = projectItem.ContainingProject.ProjectItems.AddFromFile(resultFile.FullName);
+                ProjectItem item = projectItem.ContainingProject.ProjectItems.AddFromFile(resultFile);
 
             }
             catch(Exception ex)

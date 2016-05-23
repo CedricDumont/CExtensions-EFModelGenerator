@@ -13,11 +13,11 @@ namespace CExtensions.EFModelGenerator.Core
     public class Generator : IDisposable
     {
 
-        public static FileInfo Generate(String configFilePath)
+        public static string Generate(String configFilePath)
         {
             if(!File.Exists(configFilePath))
             {
-                throw new Exception($"The file passed as paralms does not exists : {configFilePath}");
+                throw new Exception($"The file passed as parameter does not exist : {configFilePath}");
             }
 
             string fileContent = File.ReadAllText(configFilePath);
@@ -42,7 +42,7 @@ namespace CExtensions.EFModelGenerator.Core
             return Generate(settings);
         }
 
-        public static FileInfo Generate(EFMGSettings settings)
+        public static string Generate(EFMGSettings settings, TextWriter sw = null)
         {
             Debug.WriteLine($"Generating file : {settings.FilePath}");
 
@@ -53,8 +53,9 @@ namespace CExtensions.EFModelGenerator.Core
                 File.Delete(newFileName);
             }
 
+            var tw = sw ?? File.CreateText(newFileName);
             //generate the code
-            using (var tw = File.CreateText(newFileName))
+            using (sw)
             {
                 using (Generator generator = new Generator(settings.Options))
                 {
@@ -62,7 +63,7 @@ namespace CExtensions.EFModelGenerator.Core
                 }
             }
 
-            return new FileInfo(newFileName);
+            return newFileName;
         }
 
         public Generator(GenerationOptions generatorOptions)

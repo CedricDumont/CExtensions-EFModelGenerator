@@ -12,11 +12,8 @@ namespace CExtensions.EFModelGenerator.Core
     {
         private IDictionary<string, Func<Column, string>> formatters = new Dictionary<string, Func<Column, string>>();
 
-        private ColumnNameFormatter DEFAULT_FORMATTER = new RemoveUnderscoreNameFormatter();
-
         internal Column()
         {
-            ColumnConfiguration = new ColumnConfiguration();
         }
 
         internal Column(string tableName, ColumnMetadata metadata)
@@ -29,7 +26,7 @@ namespace CExtensions.EFModelGenerator.Core
         }
 
         [JsonIgnore]
-        internal ColumnConfiguration ColumnConfiguration { get; private set; }
+        internal ColumnConfiguration ColumnConfiguration { get; set; }
 
         [JsonIgnore]
         public Table Table { get; internal set; }
@@ -55,8 +52,6 @@ namespace CExtensions.EFModelGenerator.Core
                 return !IsNullable;
             }
         }
-
-
 
         [JsonIgnore]
         public string TableCLRTypeName
@@ -89,15 +84,28 @@ namespace CExtensions.EFModelGenerator.Core
         {
             var formatters = ColumnConfiguration.GetFormattersFor(this.TableName);
 
+            string newColumnName = this.Name;
+
             foreach (var formatter in formatters)
             {
-                if (formatter.IsApplicable(this))
+                if (formatter.IsApplicable(this, newColumnName))
                 {
-                    return formatter.Apply(this);
+                    newColumnName = formatter.Apply(this, newColumnName);
+
+                    if(formatter.SkipOtherFormatters(this, newColumnName))
+                    {
+                        break;
+                    }
                 }
             }
 
-            return DEFAULT_FORMATTER.Apply(this);
+            //ensure name is not the same as enclosingType
+            if(this.Table.CLRTypeName == newColumnName)
+            {
+                return newColumnName + "_" + newColumnName;
+            }
+
+            return newColumnName;
 
         }
 

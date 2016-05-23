@@ -21,11 +21,28 @@ namespace CExtensions.EFModelGenerator.Core
 
         internal void Init()
         {
+            //Create formatters classes
+            ColumnConfiguration configuration = new ColumnConfiguration();
+
+            foreach (var formatterName in GeneratorOptions.NameFormatters)
+            {
+                var instance = (INameFormatter<Column>)Activator.CreateInstance(Type.GetType(formatterName));
+
+                configuration.AddFormatter(instance);
+            }
+            
+            
             foreach (var col in AllColumns)
             {
+                //create the reverse link to table
                 Table table = FindTable(col.TableName);
                 col.Table = table;
+                col.ColumnConfiguration = configuration;
+                
+
             }
+
+
         }
 
         public String Name { get; set; }

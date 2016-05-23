@@ -15,9 +15,9 @@ namespace Test.Helpers
         }
 
 
-        public string GetFileContent(string testCaseId, string extension = "json", string folderName = "input")
+        public string GetFileContent(string fileName, string folderName = "input")
         {
-            string filePath = GetFilePath(folderName, testCaseId + "." + extension);
+            string filePath = GetFilePath(folderName, fileName);
 
             return filePath.FileContent();
         }

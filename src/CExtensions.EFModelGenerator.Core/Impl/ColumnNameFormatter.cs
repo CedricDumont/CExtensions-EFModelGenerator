@@ -11,39 +11,73 @@ namespace CExtensions.EFModelGenerator.Core
 {
     public class ColumnNameFormatter : INameFormatter<Column>
     {
-        public virtual bool IsApplicable(Column input)
+        public virtual bool IsApplicable(Column input, string currentName)
         {
             return true;
         }
 
-        public virtual String Apply(Column input)
+        public virtual String Apply(Column input, string currentName)
         {
-            return input.Name;
+            return currentName;
+        }
+
+        public virtual bool SkipOtherFormatters(Column input, string currentName)
+        {
+            return false;
         }
     }
 
-
-    public class RemoveUnderscoreNameFormatter : ColumnNameFormatter
+    public class UpperFirstLetterNameFormatter : ColumnNameFormatter
     {
-        public override String Apply(Column col)
+        public override String Apply(Column col, string currentName)
         {
-            var yourString = col.Name;
-            yourString = yourString.ToLower().Replace("_", " ");
+            var firstLetterUpper = currentName.Substring(0, 1).ToUpper();
+            return firstLetterUpper + currentName.Remove(0, 1);
+
+        }
+    }
+
+    public class TitleCaseNameFormatter : ColumnNameFormatter
+    {
+        public override String Apply(Column col, string currentName)
+        {
+            var yourString = currentName;
+            yourString = yourString.Replace("_", " ");
             TextInfo info = CultureInfo.CurrentCulture.TextInfo;
             yourString = info.ToTitleCase(yourString).Replace(" ", string.Empty);
             return yourString;
         }
     }
 
-    public class KeepIdColumnNameFormatter : ColumnNameFormatter
-    {
-        public override bool IsApplicable(Column input)
-        {
-            if (!input.IsPrimaryKey)
-            {
-                Regex regular = new Regex(@"\w*_ID\b");
 
-                if (regular.Matches(input.Name).Count > 0)
+    public class RemoveTillFirstUnderscoreNameFormatter : ColumnNameFormatter
+    {
+        public override String Apply(Column col, string currentName)
+        {
+            var index = currentName.ToLower().IndexOf("_");
+
+            if (index > 0)
+            {
+                var colName = currentName.Remove(0, index + 1);
+
+                return colName;
+            }
+            else
+            {
+                return col.Name;
+            }
+        }
+    }
+
+    public class SafeIdColumnNameFormatter : ColumnNameFormatter
+    {
+        public override bool IsApplicable(Column col, string currentName)
+        {
+            if (!col.IsPrimaryKey)
+            {
+                Regex regular = new Regex(@"\w*_ID\b", RegexOptions.IgnoreCase);
+
+                if (regular.Matches(col.Name).Count > 0)
                 {
                     return true;
                 }
@@ -51,30 +85,40 @@ namespace CExtensions.EFModelGenerator.Core
             return false;
         }
 
-        public override String Apply(Column col)
+        public override String Apply(Column col, string currentName)
         {
-            var yourString = col.Name;
+            var yourString = currentName;
             yourString = yourString.ToLower().Replace("_", " ");
             TextInfo info = CultureInfo.CurrentCulture.TextInfo;
             yourString = info.ToTitleCase(yourString).Replace(" ", string.Empty);
             return yourString;
         }
+
+        public override bool SkipOtherFormatters(Column input, string currentName)
+        {
+            return true;
+        }
     }
 
     public class IDColumnFormatter : ColumnNameFormatter
     {
-        public override bool IsApplicable(Column input)
+        public override bool IsApplicable(Column input, string currentName)
         {
-            if (input.IsPrimaryKey)
+            if (input.IsPrimaryKey && input.Table.PrimaryKeys.Count() == 1 )
             {
                 return true;
             }
             return false;
         }
 
-        public override String Apply(Column col)
+        public override String Apply(Column col, string currentName)
         {
             return "ID";
+        }
+
+        public override  bool SkipOtherFormatters(Column input, string currentName)
+        {
+            return true;
         }
     }
 

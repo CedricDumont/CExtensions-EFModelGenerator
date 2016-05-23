@@ -12,8 +12,9 @@ namespace CExtensions.EFModelGenerator.Core
     {
         public GenerationOptions()
         {
-            ColumnConfiguration = new ColumnConfiguration();
-            IgnoreTableRegex = new List<String>();
+          //  ColumnConfiguration = new ColumnConfiguration();
+            IgnoreTableRegex = new string[0];
+            NameFormatters = new string[0];
         }
         public String ConnectionString { get; set; }
 
@@ -23,9 +24,9 @@ namespace CExtensions.EFModelGenerator.Core
 
         public string ImplementingClassPath { get; set; }
 
-        public ColumnConfiguration ColumnConfiguration { get; set; }
+    //    public ColumnConfiguration ColumnConfiguration { get; set; }
 
-        public IList<String> IgnoreTableRegex { get; set; }
+        public string[] IgnoreTableRegex { get; set; }
 
         public String ProviderType { get; set; }
 
@@ -35,6 +36,8 @@ namespace CExtensions.EFModelGenerator.Core
 
         public Object[] SerializerTypeArguments { get; set; }
 
-        
+        public String[] NameFormatters { get; set; }
+
+
     }
 }
