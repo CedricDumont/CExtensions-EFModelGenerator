@@ -1,0 +1,7 @@
+﻿COLUMN, Person, PERS_ID, number, 0, false
+COLUMN, Person, PERS_FIRST_NAME, varchar, 0, false
+COLUMN, Person, PERS_PARENT_ID, number, 0, false
+COLUMN, Person, PERS_BROTHER_ID, number, 0, false
+PK,Person, PERS_ID
+FK,Person, PERS_PARENT_ID, Person
+FK,Person, PERS_BROTHER_ID, Person

@@ -1,0 +1,10 @@
+﻿{
+  "Options": {
+    "Namespace": "MultipleRelationsWithFormatters",
+    "NameFormatters": [
+      "CExtensions.EFModelGenerator.Core.IDColumnFormatter",
+      "CExtensions.EFModelGenerator.Core.RemoveTillFirstUnderscoreNameFormatter",
+      "CExtensions.EFModelGenerator.Core.TitleCaseNameFormatter"
+    ]
+  }
+}

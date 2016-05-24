@@ -1,12 +1,9 @@
 ﻿COLUMN, Person, PERS_ID, number, 0, false
 COLUMN, Person, PERS_FIRST_NAME, varchar, 0, true
 COLUMN, Person, PERS_LAST_NAME, varchar, 0, false
-COLUMN, Person, PERS_ADRESS, varchar, 0, true
-COLUMN, Person, OTHER_ADRESS, varchar, 0, true
 COLUMN, Orders, Id, number, 0, false
 COLUMN, Orders, pers_id, number, 0, true
 COLUMN, Orders, Amount, varchar, 0, false
-COLUMN, Orders, lines, number, 0, true
 PK,Person, PERS_ID
 PK,Orders, Id
 FK,Orders, pers_id, Person

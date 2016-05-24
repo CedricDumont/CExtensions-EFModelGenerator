@@ -21,15 +21,9 @@ namespace my.business.space.one
         [Column("PERS_LAST_NAME")]
         public string PERS_LAST_NAME { get; set; }   // Person.PERS_LAST_NAME
 
-        [Column("PERS_ADRESS")]
-        public string PERS_ADRESS { get; set; }   // Person.PERS_ADRESS
-
-        [Column("OTHER_ADRESS")]
-        public string OTHER_ADRESS { get; set; }   // Person.OTHER_ADRESS
-
         // Reverse Navigation
 
-        [InverseProperty("pers_id")]
+        [InverseProperty("pers_id_Key")]
         public virtual List<Orders> Orders { get; set; }
 
     }
@@ -46,15 +40,12 @@ namespace my.business.space.one
         [Column("Amount")]
         public string Amount { get; set; }   // Orders.Amount
 
-        [Column("lines")]
-        public long lines { get; set; }   // Orders.lines
-
         [Column("pers_id")]
-        public long pers_id { get; set; }  // Orders.pers_id (ForeignKey)
+        public long pers_id_Key { get; set; }  // Orders.pers_id (ForeignKey)
 
         // ForeignKeys
 
-        [ForeignKey("pers_id")]
+        [ForeignKey("pers_id_Key")]
         public virtual Person Person { get; set; }
 
     }

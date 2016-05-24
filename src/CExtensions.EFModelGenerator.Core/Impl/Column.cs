@@ -102,7 +102,13 @@ namespace CExtensions.EFModelGenerator.Core
             //ensure name is not the same as enclosingType
             if(this.Table.CLRTypeName == newColumnName)
             {
-                return newColumnName + "_" + newColumnName;
+                newColumnName =  newColumnName + "_" + newColumnName;
+            }
+
+            //if te name is a foreign key ref, add suffix _Key
+            if(this.IsForeignKey)
+            {
+                newColumnName = newColumnName + "_Key";
             }
 
             return newColumnName;
