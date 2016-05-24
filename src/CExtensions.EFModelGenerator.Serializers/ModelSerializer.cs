@@ -1,6 +1,7 @@
 ﻿using CExtensions.EFModelGenerator.Common;
 using CExtensions.EFModelGenerator.Core;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -107,10 +108,22 @@ namespace CExtensions.EFModelGenerator.Serializers
 
         public static void SerializeUsings(StringBuilder sb)
         {
-            sb.AppendLine("using System;");
-            sb.AppendLine("using System.ComponentModel.DataAnnotations;");
-            sb.AppendLine("using System.ComponentModel.DataAnnotations.Schema;");
-            sb.AppendLine("using System.Collections.Generic;");
+            foreach (var entry in GetUsings())
+            {
+                sb.AppendLine(entry);
+            }
+        }
+
+        public static IList<string> GetUsings()
+        {
+            List<string> usings = new List<string>();
+            usings.Add("using System;");
+            usings.Add("using System.ComponentModel.DataAnnotations;");
+            usings.Add("using System.ComponentModel.DataAnnotations.Schema;");
+            usings.Add("using System.Collections.Generic;");
+            usings.Sort();
+            usings.Reverse();
+            return usings;
         }
     }
 }
