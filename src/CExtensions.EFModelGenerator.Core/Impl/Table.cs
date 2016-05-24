@@ -47,11 +47,11 @@ namespace CExtensions.EFModelGenerator.Core
         }
 
         [JsonIgnore]
-        public IEnumerable<IForeignKey> ForeignKeys
+        public IEnumerable<ForeignKey> ForeignKeys
         {
             get
             {
-                List<IForeignKey> result = new List<IForeignKey>();
+                List<ForeignKey> result = new List<ForeignKey>();
 
                 var list = from c in Columns where c.IsForeignKey == true select c;
 

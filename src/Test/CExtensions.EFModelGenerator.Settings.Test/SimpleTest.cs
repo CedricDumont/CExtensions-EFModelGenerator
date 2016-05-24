@@ -48,7 +48,7 @@ namespace CExtensions.EFModelGenerator.Settings.Test
             string a = System.Text.RegularExpressions.Regex.Replace(sb.ToString(), @"\s+|\t|\n|\t\n\r\0\x0B", "");
             string b = System.Text.RegularExpressions.Regex.Replace(expectedOutput, @"\s+|\t|\n|\t\n\r\0\x0B", "");
             bool isTheSame = String.Compare(a, b) == 0;
-            isTheSame.ShouldBe(true, $"Should be {Environment.NewLine}{a}{Environment.NewLine} but was {Environment.NewLine}{b}{Environment.NewLine}");
+            isTheSame.ShouldBe(true, $"Should be {Environment.NewLine}{b}{Environment.NewLine} but was {Environment.NewLine}{a}{Environment.NewLine}");
         }
     }
 }

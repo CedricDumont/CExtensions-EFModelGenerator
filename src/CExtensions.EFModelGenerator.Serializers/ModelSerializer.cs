@@ -45,7 +45,7 @@ namespace CExtensions.EFModelGenerator.Serializers
                     sb.AppendLine(Constants.TabProperty + "[Key]");
                     sb.AppendLine(Constants.TabProperty + $"[Column(\"{column.Name}\")]");
                     var comment = $" // {table.Name}.{column.Name} (PrimaryKey)";
-                    sb.AppendLine(Constants.TabProperty + $"public {column.CLRType} {column.FormattedName} {{ get;set; }} {comment}");
+                    sb.AppendLine(Constants.TabProperty + $"public {column.CLRTypeWithNullableMark} {column.FormattedName} {{ get;set; }} {comment}");
                 }
 
                 foreach (var column in table.DataColumns)
@@ -57,7 +57,7 @@ namespace CExtensions.EFModelGenerator.Serializers
                     }
                     sb.AppendLine(Constants.TabProperty + $"[Column(\"{column.Name}\")]");
                     var comment = $" // {table.Name}.{column.Name}";
-                    sb.AppendLine(Constants.TabProperty + $"public {column.CLRType} {column.FormattedName} {{ get;set; }}  {comment}");
+                    sb.AppendLine(Constants.TabProperty + $"public {column.CLRTypeWithNullableMark} {column.FormattedName} {{ get;set; }}  {comment}");
                 }
 
                 if (table.ForeignKeys.Count() > 0)

@@ -60,10 +60,10 @@ namespace Relations.MultipleRelationsWithFormatters
 
         [Key]
         [Column("OL_ID")]
-        public long ID { get; set; }  // OrderLines.OL_ID (PrimaryKey)
+        public long? ID { get; set; }  // OrderLines.OL_ID (PrimaryKey)
 
         [Column("count")]
-        public long Count { get; set; }   // OrderLines.count
+        public long? Count { get; set; }   // OrderLines.count
 
         [Column("OL_Person")]
         public long Person_Key { get; set; }  // OrderLines.OL_Person (ForeignKey)

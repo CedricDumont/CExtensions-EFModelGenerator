@@ -39,6 +39,22 @@ namespace CExtensions.EFModelGenerator.Core
         public String CLRType => GetPropertyType(DBType, DBDataScale);
 
         [JsonIgnore]
+        public String CLRTypeWithNullableMark
+        {
+            get
+            {
+                string isNullableMark = ""; 
+
+                if(CLRType != "string")
+                {
+                    isNullableMark = (IsNullable ? "?" : "");
+                }
+
+                return CLRType + isNullableMark;
+            }
+        }
+
+        [JsonIgnore]
         public String FormattedName => FormatColumnName();
 
         //[JsonIgnore]

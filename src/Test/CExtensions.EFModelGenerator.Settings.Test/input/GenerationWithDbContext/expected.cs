@@ -62,10 +62,10 @@ namespace GenerationWithDbContext
 
         [Key]
         [Column("OL_ID")]
-        public long OL_ID { get; set; }  // OrderLines.OL_ID (PrimaryKey)
+        public long? OL_ID { get; set; }  // OrderLines.OL_ID (PrimaryKey)
 
         [Column("count")]
-        public long count { get; set; }   // OrderLines.count
+        public long? count { get; set; }   // OrderLines.count
 
         [Column("OL_Person")]
         public long OL_Person_Key { get; set; }  // OrderLines.OL_Person (ForeignKey)
@@ -83,8 +83,9 @@ namespace GenerationWithDbContext
 
     }
 
-    public partial class MyDbContext : DbContext
+    public partial class SampleDbContext : DbContext
     {
+
         public IDbSet<Person> People { get; set; } // Person 
 
         public IDbSet<Orders> Orders { get; set; } // Orders 
@@ -92,22 +93,22 @@ namespace GenerationWithDbContext
         public IDbSet<OrderLines> OrderLines { get; set; } // OrderLines 
 
         // Constructors
-        public MyDbContext() : base()
+        public SampleDbContext() : base()
         {
             InitializePartial();
         }
 
-        public MyDbContext(string connectionString) : base(connectionString)
+        public SampleDbContext(string connectionString) : base(connectionString)
         {
             InitializePartial();
         }
 
-        public MyDbContext(string connectionString, System.Data.Entity.Infrastructure.DbCompiledModel model) : base(connectionString, model)
+        public SampleDbContext(string connectionString, System.Data.Entity.Infrastructure.DbCompiledModel model) : base(connectionString, model)
         {
             InitializePartial();
         }
 
-        public MyDbContext(DbConnection existingConn) : base(existingConn, true)
+        public SampleDbContext(DbConnection existingConn) : base(existingConn, true)
         {
             InitializePartial();
         }
