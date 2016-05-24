@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 
-namespace my.business.space.one
+namespace Relations.SimpleRelation
 {
 
     [Table("Person")]

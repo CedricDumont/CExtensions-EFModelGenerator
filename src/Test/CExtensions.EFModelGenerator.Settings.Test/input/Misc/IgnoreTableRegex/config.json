@@ -1,6 +1,6 @@
 ﻿{
   "Options": {
-    "Namespace": "my.business.space.two",
+    "Namespace": "Misc.IgnoreTableRegex",
     "IgnoreTableRegex": [ "Orders" ]
   }
 

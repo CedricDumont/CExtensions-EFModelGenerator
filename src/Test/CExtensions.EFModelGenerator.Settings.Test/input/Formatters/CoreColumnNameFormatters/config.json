@@ -1,7 +1,7 @@
 ﻿{
   "Options": {
-    "Namespace": "foreignKeysToSelfWithFormatters",
-    "NameFormatters": [
+    "Namespace": "Formatters.CoreColumnNameFormatters",
+    "ColumnNameFormatters": [
       "CExtensions.EFModelGenerator.Core.IDColumnFormatter",
       "CExtensions.EFModelGenerator.Core.RemoveTillFirstUnderscoreNameFormatter",
       "CExtensions.EFModelGenerator.Core.TitleCaseNameFormatter"

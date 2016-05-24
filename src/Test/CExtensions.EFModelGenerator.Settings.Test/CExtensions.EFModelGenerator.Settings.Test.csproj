@@ -64,28 +64,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="input\foreignKeysToSelfWithFormatters\expected.cs">
+    <Compile Include="input\ForeignKeys\ForeignKeysToSelfWithFormatters\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="input\customNameFormatters\expected.cs">
+    <Compile Include="input\Formatters\CustomColumnNameFormatters\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="input\nameFormatters\expected.cs">
+    <Compile Include="input\Formatters\CoreColumnNameFormatters\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="input\foreignKeysToSelf\expected.cs">
+    <Compile Include="input\ForeignKeys\ForeignKeysToSelf\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="input\MultipleRelationsWithFormatters\expected.cs">
+    <Compile Include="input\Relations\MultipleRelationsWithFormatters\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="input\withRelations\expected.cs">
+    <Compile Include="input\Relations\SimpleRelation\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="input\sameNameAsEnclosingType\expected.cs">
+    <Compile Include="input\Misc\PropertyWithSameNameAsEnclosingType\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="input\skipTable\expected.cs">
+    <Compile Include="input\Misc\IgnoreTableRegex\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="NameFormatterSamples\SpecialPersonColumnNameFormatter.cs" />
@@ -94,52 +94,52 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="input\foreignKeysToSelfWithFormatters\schema.txt">
+    <Content Include="input\ForeignKeys\ForeignKeysToSelfWithFormatters\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="input\customNameFormatters\schema.txt">
+    <Content Include="input\Formatters\CustomColumnNameFormatters\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="input\nameFormatters\schema.txt">
+    <Content Include="input\Formatters\CoreColumnNameFormatters\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="input\foreignKeysToSelf\schema.txt">
+    <Content Include="input\ForeignKeys\ForeignKeysToSelf\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="input\MultipleRelationsWithFormatters\schema.txt">
+    <Content Include="input\Relations\MultipleRelationsWithFormatters\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="input\withRelations\schema.txt">
+    <Content Include="input\Relations\SimpleRelation\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="input\sameNameAsEnclosingType\schema.txt">
+    <Content Include="input\Misc\PropertyWithSameNameAsEnclosingType\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="input\skipTable\schema.txt">
+    <Content Include="input\Misc\IgnoreTableRegex\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="input\foreignKeysToSelfWithFormatters\config.json">
+    <None Include="input\ForeignKeys\ForeignKeysToSelfWithFormatters\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="input\customNameFormatters\config.json">
+    <None Include="input\Formatters\CustomColumnNameFormatters\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="input\nameFormatters\config.json">
+    <None Include="input\Formatters\CoreColumnNameFormatters\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="input\foreignKeysToSelf\config.json">
+    <None Include="input\ForeignKeys\ForeignKeysToSelf\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="input\MultipleRelationsWithFormatters\config.json">
+    <None Include="input\Relations\MultipleRelationsWithFormatters\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="input\withRelations\config.json">
+    <None Include="input\Relations\SimpleRelation\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="input\sameNameAsEnclosingType\config.json">
+    <None Include="input\Misc\PropertyWithSameNameAsEnclosingType\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="input\skipTable\config.json">
+    <None Include="input\Misc\IgnoreTableRegex\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

@@ -15,14 +15,14 @@ namespace CExtensions.EFModelGenerator.Settings.Test
     public class SimpleTest : BaseUnitTest
     {
         [Theory(DisplayName = "ShouldSerializeModel")]
-        [InlineData("input\\skipTable", null, null, null)]
-        [InlineData("input\\sameNameAsEnclosingType", null, null, null)]
-        [InlineData("input\\nameFormatters", null, null, null)]
-        [InlineData("input\\customNameFormatters", null, null, null)]
-        [InlineData("input\\withRelations", null, null, null)]
-        [InlineData("input\\MultipleRelationsWithFormatters", null, null, null)]
-        [InlineData("input\\foreignKeysToSelf", null, null, null)]
-        [InlineData("input\\foreignKeysToSelfWithFormatters", null, null, null)]
+        [InlineData("input\\ForeignKeys\\ForeignKeysToSelf", null, null, null)]
+        [InlineData("input\\ForeignKeys\\ForeignKeysToSelfWithFormatters", null, null, null)]
+        [InlineData("input\\Formatters\\CoreColumnNameFormatters", null, null, null)]
+        [InlineData("input\\Formatters\\CustomColumnNameFormatters", null, null, null)]
+        [InlineData("input\\Misc\\IgnoreTableRegex", null, null, null)]
+        [InlineData("input\\Misc\\PropertyWithSameNameAsEnclosingType", null, null, null)]
+        [InlineData("input\\Relations\\MultipleRelationsWithFormatters", null, null, null)]
+        [InlineData("input\\Relations\\SimpleRelation", null, null, null)]
         
         public void ShouldSerializeModel(string folder, string configFile =null, string schemaFile = null, string expectedFile = null)
         {

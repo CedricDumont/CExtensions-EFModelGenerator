@@ -24,7 +24,7 @@ namespace CExtensions.EFModelGenerator.Core
             //Create formatters classes
             FormatterCollection<Column> configuration = new FormatterCollection<Column>();
 
-            foreach (var formatterName in GeneratorOptions.NameFormatters)
+            foreach (var formatterName in GeneratorOptions.ColumnNameFormatters)
             {
                 var formatterType = Type.GetType(formatterName);
 

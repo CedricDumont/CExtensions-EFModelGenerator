@@ -14,7 +14,7 @@ namespace CExtensions.EFModelGenerator.Core
         {
           //  ColumnConfiguration = new ColumnConfiguration();
             IgnoreTableRegex = new string[0];
-            NameFormatters = new string[0];
+            ColumnNameFormatters = new string[0];
         }
         public String ConnectionString { get; set; }
 
@@ -36,7 +36,9 @@ namespace CExtensions.EFModelGenerator.Core
 
         public Object[] SerializerTypeArguments { get; set; }
 
-        public String[] NameFormatters { get; set; }
+        public String[] ColumnNameFormatters { get; set; }
+
+        public String[] TableNameFormatters { get; set; }
 
 
     }
