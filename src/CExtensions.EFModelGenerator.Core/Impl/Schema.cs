@@ -22,7 +22,7 @@ namespace CExtensions.EFModelGenerator.Core
         internal void Init()
         {
             //Create formatters classes
-            FormatterCollection<Column> configuration = new FormatterCollection<Column>();
+            FormatterCollection<Column> columnFormatters = new FormatterCollection<Column>();
 
             foreach (var formatterName in GeneratorOptions.ColumnNameFormatters)
             {
@@ -35,16 +35,45 @@ namespace CExtensions.EFModelGenerator.Core
 
                 var instance = (INameFormatter<Column>)Activator.CreateInstance(formatterType);
 
-                configuration.AddFormatter(instance);
+                columnFormatters.AddFormatter(instance);
             }
-            
-            
+
+            FormatterCollection<Table> tableFormatters = new FormatterCollection<Table>();
+            foreach (var formatterName in GeneratorOptions.TableNameFormatters)
+            {
+                var formatterType = Type.GetType(formatterName);
+
+                if (formatterType == null)
+                {
+                    throw new Exception($"Could not load type {formatterName}");
+                }
+
+                var instance = (INameFormatter<Table>)Activator.CreateInstance(formatterType);
+
+                tableFormatters.AddFormatter(instance);
+            }
+
+            foreach (var table in Tables)
+            {
+                //create the reverse link to table
+                table.FormatterCollection = tableFormatters;
+            }
+
+
             foreach (var col in AllColumns)
             {
                 //create the reverse link to table
                 Table table = FindTable(col.TableName);
                 col.Table = table;
-                col.ColumnConfiguration = configuration;
+                col.FormatterCollection = columnFormatters;
+            }
+
+            //init foreignTables
+            foreach (var col in AllColumns.Where(c => c.IsForeignKey))
+            {
+                var referencedTable = (from t in Tables where t.Name == col.ReferencedTableName select t).FirstOrDefault();
+
+                col.ForeignTable = referencedTable;
             }
         }
 
@@ -79,7 +108,7 @@ namespace CExtensions.EFModelGenerator.Core
         {
            
                 var tables = from c in this.AllColumns
-                             where c.ForeignTableName == table.Name
+                             where c.ForeignTable?.Name == table.Name
                              select c;
 
                 return tables.ToList();

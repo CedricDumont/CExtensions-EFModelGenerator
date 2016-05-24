@@ -11,13 +11,13 @@ namespace CExtensions.EFModelGenerator.Core
 {
     public class Table
     {
-        private Func<String, String> _NameFormatter = str =>
-        {
-            var yourString = str.ToLower().Replace("_", " ");
-            TextInfo info = CultureInfo.CurrentCulture.TextInfo;
-            yourString = info.ToTitleCase(yourString).Replace(" ", string.Empty);
-            return yourString;
-        };
+        //private Func<String, String> _NameFormatter = str =>
+        //{
+        //    var yourString = str.ToLower().Replace("_", " ");
+        //    TextInfo info = CultureInfo.CurrentCulture.TextInfo;
+        //    yourString = info.ToTitleCase(yourString).Replace(" ", string.Empty);
+        //    return yourString;
+        //};
 
         internal Table()
         {
@@ -33,6 +33,9 @@ namespace CExtensions.EFModelGenerator.Core
         public String Name { get; set; }
 
         public IList<Column> Columns { get; set; }
+
+        [JsonIgnore]
+        internal FormatterCollection<Table> FormatterCollection { get; set; }
 
         [JsonIgnore]
         public IEnumerable<Column> PrimaryKeys
@@ -84,7 +87,7 @@ namespace CExtensions.EFModelGenerator.Core
                 if (ForeignKeys.Count() > 0)
                 {
                     var result = from f in ForeignKeys
-                                 group f by f.Column.ForeignTableName into g
+                                 group f by f.Column.ForeignTable?.Name into g
                                  where g.Count() > 1
                                  select new { Count = g.Count() };
 
@@ -95,7 +98,7 @@ namespace CExtensions.EFModelGenerator.Core
         }
 
         [JsonIgnore]
-        public String CLRTypeName => _NameFormatter(Name) + Info;
+        public String CLRTypeName => FormatTableName() ;
 
         [JsonIgnore]
         internal string Info { get; set; }
@@ -106,6 +109,29 @@ namespace CExtensions.EFModelGenerator.Core
         public override string ToString()
         {
             return CLRTypeName + $" [{this.Name}]";
+        }
+
+        public string FormatTableName()
+        {
+            var formatters = FormatterCollection.GetFormattersFor(this.Name);
+
+            string newTableName = this.Name;
+
+            foreach (var formatter in formatters)
+            {
+                if (formatter.IsApplicable(this, newTableName))
+                {
+                    newTableName = formatter.Apply(this, newTableName);
+
+                    if (formatter.SkipOtherFormatters(this, newTableName))
+                    {
+                        break;
+                    }
+                }
+            }
+
+            //Todo change the Info thing with sthg else. basically it is used to check duplicates
+            return newTableName + Info;
         }
     }
 }

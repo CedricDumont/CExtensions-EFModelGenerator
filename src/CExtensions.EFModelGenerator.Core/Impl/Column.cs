@@ -26,7 +26,7 @@ namespace CExtensions.EFModelGenerator.Core
         }
 
         [JsonIgnore]
-        internal FormatterCollection<Column> ColumnConfiguration { get; set; }
+        internal FormatterCollection<Column> FormatterCollection { get; set; }
 
         [JsonIgnore]
         public Table Table { get; internal set; }
@@ -62,15 +62,10 @@ namespace CExtensions.EFModelGenerator.Core
             }
         }
 
-        public string ForeignTableClrTypeName
-        {
-            get; set;
-        }
+        [JsonIgnore]
+        public Table ForeignTable { get; set; }
 
-        public string ForeignTableName
-        {
-            get; set;
-        }
+        public string ReferencedTableName { get; set; }
 
         public void AddFormatter(String pattern, Func<Column, string> ColumnFormatter)
         {
@@ -82,7 +77,7 @@ namespace CExtensions.EFModelGenerator.Core
 
         private String FormatColumnName()
         {
-            var formatters = ColumnConfiguration.GetFormattersFor(this.TableName);
+            var formatters = FormatterCollection.GetFormattersFor(this.TableName);
 
             string newColumnName = this.Name;
 

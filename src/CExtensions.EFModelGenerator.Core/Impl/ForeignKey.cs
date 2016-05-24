@@ -27,7 +27,7 @@ namespace CExtensions.EFModelGenerator.Core
 
         public String PropertyName => ComputeReferencedName();
 
-        public String ReferencedCLRName => Column.ForeignTableClrTypeName;
+        public String ReferencedCLRName => Column.ForeignTable?.CLRTypeName;
 
         public String Comment => $" // {Column.TableName}.{ColumnName} (ForeignKey)";
 
@@ -35,8 +35,8 @@ namespace CExtensions.EFModelGenerator.Core
 
         private String ComputeReferencedName()
         {
-            var referencedTableName = Column.ForeignTableClrTypeName
-                       + ((Column.ForeignTableClrTypeName == Column.TableCLRTypeName || Table.ContainsTwoSameForeignReference) ? "_" + Column.FormattedName : "");
+            var referencedTableName = Column.ForeignTable?.CLRTypeName
+                       + ((Column.ForeignTable?.CLRTypeName == Column.TableCLRTypeName || Table.ContainsTwoSameForeignReference) ? "_" + Column.FormattedName : "");
             return referencedTableName;
         }
 

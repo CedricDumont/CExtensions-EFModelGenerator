@@ -119,10 +119,12 @@ namespace CExtensions.EFModelGenerator.Core
             foreach (var item in allFsColumn)
             {
                 item.Column.IsForeignKey = true;
+                item.Column.ReferencedTableName = item.ReferencedTable;
                 //find correcponding relational table in already loaded tables
-                var referencedTable = (from t in schema.Tables where t.Name == item.ReferencedTable select t).FirstOrDefault();
-                item.Column.ForeignTableClrTypeName = referencedTable.CLRTypeName;
-                item.Column.ForeignTableName = referencedTable.Name;
+                //var referencedTable = (from t in schema.Tables where t.Name == item.ReferencedTable select t).FirstOrDefault();
+
+                //item.Column.ForeignTableClrTypeName = referencedTable.CLRTypeName;
+                //item.Column.ForeignTableName = referencedTable.Name;
             }
 
         }
