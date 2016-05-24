@@ -83,7 +83,7 @@ namespace CExtensions.EFModelGenerator.Core
             //initialize the serializer
             if (generatorOptions.SerializerType == null)
             {
-                generatorOptions.SerializerType = "CExtensions.EFModelGenerator.Serializers.ModelSerializer, CExtensions.EFModelGenerator.Serializers";
+                generatorOptions.SerializerType = "CExtensions.EFModelGenerator.Serializers.CoreSerializer, CExtensions.EFModelGenerator.Serializers";
                 generatorOptions.SerializerTypeArguments = new Object[] { generatorOptions.Namespace };
             }
 

@@ -9,6 +9,10 @@ namespace CExtensions.EFModelGenerator.Serializers
     public class ModelSerializer : AbstractSerializer
     {
 
+        private const string TabClass = "   ";
+
+        private const string TabProperty = TabClass + "   ";
+
         public ModelSerializer(string _nameSpace)
         {
             NameSpace = _nameSpace;
@@ -19,15 +23,19 @@ namespace CExtensions.EFModelGenerator.Serializers
         public override String Serialize(Schema schema)
         {
             StringBuilder sb = new StringBuilder();
-            string TabClass = "   ";
-            string TabProperty = TabClass + "   ";
-            sb.AppendLine("using System;");
-            sb.AppendLine("using System.ComponentModel.DataAnnotations;          ");
-            sb.AppendLine("using System.ComponentModel.DataAnnotations.Schema;   ");
-            sb.AppendLine("using System.Collections.Generic;   ");
+
+            SerializeUsings(sb);
             sb.AppendLine("");
             sb.AppendLine($"namespace {NameSpace}");
             sb.AppendLine("{");
+            SerializeTables(schema, sb);
+            sb.AppendLine("");
+            sb.AppendLine("}");
+            return sb.ToString();
+        }
+
+        public static void SerializeTables(Schema schema, StringBuilder sb)
+        {
             foreach (var table in schema.Tables)
             {
                 sb.AppendLine("");
@@ -42,13 +50,13 @@ namespace CExtensions.EFModelGenerator.Serializers
                     sb.AppendLine(TabProperty + $"[Column(\"{column.Name}\")]");
                     var comment = $" // {table.Name}.{column.Name} (PrimaryKey)";
                     sb.AppendLine(TabProperty + $"public {column.CLRType} {column.FormattedName} {{ get;set; }} {comment}");
-                    
+
                 }
 
                 foreach (var column in table.DataColumns)
                 {
                     sb.AppendLine("");
-                    if(column.IsRequired)
+                    if (column.IsRequired)
                     {
                         sb.AppendLine(TabProperty + "[Required]");
                     }
@@ -95,9 +103,14 @@ namespace CExtensions.EFModelGenerator.Serializers
                 sb.AppendLine("");
                 sb.AppendLine(TabClass + "}");
             }
-            sb.AppendLine("");
-            sb.AppendLine("}");
-            return sb.ToString();
+        }
+
+        public static void SerializeUsings(StringBuilder sb)
+        {
+            sb.AppendLine("using System;");
+            sb.AppendLine("using System.ComponentModel.DataAnnotations;");
+            sb.AppendLine("using System.ComponentModel.DataAnnotations.Schema;");
+            sb.AppendLine("using System.Collections.Generic;");
         }
     }
 }
