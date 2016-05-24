@@ -9,11 +9,6 @@ namespace CExtensions.EFModelGenerator.Serializers
 {
     public class ModelSerializer : AbstractSerializer
     {
-
-        private const string TabClass = "   ";
-
-        private const string TabProperty = TabClass + "   ";
-
         public ModelSerializer(string _nameSpace)
         {
             NameSpace = _nameSpace;
@@ -40,18 +35,17 @@ namespace CExtensions.EFModelGenerator.Serializers
             foreach (var table in schema.Tables)
             {
                 sb.AppendLine("");
-                sb.AppendLine(TabClass + "[Table(\"" + table.Name + "\")]");
-                sb.AppendLine(TabClass + "public partial class " + table.CLRTypeName);
-                sb.AppendLine(TabClass + "{");
+                sb.AppendLine(Constants.TabClass + "[Table(\"" + table.Name + "\")]");
+                sb.AppendLine(Constants.TabClass + "public partial class " + table.CLRTypeName);
+                sb.AppendLine(Constants.TabClass + "{");
 
                 foreach (var column in table.PrimaryKeys)
                 {
                     sb.AppendLine("");
-                    sb.AppendLine(TabProperty + "[Key]");
-                    sb.AppendLine(TabProperty + $"[Column(\"{column.Name}\")]");
+                    sb.AppendLine(Constants.TabProperty + "[Key]");
+                    sb.AppendLine(Constants.TabProperty + $"[Column(\"{column.Name}\")]");
                     var comment = $" // {table.Name}.{column.Name} (PrimaryKey)";
-                    sb.AppendLine(TabProperty + $"public {column.CLRType} {column.FormattedName} {{ get;set; }} {comment}");
-
+                    sb.AppendLine(Constants.TabProperty + $"public {column.CLRType} {column.FormattedName} {{ get;set; }} {comment}");
                 }
 
                 foreach (var column in table.DataColumns)
@@ -59,11 +53,11 @@ namespace CExtensions.EFModelGenerator.Serializers
                     sb.AppendLine("");
                     if (column.IsRequired)
                     {
-                        sb.AppendLine(TabProperty + "[Required]");
+                        sb.AppendLine(Constants.TabProperty + "[Required]");
                     }
-                    sb.AppendLine(TabProperty + $"[Column(\"{column.Name}\")]");
+                    sb.AppendLine(Constants.TabProperty + $"[Column(\"{column.Name}\")]");
                     var comment = $" // {table.Name}.{column.Name}";
-                    sb.AppendLine(TabProperty + $"public {column.CLRType} {column.FormattedName} {{ get;set; }}  {comment}");
+                    sb.AppendLine(Constants.TabProperty + $"public {column.CLRType} {column.FormattedName} {{ get;set; }}  {comment}");
                 }
 
                 if (table.ForeignKeys.Count() > 0)
@@ -71,18 +65,18 @@ namespace CExtensions.EFModelGenerator.Serializers
                     foreach (var fk in table.ForeignKeys)
                     {
                         sb.AppendLine("");
-                        sb.AppendLine(TabProperty + $"[Column(\"{fk.ColumnName}\")]");
-                        sb.AppendLine(TabProperty + $"public {fk.ColumnCLRType} {fk.ForeignKeyName} {{ get;set; }} {fk.Comment}");
+                        sb.AppendLine(Constants.TabProperty + $"[Column(\"{fk.ColumnName}\")]");
+                        sb.AppendLine(Constants.TabProperty + $"public {fk.ColumnCLRType} {fk.ForeignKeyName} {{ get;set; }} {fk.Comment}");
                     }
 
                     sb.AppendLine("");
-                    sb.AppendLine(TabProperty + "// ForeignKeys");
+                    sb.AppendLine(Constants.TabProperty + "// ForeignKeys");
 
                     foreach (var fk in table.ForeignKeys)
                     {
                         sb.AppendLine("");
-                        sb.AppendLine(TabProperty + $"[ForeignKey(\"{fk.ForeignKeyName}\")]");
-                        sb.AppendLine(TabProperty + "public virtual " + fk.ReferencedCLRName + " " + fk.PropertyName + " { get; set; }");
+                        sb.AppendLine(Constants.TabProperty + $"[ForeignKey(\"{fk.ForeignKeyName}\")]");
+                        sb.AppendLine(Constants.TabProperty + "public virtual " + fk.ReferencedCLRName + " " + fk.PropertyName + " { get; set; }");
 
                     }
                 }
@@ -90,19 +84,19 @@ namespace CExtensions.EFModelGenerator.Serializers
                 if (schema.InversePropertiesFor(table).Count() > 0)
                 {
                     sb.AppendLine("");
-                    sb.AppendLine(TabProperty + "// Reverse Navigation");
+                    sb.AppendLine(Constants.TabProperty + "// Reverse Navigation");
                     foreach (var reverseNavigation in schema.InversePropertiesFor(table))
                     {
                         sb.AppendLine("");
-                        sb.AppendLine(TabProperty + $"[InverseProperty(\"{reverseNavigation.ReversePropertyName}\")]");
-                        sb.AppendLine(TabProperty + $"public virtual List<{reverseNavigation.ReverseCLRType}> "
+                        sb.AppendLine(Constants.TabProperty + $"[InverseProperty(\"{reverseNavigation.ReversePropertyName}\")]");
+                        sb.AppendLine(Constants.TabProperty + $"public virtual List<{reverseNavigation.ReverseCLRType}> "
                             + reverseNavigation.PropertyName
                             + " { get; set; }");
                     }
                 }
 
                 sb.AppendLine("");
-                sb.AppendLine(TabClass + "}");
+                sb.AppendLine(Constants.TabClass + "}");
             }
         }
 

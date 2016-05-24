@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="CoreSerializer.cs" />
     <Compile Include="DBContextSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

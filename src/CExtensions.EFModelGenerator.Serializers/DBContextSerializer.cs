@@ -1,15 +1,16 @@
 ﻿using CExtensions.EFModelGenerator.Common;
 using CExtensions.EFModelGenerator.Core;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace CExtensions.EFModelGenerator.Serializers
 {
     public class DBContextSerializer : AbstractSerializer
     {
-        private const string TabClassDef = "   ";
-        private const string TabClass = TabClassDef + "   ";
-        private const string TabProperty = TabClass + "   ";
+        private const string TabClassDef = Constants.TabClass;
+        private const string TabClass = TabClassDef + Constants.TabClass;
+        private const string TabProperty = TabClass + Constants.TabProperty;
 
         public DBContextSerializer(string _nameSpace, string _contextName)
         {
@@ -25,32 +26,12 @@ namespace CExtensions.EFModelGenerator.Serializers
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("using System.Data.Entity;");
-            sb.AppendLine("using System.Data.Common;");
+            SerializeUsings(sb);
             sb.AppendLine("");
             sb.AppendLine($"namespace {NameSpace}");
             sb.AppendLine("{");
 
-            sb.AppendLine(TabClassDef + $"public partial class {ContextName}: DbContext {{");
-
-            //Collections
-            foreach (var table in schema.Tables)
-            {
-                sb.AppendLine("");
-                sb.AppendLine(TabClass + $"public IDbSet<{table.CLRTypeName}> {table.CollectionName} {{ get; set; }} // {table.Name} ");
-
-            }
-
-          
-            sb.AppendLine("");
-            sb.AppendLine(TabClass+ "// Constructors");
-            writeConstructorSnippet(sb, ContextName);
-
-            sb.AppendLine("");
-            sb.AppendLine(TabClass + "partial void InitializePartial();");
-
-            sb.AppendLine("");
-            sb.AppendLine(TabClassDef + "}");
+            SerializeDbContext(schema, ContextName, sb);
 
             sb.AppendLine("");
             sb.AppendLine("}");
@@ -58,7 +39,47 @@ namespace CExtensions.EFModelGenerator.Serializers
             return sb.ToString();
         }
 
-        private void writeConstructorSnippet(StringBuilder sb, string contextName)
+        public static void SerializeDbContext(Schema schema, string contextName, StringBuilder sb)
+        {
+            sb.AppendLine(TabClassDef + $"public partial class {contextName}: DbContext {{");
+
+            //Collections
+            foreach (var table in schema.Tables)
+            {
+                sb.AppendLine("");
+                sb.AppendLine(TabClass + $"public IDbSet<{table.CLRTypeName}> {table.CollectionName} {{ get; set; }} // {table.Name} ");
+            }
+
+            sb.AppendLine("");
+            sb.AppendLine(TabClass + "// Constructors");
+            writeConstructorSnippet(sb, contextName);
+
+            sb.AppendLine("");
+            sb.AppendLine(TabClass + "partial void InitializePartial();");
+
+            sb.AppendLine("");
+            sb.AppendLine(TabClassDef + "}");
+        }
+
+        private static void SerializeUsings(StringBuilder sb)
+        {
+            foreach (var entry in GetUsings())
+            {
+                sb.AppendLine(entry);
+            }
+        }
+
+        public static IList<string> GetUsings()
+        {
+            List<string> usings = new List<string>();
+            usings.Add("using System.Data.Entity;");
+            usings.Add("using System.Data.Common;");
+            usings.Sort();
+            usings.Reverse();
+            return usings;
+        }
+
+        private static void writeConstructorSnippet(StringBuilder sb, string contextName)
         {
             sb.AppendLine(TabClass + $"public {contextName}() : base()");
             sb.AppendLine(TabClass + "{");

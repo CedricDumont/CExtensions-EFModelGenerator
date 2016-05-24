@@ -12,6 +12,36 @@ namespace CExtensions.EFModelGenerator.Core
 {
     public class Generator : IDisposable
     {
+        public Generator(GenerationOptions generatorOptions)
+        {
+            GeneratorOptions = generatorOptions;
+
+            //Initialize the provider
+            if (generatorOptions.ProviderType == null)
+            {
+                //default to sqlserver provider
+                generatorOptions.ProviderType = "CExtensions.EFModelGenerator.SqlServer.SqlDataProvider, CExtensions.EFModelGenerator.SqlServer";
+                generatorOptions.ProviderTypeArguments = new Object[] { generatorOptions.ConnectionString, generatorOptions.SchemaName };
+            }
+
+            Provider = createInstance(generatorOptions.ProviderType, generatorOptions.ProviderTypeArguments);
+
+            //initialize the serializer
+            if (generatorOptions.SerializerType == null)
+            {
+                generatorOptions.SerializerType = "CExtensions.EFModelGenerator.Serializers.CoreSerializer, CExtensions.EFModelGenerator.Serializers";
+                generatorOptions.SerializerTypeArguments = new Object[] { generatorOptions.GenerateTypes, generatorOptions.Namespace, generatorOptions.ContextName };
+            }
+
+            Serializer = createInstance(generatorOptions.SerializerType, generatorOptions.SerializerTypeArguments);
+        }
+
+        public Generator(AbstractProvider provider, AbstractSerializer serializer, GenerationOptions generatorOptions = null)
+        {
+            Provider = provider;
+            Serializer = serializer;
+            GeneratorOptions = generatorOptions ?? new GenerationOptions();
+        }
 
         public static string Generate(String configFilePath)
         {
@@ -66,37 +96,7 @@ namespace CExtensions.EFModelGenerator.Core
             return newFileName;
         }
 
-        public Generator(GenerationOptions generatorOptions)
-        {
-            GeneratorOptions = generatorOptions;
-
-            //Initialize the provider
-            if (generatorOptions.ProviderType == null)
-            {
-                //default to sqlserver provider
-                generatorOptions.ProviderType = "CExtensions.EFModelGenerator.SqlServer.SqlDataProvider, CExtensions.EFModelGenerator.SqlServer";
-                generatorOptions.ProviderTypeArguments = new Object[] { generatorOptions.ConnectionString, generatorOptions.SchemaName };
-            }
-
-            Provider = createInstance(generatorOptions.ProviderType, generatorOptions.ProviderTypeArguments);
-
-            //initialize the serializer
-            if (generatorOptions.SerializerType == null)
-            {
-                generatorOptions.SerializerType = "CExtensions.EFModelGenerator.Serializers.CoreSerializer, CExtensions.EFModelGenerator.Serializers";
-                generatorOptions.SerializerTypeArguments = new Object[] { generatorOptions.Namespace };
-            }
-
-            Serializer = createInstance(generatorOptions.SerializerType, generatorOptions.SerializerTypeArguments);
-        }
-
-        public Generator(AbstractProvider provider, AbstractSerializer serializer, GenerationOptions generatorOptions = null)
-        {
-            Provider = provider;
-            Serializer = serializer;
-            GeneratorOptions = generatorOptions ?? new GenerationOptions();
-        }
-
+       
         private Object createInstance(string typename, object[] arguments)
         {
             if (GeneratorOptions.ImplementingClassPath != null)
