@@ -18,10 +18,12 @@ namespace CExtensions.EFModelGenerator.Settings.Test
         [InlineData("input\\skipTable", null, null, null)]
         [InlineData("input\\sameNameAsEnclosingType", null, null, null)]
         [InlineData("input\\nameFormatters", null, null, null)]
+        [InlineData("input\\customNameFormatters", null, null, null)]
         [InlineData("input\\withRelations", null, null, null)]
         [InlineData("input\\MultipleRelationsWithFormatters", null, null, null)]
         [InlineData("input\\foreignKeysToSelf", null, null, null)]
         [InlineData("input\\foreignKeysToSelfWithFormatters", null, null, null)]
+        
         public void ShouldSerializeModel(string folder, string configFile =null, string schemaFile = null, string expectedFile = null)
         {
             //1. Arrange

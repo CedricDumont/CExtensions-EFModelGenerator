@@ -26,7 +26,14 @@ namespace CExtensions.EFModelGenerator.Core
 
             foreach (var formatterName in GeneratorOptions.NameFormatters)
             {
-                var instance = (INameFormatter<Column>)Activator.CreateInstance(Type.GetType(formatterName));
+                var formatterType = Type.GetType(formatterName);
+
+                if(formatterType == null)
+                {
+                    throw new Exception($"Could not load type {formatterName}");
+                }
+
+                var instance = (INameFormatter<Column>)Activator.CreateInstance(formatterType);
 
                 configuration.AddFormatter(instance);
             }

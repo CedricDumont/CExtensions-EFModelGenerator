@@ -67,6 +67,9 @@
     <Compile Include="input\foreignKeysToSelfWithFormatters\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="input\customNameFormatters\expected.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="input\nameFormatters\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -85,11 +88,16 @@
     <Compile Include="input\skipTable\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="NameFormatterSamples\SpecialPersonColumnNameFormatter.cs" />
+    <Compile Include="NameFormatterSamples\AllLowerCaseColumnNameFormatter.cs" />
     <Compile Include="SimpleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="input\foreignKeysToSelfWithFormatters\schema.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="input\customNameFormatters\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="input\nameFormatters\schema.txt">
@@ -111,6 +119,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="input\foreignKeysToSelfWithFormatters\config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="input\customNameFormatters\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="input\nameFormatters\config.json">
