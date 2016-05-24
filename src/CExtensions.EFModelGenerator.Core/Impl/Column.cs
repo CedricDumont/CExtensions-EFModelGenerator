@@ -26,7 +26,7 @@ namespace CExtensions.EFModelGenerator.Core
         }
 
         [JsonIgnore]
-        internal ColumnConfiguration ColumnConfiguration { get; set; }
+        internal FormatterCollection<Column> ColumnConfiguration { get; set; }
 
         [JsonIgnore]
         public Table Table { get; internal set; }

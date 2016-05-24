@@ -49,7 +49,6 @@ namespace CExtensions.EFModelGenerator.Core
         }
     }
 
-
     public class RemoveTillFirstUnderscoreNameFormatter : ColumnNameFormatter
     {
         public override String Apply(Column col, string currentName)

@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator.Core
 {
-    public class ColumnConfiguration
+    public class FormatterCollection<T> where T : class
     {
-        Dictionary<string, List<INameFormatter<Column>>> _tableColumnFormatters = new Dictionary<string, List<INameFormatter<Column>>>();
+        Dictionary<string, List<INameFormatter<T>>> _tableColumnFormatters = new Dictionary<string, List<INameFormatter<T>>>();
 
-        List<INameFormatter<Column>> _generalFormattersList = new List<INameFormatter<Column>>();
+        List<INameFormatter<T>> _generalFormattersList = new List<INameFormatter<T>>();
 
-        public IList<INameFormatter<Column>> GetFormattersFor(string tableName)
+        public IList<INameFormatter<T>> GetFormattersFor(string tableName)
         {
-            List<INameFormatter<Column>> mergedList = new List<INameFormatter<Column>>();
+            List<INameFormatter<T>> mergedList = new List<INameFormatter<T>>();
             mergedList.AddRange(_generalFormattersList);
 
             if (_tableColumnFormatters.ContainsKey(tableName))
@@ -26,16 +26,16 @@ namespace CExtensions.EFModelGenerator.Core
             return mergedList;
         }
 
-        public void AddFormatter(INameFormatter<Column> formatter)
+        public void AddFormatter(INameFormatter<T> formatter)
         {
             _generalFormattersList.Add(formatter);
         }
 
-        public void AddFormatter(String tableName, INameFormatter<Column> formatter)
+        public void AddFormatter(String tableName, INameFormatter<T> formatter)
         {
             if (!_tableColumnFormatters.ContainsKey(tableName))
             {
-                _tableColumnFormatters[tableName] = new List<INameFormatter<Column>>();
+                _tableColumnFormatters[tableName] = new List<INameFormatter<T>>();
 
             }
             _tableColumnFormatters[tableName].Add(formatter);

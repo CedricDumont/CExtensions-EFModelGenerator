@@ -22,7 +22,7 @@ namespace CExtensions.EFModelGenerator.Core
         internal void Init()
         {
             //Create formatters classes
-            ColumnConfiguration configuration = new ColumnConfiguration();
+            FormatterCollection<Column> configuration = new FormatterCollection<Column>();
 
             foreach (var formatterName in GeneratorOptions.NameFormatters)
             {
@@ -45,11 +45,7 @@ namespace CExtensions.EFModelGenerator.Core
                 Table table = FindTable(col.TableName);
                 col.Table = table;
                 col.ColumnConfiguration = configuration;
-                
-
             }
-
-
         }
 
         public String Name { get; set; }

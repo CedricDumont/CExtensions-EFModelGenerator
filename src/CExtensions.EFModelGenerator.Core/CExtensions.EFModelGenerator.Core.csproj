@@ -60,6 +60,7 @@
     <Compile Include="EFMGSettings.cs" />
     <Compile Include="GeneratorOptions.cs" />
     <Compile Include="Impl\Column.cs" />
+    <Compile Include="Impl\TabelNameFormatter.cs" />
     <Compile Include="Impl\ColumnNameFormatter.cs" />
     <Compile Include="Impl\ForeignKey.cs" />
     <Compile Include="Generator.cs" />
