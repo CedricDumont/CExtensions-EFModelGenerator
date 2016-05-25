@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CExtensions.EFModelGenerator.Settings.Test.CustomNameFormatters
+namespace CExtensions.EFModelGenerator.Test.CustomNameFormatters
 {
     public class AllLowerCaseColumnNameFormatter : AbstractColumnNameFormatter
     {

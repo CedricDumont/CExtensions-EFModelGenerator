@@ -32,7 +32,7 @@ namespace CExtensions.EFModelGenerator.Model
 
                 if(formatterType == null)
                 {
-                    throw new Exception($"Could not load type {constructorDescription}");
+                    throw new Exception($"Could not load type {constructorDescription.Name}");
                 }
 
                 INameFormatter<Column> instance;
