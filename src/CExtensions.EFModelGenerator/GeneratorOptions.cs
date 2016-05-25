@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator
 {
+    public enum ElementToGenerateEnum
+    {
+        Model,
+        DbContext,
+        All
+    }
+
     public class GenerationOptions
     {
         public GenerationOptions()
@@ -16,7 +23,7 @@ namespace CExtensions.EFModelGenerator
             ColumnNameFormatters = new string[0];
             TableNameFormatters = new string[0];
             DbSetNameFormatters = new string[0];
-            GenerateTypes = "Model";
+            ElementToGenerate = "Model";
             ContextName = "MyDbContext";
         }
         public String ConnectionString { get; set; }
@@ -43,7 +50,8 @@ namespace CExtensions.EFModelGenerator
 
         public String[] DbSetNameFormatters { get; set; }
 
-        public string GenerateTypes { get; set; }
+        public string ElementToGenerate { get; set; }
+
         public object ContextName { get; set; }
     }
 }

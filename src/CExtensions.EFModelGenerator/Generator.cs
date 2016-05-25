@@ -29,8 +29,8 @@ namespace CExtensions.EFModelGenerator
             //initialize the serializer
             if (generatorOptions.SerializerType == null)
             {
-                generatorOptions.SerializerType = "CExtensions.EFModelGenerator.Serializers.CoreSerializer, CExtensions.EFModelGenerator.Serializers";
-                generatorOptions.SerializerTypeArguments = new Object[] { generatorOptions.GenerateTypes, generatorOptions.Namespace, generatorOptions.ContextName };
+                generatorOptions.SerializerType = "CExtensions.EFModelGenerator.Serializers.CoreSerializer, CExtensions.EFModelGenerator";
+                generatorOptions.SerializerTypeArguments = new Object[] { generatorOptions.ElementToGenerate, generatorOptions.Namespace, generatorOptions.ContextName };
             }
 
             Serializer = createInstance(generatorOptions.SerializerType, generatorOptions.SerializerTypeArguments);

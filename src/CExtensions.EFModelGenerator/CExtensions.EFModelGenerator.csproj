@@ -71,6 +71,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Schema.cs" />
     <Compile Include="Model\Table.cs" />
+    <Compile Include="Serializers\Constants.cs" />
+    <Compile Include="Serializers\CoreSerializer.cs" />
+    <Compile Include="Serializers\DBContextSerializer.cs" />
+    <Compile Include="Serializers\ModelSerializer.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>

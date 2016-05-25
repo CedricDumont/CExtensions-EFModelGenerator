@@ -8,12 +8,6 @@ using CExtensions.EFModelGenerator.Model;
 
 namespace CExtensions.EFModelGenerator.Serializers
 {
-    public enum SerializationTypes
-    {
-        Model,
-        DbContext,
-        All
-    }
 
     public class CoreSerializer : AbstractSerializer
     {
@@ -25,19 +19,19 @@ namespace CExtensions.EFModelGenerator.Serializers
             this.ContextName = contextName;
             if(mode == null)
             {
-                SerializationType = SerializationTypes.All;
+                SerializationType = ElementToGenerateEnum.All;
             }
             else if (mode.ToUpper().Equals("MODEL"))
             {
-                SerializationType = SerializationTypes.Model;
+                SerializationType = ElementToGenerateEnum.Model;
             }
             else if (mode.ToUpper().Equals("DBCONTEXT"))
             {
-                SerializationType = SerializationTypes.DbContext;
+                SerializationType = ElementToGenerateEnum.DbContext;
             }
             else
             {
-                SerializationType = SerializationTypes.All;
+                SerializationType = ElementToGenerateEnum.All;
             }
            
         }
@@ -46,7 +40,7 @@ namespace CExtensions.EFModelGenerator.Serializers
 
         public String ContextName { get; set; }
 
-        public SerializationTypes SerializationType { get; set; }
+        public ElementToGenerateEnum SerializationType { get; set; }
 
         public override String Serialize(Schema schema)
         {
@@ -70,12 +64,12 @@ namespace CExtensions.EFModelGenerator.Serializers
         {
            get
             {
-                return this.SerializationType == SerializationTypes.DbContext ||
-                    this.SerializationType == SerializationTypes.All;
+                return this.SerializationType == ElementToGenerateEnum.DbContext ||
+                    this.SerializationType == ElementToGenerateEnum.All;
             }
         }
 
-        private static void SerializeUsings(StringBuilder sb, SerializationTypes mode)
+        private static void SerializeUsings(StringBuilder sb, ElementToGenerateEnum mode)
         {
             foreach (var entry in GetUsings(mode))
             {
@@ -83,15 +77,15 @@ namespace CExtensions.EFModelGenerator.Serializers
             }
         }
 
-        public static IList<string> GetUsings(SerializationTypes mode)
+        public static IList<string> GetUsings(ElementToGenerateEnum mode)
         {
             IList<string> usingsFromModelSerializer = new List<string>();
             IList<string> usingsFromDBContextSerializer = new List<string>();
-            if (mode == SerializationTypes.Model || mode == SerializationTypes.All)
+            if (mode == ElementToGenerateEnum.Model || mode == ElementToGenerateEnum.All)
             {
                usingsFromModelSerializer = ModelSerializer.GetUsings();
             }
-            if (mode == SerializationTypes.DbContext || mode == SerializationTypes.All)
+            if (mode == ElementToGenerateEnum.DbContext || mode == ElementToGenerateEnum.All)
             {
                usingsFromDBContextSerializer = DBContextSerializer.GetUsings();
             }
