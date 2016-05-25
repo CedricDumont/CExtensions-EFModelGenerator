@@ -1,4 +1,4 @@
-﻿using CExtensions.EFModelGenerator.Common;
+﻿using CExtensions.EFModelGenerator.Providers;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator.Oracle
 {
-    public class OracleProvider : IProvider
+    public class OracleProvider : AbstractProvider
     {
         #region queries
 
@@ -54,7 +54,7 @@ namespace CExtensions.EFModelGenerator.Oracle
 
         public String ConnectionString { get; private set; }
 
-        public IList<string> ListTableNames()
+        public override IList<string> ListTableNames()
         {
             OracleConnection dbcon = new OracleConnection(ConnectionString);
 
@@ -83,7 +83,7 @@ namespace CExtensions.EFModelGenerator.Oracle
             return result;
         }
 
-        public IList<ColumnMetadata> ListColumnsFor(string tableName)
+        public override IList<ColumnMetadata> ListColumnsFor(string tableName)
         {
             OracleConnection dbcon = new OracleConnection(ConnectionString);
 
@@ -104,8 +104,8 @@ namespace CExtensions.EFModelGenerator.Oracle
                             var col = new ColumnMetadata()
                             {
                                 Name = colRdr["ColumnName"].ToString(),
-                                DataType = colRdr["DataType"].ToString(),
-                                DataScale = colRdr["DataScale"].ToString(),
+                                DBType = colRdr["DataType"].ToString(),
+                                DBDataScale = colRdr["DataScale"].ToString(),
                                 IsNullable = "Y".Equals(colRdr["IsNullable"].ToString())
                             };
 
@@ -122,7 +122,7 @@ namespace CExtensions.EFModelGenerator.Oracle
             return result;
         }
 
-        public IList<Tuple<string,string>> ListAllPrimaryKeys()
+        public override IList<Tuple<string,string>> ListAllPrimaryKeys()
         {
             OracleConnection dbcon = new OracleConnection(ConnectionString);
 
@@ -152,7 +152,7 @@ namespace CExtensions.EFModelGenerator.Oracle
             return result;
         }
 
-        public IList<Tuple<string,string,string>> ListAllForeignKeys()
+        public override IList<Tuple<string,string,string>> ListAllForeignKeys()
         {
             OracleConnection dbcon = new OracleConnection(ConnectionString);
 
