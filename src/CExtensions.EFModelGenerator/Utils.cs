@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CExtensions.EFModelGenerator.Core
+namespace CExtensions.EFModelGenerator
 {
     public sealed class Utils
     {

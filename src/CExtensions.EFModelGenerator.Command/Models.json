@@ -5,10 +5,10 @@
     "Namespace": "my.business.space",
     "IgnoreTableRegex": [ "^backup" ],
     "NameFormatters": [
-      "CExtensions.EFModelGenerator.Core.IDColumnFormatter",
-      "CExtensions.EFModelGenerator.Core.SafeIdColumnNameFormatter",
-      "CExtensions.EFModelGenerator.Core.RemoveTillFirstUnderscoreNameFormatter",
-      "CExtensions.EFModelGenerator.Core.UpperFirstLetterNameFormatter"
+      "CExtensions.EFModelGenerator.IDColumnFormatter",
+      "CExtensions.EFModelGenerator.SafeIdColumnNameFormatter",
+      "CExtensions.EFModelGenerator.RemoveTillFirstUnderscoreNameFormatter",
+      "CExtensions.EFModelGenerator.UpperFirstLetterNameFormatter"
     ]
 
   }

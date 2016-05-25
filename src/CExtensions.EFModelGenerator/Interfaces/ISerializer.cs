@@ -1,4 +1,4 @@
-﻿//using CExtensions.EFModelGenerator.Core;
+﻿//using CExtensions.EFModelGenerator;
 
 //namespace CExtensions.EFModelGenerator.Common
 //{

@@ -1,4 +1,4 @@
-﻿using CExtensions.EFModelGenerator.Core;
+﻿using CExtensions.EFModelGenerator;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

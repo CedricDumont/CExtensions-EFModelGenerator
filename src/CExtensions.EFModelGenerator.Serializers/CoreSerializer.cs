@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CExtensions.EFModelGenerator.Core;
+using CExtensions.EFModelGenerator;
 
 namespace CExtensions.EFModelGenerator.Serializers
 {

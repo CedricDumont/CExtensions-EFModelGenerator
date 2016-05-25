@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 using EnvDTE80;
 using EnvDTE;
 using CExtensions.EFModelGenerator.Common;
-using CExtensions.EFModelGenerator.Core;
+using CExtensions.EFModelGenerator;
 
 namespace CExtensions.EFModelGenerator.VSExtension
 {

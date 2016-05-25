@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace CExtensions.EFModelGenerator.Core
+namespace CExtensions.EFModelGenerator
 {
     internal class ModelInitializer
     {

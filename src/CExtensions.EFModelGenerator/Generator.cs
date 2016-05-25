@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Policy;
 
-namespace CExtensions.EFModelGenerator.Core 
+namespace CExtensions.EFModelGenerator 
 {
     public class Generator : IDisposable
     {

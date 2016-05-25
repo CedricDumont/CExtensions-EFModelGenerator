@@ -1,5 +1,5 @@
 ﻿using CExtensions.EFModelGenerator.Common;
-using CExtensions.EFModelGenerator.Core;
+using CExtensions.EFModelGenerator;
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
