@@ -2,7 +2,7 @@
   "Options": {
     "ElementToGenerate": "All",
     "SchemaName": "dbo",
-    "ConnectionString": "Server=MC0QKBSC\\SQLEXPRESS;Database=FSEND_NET;Trusted_Connection=True;",
+    "ConnectionString": "Server=MC0QKBSC\\SQLEXPRESS;Database=YOUR_DB;Trusted_Connection=True;",
     "Namespace": "My.Own.Namespace",
     "IgnoreTableRegex": [ "^backup" ],
     "NameFormatters": [
