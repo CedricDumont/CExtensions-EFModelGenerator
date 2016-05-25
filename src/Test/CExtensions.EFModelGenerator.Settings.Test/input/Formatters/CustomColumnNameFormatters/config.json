@@ -2,8 +2,8 @@
   "Options": {
     "Namespace": "Formatters.CustomColumnNameFormatters",
     "ColumnNameFormatters": [
-      "CExtensions.EFModelGenerator.Settings.Test.NameFormatterSamples.SpecialPersonColumnNameFormatter,CExtensions.EFModelGenerator.Settings.Test",
-      "CExtensions.EFModelGenerator.Settings.Test.NameFormatterSamples.AllLowerCaseColumnNameFormatter,CExtensions.EFModelGenerator.Settings.Test"
+      "CExtensions.EFModelGenerator.Settings.Test.CustomNameFormatters.SpecialPersonColumnNameFormatter,CExtensions.EFModelGenerator.Settings.Test",
+      "CExtensions.EFModelGenerator.Settings.Test.CustomNameFormatters.AllLowerCaseColumnNameFormatter,CExtensions.EFModelGenerator.Settings.Test"
     ]
   }
 }

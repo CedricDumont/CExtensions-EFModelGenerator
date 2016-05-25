@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CExtensions.EFModelGenerator.Settings.Test.NameFormatterSamples
+namespace CExtensions.EFModelGenerator.Settings.Test.CustomNameFormatters
 {
     public class SpecialPersonColumnNameFormatter : ColumnNameFormatter
     {

@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomSerializer\ListColumnSerializer.cs" />
     <Compile Include="input\ForeignKeys\ForeignKeysToSelfWithFormatters\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -99,10 +100,16 @@
     <Compile Include="input\Misc\IgnoreTableRegex\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="NameFormatterSamples\SpecialPersonColumnNameFormatter.cs" />
-    <Compile Include="NameFormatterSamples\AllLowerCaseColumnNameFormatter.cs" />
+    <Compile Include="CustomNameFormatters\SpecialPersonColumnNameFormatter.cs" />
+    <Compile Include="CustomNameFormatters\AllLowerCaseColumnNameFormatter.cs" />
+    <Content Include="input\Serializers\ListColumnsCustomSerializer\expected.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="SimpleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="input\Serializers\ListColumnsCustomSerializer\schema.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="input\ForeignKeys\ForeignKeysToSelfWithFormatters\schema.txt">
@@ -160,6 +167,9 @@
     <None Include="input\Misc\IgnoreTableRegex\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="input\Serializers\ListColumnsCustomSerializer\config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +189,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

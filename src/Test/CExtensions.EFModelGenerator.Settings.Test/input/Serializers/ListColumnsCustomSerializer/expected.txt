@@ -1,0 +1,18 @@
+﻿This serialier only list the table and it's columns
+---------------------------------------------------
+You can pass some infor through constructor
+
+1. Person
+    1.1 PERS_ID
+    1.2 PERS_FIRST_NAME
+
+2. Orders
+    2.1 ORDER_ID
+    2.2 OR_PERS_ID
+    2.3 Amount
+
+3. OrderLines
+    3.1 OL_ID
+    3.2 OL_Person
+    3.3 OL_Orders
+    3.4 count
