@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator.Oracle", "CExtensions.EFModelGenerator.Oracle\CExtensions.EFModelGenerator.Oracle.csproj", "{30BF4F1C-757F-404E-B86D-0C46215C7B19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator.SqlServer", "CExtensions.EFModelGenerator.SqlServer\CExtensions.EFModelGenerator.SqlServer.csproj", "{857E53B9-83D1-4A02-B3CE-809B52F564B1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator.VSExtension", "CExtensions.EFModelGenerator.VSExtension\CExtensions.EFModelGenerator.VSExtension.csproj", "{0761DD11-1F39-414B-B25B-2C34E2073621}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{6EE87156-05D8-4F39-99FA-F467239F06B2}"
@@ -17,6 +15,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator.Settings.Test", "Test\CExtensions.EFModelGenerator.Settings.Test\CExtensions.EFModelGenerator.Settings.Test.csproj", "{8FC8344B-F9D4-4D31-8C45-025A556FEAA2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Helpers", "Test\Test.Helpers\Test.Helpers.csproj", "{A2D088C9-56F6-4318-AF5B-DA25CA18E198}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{842B5750-7067-437E-B8D4-42BA057CD3D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,14 +50,6 @@ Global
 		{30BF4F1C-757F-404E-B86D-0C46215C7B19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30BF4F1C-757F-404E-B86D-0C46215C7B19}.Release|x86.ActiveCfg = Release|Any CPU
 		{30BF4F1C-757F-404E-B86D-0C46215C7B19}.Release|x86.Build.0 = Release|Any CPU
-		{857E53B9-83D1-4A02-B3CE-809B52F564B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{857E53B9-83D1-4A02-B3CE-809B52F564B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{857E53B9-83D1-4A02-B3CE-809B52F564B1}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{857E53B9-83D1-4A02-B3CE-809B52F564B1}.Debug|x86.Build.0 = Debug|Any CPU
-		{857E53B9-83D1-4A02-B3CE-809B52F564B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{857E53B9-83D1-4A02-B3CE-809B52F564B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{857E53B9-83D1-4A02-B3CE-809B52F564B1}.Release|x86.ActiveCfg = Release|Any CPU
-		{857E53B9-83D1-4A02-B3CE-809B52F564B1}.Release|x86.Build.0 = Release|Any CPU
 		{0761DD11-1F39-414B-B25B-2C34E2073621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0761DD11-1F39-414B-B25B-2C34E2073621}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0761DD11-1F39-414B-B25B-2C34E2073621}.Debug|x86.ActiveCfg = Debug|Any CPU

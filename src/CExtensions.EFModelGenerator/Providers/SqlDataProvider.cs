@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace CExtensions.EFModelGenerator.SqlServer
+namespace CExtensions.EFModelGenerator.Providers
 {
     public class SqlDataProvider : AbstractProvider
     {

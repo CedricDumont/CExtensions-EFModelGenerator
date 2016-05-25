@@ -54,8 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractProvider.cs" />
-    <Compile Include="AbstractSerializer.cs" />
+    <Compile Include="Providers\AbstractProvider.cs" />
+    <Compile Include="Serializers\AbstractSerializer.cs" />
     <Compile Include="FormatterCollection.cs" />
     <Compile Include="EFMGSettings.cs" />
     <Compile Include="GeneratorOptions.cs" />
@@ -71,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Schema.cs" />
     <Compile Include="Model\Table.cs" />
+    <Compile Include="Providers\SqlDataProvider.cs" />
     <Compile Include="Serializers\Constants.cs" />
     <Compile Include="Serializers\CoreSerializer.cs" />
     <Compile Include="Serializers\DBContextSerializer.cs" />

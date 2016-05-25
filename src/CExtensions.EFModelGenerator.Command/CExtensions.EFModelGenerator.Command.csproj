@@ -75,10 +75,6 @@
       <Project>{30bf4f1c-757f-404e-b86d-0c46215c7b19}</Project>
       <Name>CExtensions.EFModelGenerator.Oracle</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CExtensions.EFModelGenerator.SqlServer\CExtensions.EFModelGenerator.SqlServer.csproj">
-      <Project>{857e53b9-83d1-4a02-b3ce-809b52f564b1}</Project>
-      <Name>CExtensions.EFModelGenerator.SqlServer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

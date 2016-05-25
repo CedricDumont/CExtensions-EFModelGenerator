@@ -1,4 +1,6 @@
 ﻿using CExtensions.EFModelGenerator.Model;
+using CExtensions.EFModelGenerator.Providers;
+using CExtensions.EFModelGenerator.Serializers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

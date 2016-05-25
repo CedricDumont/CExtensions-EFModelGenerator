@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CExtensions.EFModelGenerator
+namespace CExtensions.EFModelGenerator.Providers
 {
     public abstract class AbstractProvider 
     {

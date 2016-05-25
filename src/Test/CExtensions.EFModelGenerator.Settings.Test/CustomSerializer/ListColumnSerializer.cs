@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CExtensions.EFModelGenerator;
 using CExtensions.EFModelGenerator.Model;
+using CExtensions.EFModelGenerator.Serializers;
 
 namespace CExtensions.EFModelGenerator.Settings.Test.CustomSerializer
 {
