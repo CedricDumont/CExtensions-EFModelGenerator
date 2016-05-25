@@ -22,7 +22,7 @@ namespace CExtensions.EFModelGenerator
             if (generatorOptions.ProviderType == null)
             {
                 //default to sqlserver provider
-                generatorOptions.ProviderType = "CExtensions.EFModelGenerator.SqlServer.SqlDataProvider, CExtensions.EFModelGenerator.SqlServer";
+                generatorOptions.ProviderType = "CExtensions.EFModelGenerator.Providers.SqlDataProvider, CExtensions.EFModelGenerator";
                 generatorOptions.ProviderTypeArguments = new Object[] { generatorOptions.ConnectionString, generatorOptions.SchemaName };
             }
 
@@ -87,7 +87,7 @@ namespace CExtensions.EFModelGenerator
 
             var tw = sw ?? File.CreateText(newFileName);
             //generate the code
-            using (sw)
+            using (tw)
             {
                 using (Generator generator = new Generator(settings.Options))
                 {

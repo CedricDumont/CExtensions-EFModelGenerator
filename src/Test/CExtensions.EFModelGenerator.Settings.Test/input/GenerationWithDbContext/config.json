@@ -1,6 +1,6 @@
 ﻿{
   "Options": {
-    "ElementToGenerate": "All,DbContext",
+    "ElementToGenerate": "All",
     "Namespace": "GenerationWithDbContext",
     "ContextName": "SampleDbContext"
   }
