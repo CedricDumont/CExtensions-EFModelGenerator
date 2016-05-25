@@ -1,0 +1,15 @@
+﻿COLUMN, Person, PERS_ID, number, 0, false
+COLUMN, Person, PERS_FIRST_NAME, varchar, 0, true
+COLUMN, Orders, ORDER_ID, number, 0, false
+COLUMN, Orders, OR_PERS_ID, number, 0, true
+COLUMN, Orders, Amount, varchar, 0, false
+COLUMN, OrderLines, OL_ID, number, 0, true
+COLUMN, OrderLines, OL_Person, number, 0, true
+COLUMN, OrderLines, OL_Orders, number, 0, true
+COLUMN, OrderLines, count, number, 0, true
+PK,Person, PERS_ID
+PK,Orders, ORDER_ID
+PK,OrderLines, OL_ID
+FK,Orders, OR_PERS_ID, Person
+FK,OrderLines, OL_Person, Person
+FK,OrderLines, OL_Orders, Orders

@@ -35,15 +35,15 @@ namespace CExtensions.EFModelGenerator.Test
 
             //Configure the test provider
             var settings = EFMGSettings.Build(content);
-            settings.Options.ProviderType = "Test.Helpers.TestSchemaProvider, Test.Helpers";
-            settings.Options.ProviderTypeArguments = new string[] { schema };
+            settings[0].Options.ProviderType = "Test.Helpers.TestSchemaProvider, Test.Helpers";
+            settings[0].Options.ProviderTypeArguments = new string[] { schema };
 
             //2. Act
             StringBuilder sb = new StringBuilder();
 
             using (TextWriter sw = new StringWriter(sb))
             {
-                Generator.Generate(settings, sw);
+                Generator.Generate(settings[0], sw);
             }
 
             //3. Assert

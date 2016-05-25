@@ -11,5 +11,7 @@ namespace CExtensions.EFModelGenerator.Serializers
         public const string TabClass = "   ";
 
         public const string TabProperty = TabClass + "   ";
+
+        public const string TabBody = TabProperty + "   ";
     }
 }

@@ -1,0 +1,22 @@
+﻿{
+  "Settings": [
+    {
+      "FilePath": "expected_modelAndContext.cs",
+      "Options": {
+        "ElementToGenerate": "All",
+        "Namespace": "MyNamespace",
+        "ContextName": "MyContext"
+      }
+    },
+    {
+      "FilePath": "expected_breezeController.cs",
+      "Options": {
+        "Namespace": "MyNamespace",
+        "SerializerType": "CExtensions.EFModelGenerator.Serializers.BreezeControllerSerializer,CExtensions.EFModelGenerator",
+        "SerializerTypeArguments": [ "MyNamespace", "MyBreezeController", "MyContext" ]
+      }
+    }
+  ]
+
+}
+

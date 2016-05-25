@@ -10,7 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Policy;
 
-namespace CExtensions.EFModelGenerator 
+namespace CExtensions.EFModelGenerator
 {
     public class Generator : IDisposable
     {
@@ -47,14 +47,16 @@ namespace CExtensions.EFModelGenerator
 
         public static string Generate(String configFilePath)
         {
-            if(!File.Exists(configFilePath))
+            if (!File.Exists(configFilePath))
             {
                 throw new Exception($"The file passed as parameter does not exist : {configFilePath}");
             }
 
             string fileContent = File.ReadAllText(configFilePath);
 
-            EFMGSettings settings = EFMGSettings.Build(fileContent);
+            EFMGSettings[] settingCollection = EFMGSettings.Build(fileContent);
+
+            var settings = settingCollection[0];
 
             if (settings.FilePath == null)
             {
@@ -68,7 +70,7 @@ namespace CExtensions.EFModelGenerator
                 newFileName = newFileName.EndsWith(".cs") ? newFileName : newFileName + ".cs";
 
                 settings.FilePath = newFileName;
-               
+
             }
 
             return Generate(settings);
@@ -78,7 +80,7 @@ namespace CExtensions.EFModelGenerator
         {
             Debug.WriteLine($"Generating file : {settings.FilePath}");
 
-            var  newFileName = settings.FilePath;
+            var newFileName = settings.FilePath;
 
             if (File.Exists(newFileName))
             {
@@ -87,18 +89,27 @@ namespace CExtensions.EFModelGenerator
 
             var tw = sw ?? File.CreateText(newFileName);
             //generate the code
-            using (tw)
+            try
             {
                 using (Generator generator = new Generator(settings.Options))
                 {
                     generator.Generate(tw);
                 }
             }
+            finally
+            {
+                if (sw == null)
+                {
+                    tw.Flush();
+                    tw.Close();
+                    tw.Dispose();
+                }
+            }
 
             return newFileName;
         }
 
-       
+
         private Object createInstance(string typename, object[] arguments)
         {
             if (GeneratorOptions.ImplementingClassPath != null)
@@ -128,7 +139,7 @@ namespace CExtensions.EFModelGenerator
 
                         return assem;
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Debug.WriteLine(ex.Message);
                     }

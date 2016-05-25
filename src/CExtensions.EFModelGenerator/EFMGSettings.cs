@@ -1,5 +1,6 @@
 ﻿using CExtensions.EFModelGenerator;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,29 @@ namespace CExtensions.EFModelGenerator
         public GenerationOptions Options { get; set; }
 
 
-        public static EFMGSettings Build(String s)
+        public static EFMGSettings[] Build(String s)
         {
-            var result = JsonConvert.DeserializeObject<EFMGSettings>(s);
+            List<EFMGSettings> settings = new List<EFMGSettings>();
 
-            return result;
+            JObject result = (JObject)JsonConvert.DeserializeObject(s);
+
+            JProperty property = result.First as JProperty;
+
+            if (property != null && property.Name == "Settings")
+            {
+                foreach (var setting in result["Settings"])
+                {
+                    var obj = (EFMGSettings)setting.ToObject(typeof(EFMGSettings));
+                    settings.Add(obj);
+                }
+            }
+            else
+            {
+                var obj = (EFMGSettings)result.ToObject(typeof(EFMGSettings));
+                settings.Add(obj);
+            }
+
+            return settings.ToArray();
         }
     }
 }

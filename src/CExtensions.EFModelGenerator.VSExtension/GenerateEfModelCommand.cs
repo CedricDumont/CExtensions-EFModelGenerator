@@ -118,16 +118,19 @@ namespace CExtensions.EFModelGenerator.VSExtension
                 String selectedItemFullPath = (string)projectItem.Properties.Item("FullPath").Value;
 
                 string fileContent = File.ReadAllText(selectedItemFullPath);
-                EFMGSettings settings = EFMGSettings.Build(fileContent);
+                EFMGSettings[] settings = EFMGSettings.Build(fileContent);
 
-                if (settings.Options.ImplementingClassPath == null)
+                foreach (var setting in settings)
                 {
-                    settings.Options.ImplementingClassPath = Path.Combine(projectPath, "bin", "Debug");
+                    if (setting.Options.ImplementingClassPath == null)
+                    {
+                        setting.Options.ImplementingClassPath = Path.Combine(projectPath, "bin", "Debug");
+                    }
+
+                    var resultFile = Generator.Generate(setting);
+
+                    ProjectItem item = projectItem.ContainingProject.ProjectItems.AddFromFile(resultFile);
                 }
-
-                var resultFile = Generator.Generate(settings);
-
-                ProjectItem item = projectItem.ContainingProject.ProjectItems.AddFromFile(resultFile);
 
             }
             catch(Exception ex)

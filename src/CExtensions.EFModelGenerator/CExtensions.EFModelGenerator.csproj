@@ -73,6 +73,7 @@
     <Compile Include="Model\Schema.cs" />
     <Compile Include="Model\Table.cs" />
     <Compile Include="Providers\SqlDataProvider.cs" />
+    <Compile Include="Serializers\BreezeControllerSerializer.cs" />
     <Compile Include="Serializers\Constants.cs" />
     <Compile Include="Serializers\CoreSerializer.cs" />
     <Compile Include="Serializers\DBContextSerializer.cs" />
