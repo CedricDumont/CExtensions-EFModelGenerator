@@ -1,4 +1,5 @@
 ﻿using CExtensions.EFModelGenerator.Interfaces;
+using CExtensions.EFModelGenerator.Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace CExtensions.EFModelGenerator
+namespace CExtensions.EFModelGenerator.Formatters
 {
     public class ColumnNameFormatter : INameFormatter<Column>
     {

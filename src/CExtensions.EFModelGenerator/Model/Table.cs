@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CExtensions.EFModelGenerator.Formatters;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CExtensions.EFModelGenerator
+namespace CExtensions.EFModelGenerator.Model
 {
     public class Table
     {

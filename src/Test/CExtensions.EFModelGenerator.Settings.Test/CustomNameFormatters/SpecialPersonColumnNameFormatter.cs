@@ -1,4 +1,5 @@
-﻿using CExtensions.EFModelGenerator;
+﻿using CExtensions.EFModelGenerator.Formatters;
+using CExtensions.EFModelGenerator.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

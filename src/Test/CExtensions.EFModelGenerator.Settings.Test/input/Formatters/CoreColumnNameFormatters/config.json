@@ -2,9 +2,9 @@
   "Options": {
     "Namespace": "Formatters.CoreColumnNameFormatters",
     "ColumnNameFormatters": [
-      "CExtensions.EFModelGenerator.IDColumnFormatter",
-      "CExtensions.EFModelGenerator.RemoveTillFirstUnderscoreNameFormatter",
-      "CExtensions.EFModelGenerator.TitleCaseNameFormatter"
+      "CExtensions.EFModelGenerator.Formatters.IDColumnFormatter",
+      "CExtensions.EFModelGenerator.Formatters.RemoveTillFirstUnderscoreNameFormatter",
+      "CExtensions.EFModelGenerator.Formatters.TitleCaseNameFormatter"
     ]
   }
 }

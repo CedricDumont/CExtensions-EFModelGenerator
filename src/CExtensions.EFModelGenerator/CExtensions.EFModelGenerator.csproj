@@ -59,18 +59,18 @@
     <Compile Include="FormatterCollection.cs" />
     <Compile Include="EFMGSettings.cs" />
     <Compile Include="GeneratorOptions.cs" />
-    <Compile Include="Impl\Column.cs" />
-    <Compile Include="Impl\TabelNameFormatter.cs" />
-    <Compile Include="Impl\ColumnNameFormatter.cs" />
-    <Compile Include="Impl\ForeignKey.cs" />
+    <Compile Include="Model\Column.cs" />
+    <Compile Include="Formatters\TabelNameFormatter.cs" />
+    <Compile Include="Formatters\ColumnNameFormatter.cs" />
+    <Compile Include="Model\ForeignKey.cs" />
     <Compile Include="Generator.cs" />
-    <Compile Include="Impl\InverseProperty.cs" />
+    <Compile Include="Model\InverseProperty.cs" />
     <Compile Include="ColumnMetadata.cs" />
     <Compile Include="Interfaces\INameFormatter.cs" />
     <Compile Include="ModelInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Impl\Schema.cs" />
-    <Compile Include="Impl\Table.cs" />
+    <Compile Include="Model\Schema.cs" />
+    <Compile Include="Model\Table.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
