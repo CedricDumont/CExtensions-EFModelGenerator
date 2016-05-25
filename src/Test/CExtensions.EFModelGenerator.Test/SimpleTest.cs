@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Test.Helpers;
 using Xunit;
 
-namespace CExtensions.EFModelGenerator.Settings.Test
+namespace CExtensions.EFModelGenerator.Test
 {
     public class SimpleTest : BaseUnitTest
     {

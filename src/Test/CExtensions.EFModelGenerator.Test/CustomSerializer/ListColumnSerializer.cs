@@ -7,7 +7,7 @@ using CExtensions.EFModelGenerator;
 using CExtensions.EFModelGenerator.Model;
 using CExtensions.EFModelGenerator.Serializers;
 
-namespace CExtensions.EFModelGenerator.Settings.Test.CustomSerializer
+namespace CExtensions.EFModelGenerator.Test.CustomSerializer
 {
     public class ListColumnSerializer : AbstractSerializer
     {
