@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CExtensions-EFModelGenerator.Core")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("CExtensions.EFModelGenerator")]
+[assembly: AssemblyDescription("Model generator")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Licence Owner")]
-[assembly: AssemblyProduct("CExtensions-EFModelGenerator.Core")]
+[assembly: AssemblyProduct("CExtensions.EFModelGenerator")]
 [assembly: AssemblyCopyright("Copyright © Licence Owner 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
