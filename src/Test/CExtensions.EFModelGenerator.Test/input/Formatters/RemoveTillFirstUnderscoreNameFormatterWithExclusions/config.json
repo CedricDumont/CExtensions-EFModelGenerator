@@ -1,0 +1,11 @@
+﻿{
+  "Options": {
+    "Namespace": "Formatters.RemoveTillFirstUnderscoreNameFormatterWithExclusions",
+    "ColumnNameFormatters": [
+      {
+        "Name": "CExtensions.EFModelGenerator.Formatters.RemoveTillFirstUnderscoreNameFormatter",
+        "Params": [ [ "My_Adress", "MyOther_Adress" ] ]
+      }
+    ]
+  }
+}

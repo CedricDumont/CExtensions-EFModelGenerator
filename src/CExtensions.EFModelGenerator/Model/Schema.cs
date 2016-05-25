@@ -26,17 +26,24 @@ namespace CExtensions.EFModelGenerator.Model
             //Create formatters classes for columns
             FormatterCollection<Column> columnFormatters = new FormatterCollection<Column>();
 
-            foreach (var formatterName in GeneratorOptions.ColumnNameFormatters)
+            foreach (var constructorDescription in GeneratorOptions.ColumnNameFormatters)
             {
-                var formatterType = Type.GetType(formatterName);
+                var formatterType = Type.GetType(constructorDescription.Name);
 
                 if(formatterType == null)
                 {
-                    throw new Exception($"Could not load type {formatterName}");
+                    throw new Exception($"Could not load type {constructorDescription}");
                 }
 
-                var instance = (INameFormatter<Column>)Activator.CreateInstance(formatterType);
-
+                INameFormatter<Column> instance;
+                if (constructorDescription.ParamsForConstructor != null)
+                {
+                    instance = (INameFormatter<Column>)Activator.CreateInstance(formatterType, constructorDescription.ParamsForConstructor);
+                }
+                else
+                {
+                    instance = (INameFormatter<Column>)Activator.CreateInstance(formatterType);
+                }
                 columnFormatters.AddFormatter(instance);
             }
 

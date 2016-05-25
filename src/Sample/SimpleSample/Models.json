@@ -5,11 +5,14 @@
     "ConnectionString": "Server=MC0QKBSC\\SQLEXPRESS;Database=YOUR_DB;Trusted_Connection=True;",
     "Namespace": "My.Own.Namespace",
     "IgnoreTableRegex": [ "^backup" ],
-    "NameFormatters": [
-      "CExtensions.EFModelGenerator.IDColumnFormatter",
-      "CExtensions.EFModelGenerator.SafeIdColumnNameFormatter",
-      "CExtensions.EFModelGenerator.RemoveTillFirstUnderscoreNameFormatter",
-      "CExtensions.EFModelGenerator.UpperFirstLetterNameFormatter"
+    "ColumnNameFormatters": [
+      { "Name": "CExtensions.EFModelGenerator.Formatters.IDColumnFormatter"},
+      { "Name": "CExtensions.EFModelGenerator.Formatters.SafeIdColumnNameFormatter" },
+      {
+        "Name": "CExtensions.EFModelGenerator.Formatters.RemoveTillFirstUnderscoreNameFormatter",
+        "Params": [ [ "Col_tag", "Tbl_tag" ] ]
+      },
+      { "Name": "CExtensions.EFModelGenerator.Formatters.UpperFirstLetterNameFormatter" }
     ]
 
   }

@@ -49,6 +49,35 @@ namespace CExtensions.EFModelGenerator.Formatters
 
     public class RemoveTillFirstUnderscoreNameFormatter : AbstractColumnNameFormatter
     {
+        public RemoveTillFirstUnderscoreNameFormatter()
+        {
+
+        }
+
+        public RemoveTillFirstUnderscoreNameFormatter(IList<string> regExpExludeList)
+        {
+            ExclusionList = regExpExludeList;
+        }
+
+        public IList<string> ExclusionList { get; set; }
+
+        public override bool IsApplicable(Column col, string currentName)
+        {
+            if (ExclusionList == null) return true;
+
+            foreach (var pattern in ExclusionList)
+            {
+                Regex expression = new Regex(pattern.ToString());
+
+                if(expression.IsMatch(col.Name))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public override String Apply(Column col, string currentName)
         {
             var index = currentName.ToLower().IndexOf("_");

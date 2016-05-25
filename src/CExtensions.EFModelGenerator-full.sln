@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerato
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{6EE87156-05D8-4F39-99FA-F467239F06B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator.Settings.Test", "Test\CExtensions.EFModelGenerator.Settings.Test\CExtensions.EFModelGenerator.Settings.Test.csproj", "{8FC8344B-F9D4-4D31-8C45-025A556FEAA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator.Test", "Test\CExtensions.EFModelGenerator.Test\CExtensions.EFModelGenerator.Test.csproj", "{8FC8344B-F9D4-4D31-8C45-025A556FEAA2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Helpers", "Test\Test.Helpers\Test.Helpers.csproj", "{A2D088C9-56F6-4318-AF5B-DA25CA18E198}"
 EndProject

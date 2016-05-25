@@ -8,8 +8,8 @@
     <ProjectGuid>{8FC8344B-F9D4-4D31-8C45-025A556FEAA2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CExtensions.EFModelGenerator.Settings.Test</RootNamespace>
-    <AssemblyName>CExtensions.EFModelGenerator.Settings.Test</AssemblyName>
+    <RootNamespace>CExtensions.EFModelGenerator.Test</RootNamespace>
+    <AssemblyName>CExtensions.EFModelGenerator.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -85,6 +85,9 @@
     <Compile Include="input\ForeignKeys\ForeignKeysToSelf\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="input\Formatters\RemoveTillFirstUnderscoreNameFormatterWithExclusions\expected.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="input\GenerationWithDbContext\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -102,6 +105,9 @@
     </Compile>
     <Compile Include="CustomNameFormatters\SpecialPersonColumnNameFormatter.cs" />
     <Compile Include="CustomNameFormatters\AllLowerCaseColumnNameFormatter.cs" />
+    <Content Include="input\Formatters\RemoveTillFirstUnderscoreNameFormatterWithExclusions\schema.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="input\Serializers\ListColumnsCustomSerializer\expected.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -150,6 +156,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="input\ForeignKeys\ForeignKeysToSelf\config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="input\Formatters\RemoveTillFirstUnderscoreNameFormatterWithExclusions\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="input\GenerationWithDbContext\config.json">

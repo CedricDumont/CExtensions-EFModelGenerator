@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CExtensions.EFModelGenerator.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace CExtensions.EFModelGenerator
         {
           //  ColumnConfiguration = new ColumnConfiguration();
             IgnoreTableRegex = new string[0];
-            ColumnNameFormatters = new string[0];
+            ColumnNameFormatters = new TypeConstructorSignature[0];
             TableNameFormatters = new string[0];
             DbSetNameFormatters = new string[0];
             ElementToGenerate = "Model";
@@ -44,7 +45,7 @@ namespace CExtensions.EFModelGenerator
 
         public Object[] SerializerTypeArguments { get; set; }
 
-        public String[] ColumnNameFormatters { get; set; }
+        public TypeConstructorSignature[] ColumnNameFormatters { get; set; }
 
         public String[] TableNameFormatters { get; set; }
 
