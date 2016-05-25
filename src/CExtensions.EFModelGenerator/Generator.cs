@@ -45,7 +45,7 @@ namespace CExtensions.EFModelGenerator
             GeneratorOptions = generatorOptions ?? new GenerationOptions();
         }
 
-        public static string Generate(String configFilePath)
+        public static void Generate(String configFilePath)
         {
             if (!File.Exists(configFilePath))
             {
@@ -56,24 +56,25 @@ namespace CExtensions.EFModelGenerator
 
             EFMGSettings[] settingCollection = EFMGSettings.Build(fileContent);
 
-            var settings = settingCollection[0];
-
-            if (settings.FilePath == null)
+            foreach (var settings in settingCollection)
             {
-                string newFileName = configFilePath;
-
-                if (configFilePath.EndsWith(".json"))
+                if (settings.FilePath == null)
                 {
-                    newFileName = configFilePath.Replace(".json", "");
+                    string newFileName = configFilePath;
+
+                    if (configFilePath.EndsWith(".json"))
+                    {
+                        newFileName = configFilePath.Replace(".json", "");
+                    }
+
+                    newFileName = newFileName.EndsWith(".cs") ? newFileName : newFileName + ".cs";
+
+                    settings.FilePath = newFileName;
+
                 }
 
-                newFileName = newFileName.EndsWith(".cs") ? newFileName : newFileName + ".cs";
-
-                settings.FilePath = newFileName;
-
+                Generate(settings);
             }
-
-            return Generate(settings);
         }
 
         public static string Generate(EFMGSettings settings, TextWriter sw = null)
