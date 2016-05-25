@@ -67,9 +67,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CExtensions.EFModelGenerator.Core\CExtensions.EFModelGenerator.Core.csproj">
+    <ProjectReference Include="..\CExtensions.EFModelGenerator\CExtensions.EFModelGenerator.csproj">
       <Project>{570e27db-b255-4541-b211-34f124ad4a8e}</Project>
-      <Name>CExtensions.EFModelGenerator.Core</Name>
+      <Name>CExtensions.EFModelGenerator</Name>
     </ProjectReference>
     <ProjectReference Include="..\CExtensions.EFModelGenerator.Oracle\CExtensions.EFModelGenerator.Oracle.csproj">
       <Project>{30bf4f1c-757f-404e-b86d-0c46215c7b19}</Project>

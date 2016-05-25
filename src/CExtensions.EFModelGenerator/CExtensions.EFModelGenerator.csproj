@@ -7,8 +7,8 @@
     <ProjectGuid>{570E27DB-B255-4541-B211-34F124AD4A8E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CExtensions.EFModelGenerator.Core</RootNamespace>
-    <AssemblyName>CExtensions.EFModelGenerator.Core</AssemblyName>
+    <RootNamespace>CExtensions.EFModelGenerator</RootNamespace>
+    <AssemblyName>CExtensions.EFModelGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

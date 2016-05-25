@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator.Core", "CExtensions.EFModelGenerator.Core\CExtensions.EFModelGenerator.Core.csproj", "{570E27DB-B255-4541-B211-34F124AD4A8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator", "CExtensions.EFModelGenerator\CExtensions.EFModelGenerator.csproj", "{570E27DB-B255-4541-B211-34F124AD4A8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CExtensions.EFModelGenerator.Command", "CExtensions.EFModelGenerator.Command\CExtensions.EFModelGenerator.Command.csproj", "{63FA9A34-7B9E-4E25-8C37-B70FF006C4D7}"
 EndProject

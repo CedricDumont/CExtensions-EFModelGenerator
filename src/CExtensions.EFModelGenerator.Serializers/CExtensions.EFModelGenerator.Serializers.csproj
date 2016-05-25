@@ -43,9 +43,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CExtensions.EFModelGenerator.Core\CExtensions.EFModelGenerator.Core.csproj">
+    <ProjectReference Include="..\CExtensions.EFModelGenerator\CExtensions.EFModelGenerator.csproj">
       <Project>{570e27db-b255-4541-b211-34f124ad4a8e}</Project>
-      <Name>CExtensions.EFModelGenerator.Core</Name>
+      <Name>CExtensions.EFModelGenerator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
