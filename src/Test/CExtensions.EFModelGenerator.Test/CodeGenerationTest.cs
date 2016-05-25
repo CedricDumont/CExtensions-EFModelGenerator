@@ -11,7 +11,7 @@ using Xunit;
 
 namespace CExtensions.EFModelGenerator.Test
 {
-    public class SimpleTest : BaseUnitTest
+    public class CodeGenerationTest : BaseUnitTest
     {
         [Theory(DisplayName = "ShouldSerializeModel")]
         [InlineData("input\\ForeignKeys\\ForeignKeysToSelf", null, null, null)]

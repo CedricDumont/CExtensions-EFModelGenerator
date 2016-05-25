@@ -12,7 +12,7 @@ using System.Security.Policy;
 
 namespace CExtensions.EFModelGenerator
 {
-    public class Generator : IDisposable
+    public class Generator 
     {
         public Generator(GenerationOptions generatorOptions)
         {
@@ -72,7 +72,6 @@ namespace CExtensions.EFModelGenerator
             } 
         }
 
-
         public static void Generate(String configFilePath)
         {
             if (!File.Exists(configFilePath))
@@ -107,10 +106,8 @@ namespace CExtensions.EFModelGenerator
             //generate the code
             try
             {
-                using (Generator generator = new Generator(settings.Options))
-                {
-                    generator.Generate(tw);
-                }
+                Generator generator = new Generator(settings.Options);
+               generator.Generate(tw);
             }
             finally
             {
@@ -124,7 +121,6 @@ namespace CExtensions.EFModelGenerator
 
             return newFileName;
         }
-
 
         private Object createInstance(string typename, object[] arguments)
         {
@@ -180,7 +176,6 @@ namespace CExtensions.EFModelGenerator
 
         }
 
-
         public GenerationOptions GeneratorOptions { get; private set; }
 
         public Object Provider { get; private set; }
@@ -200,7 +195,6 @@ namespace CExtensions.EFModelGenerator
                                                         Formatting.None
                                                         );
 
-                //String serializedModel =  Serializer.Serialize(schema);
                 String serializedModel = (string)Utils.CallMethodOnObject(Serializer, "CallSerializeWith", new object[] { serializedSchema });
 
                 writer.Write(serializedModel);
@@ -210,11 +204,6 @@ namespace CExtensions.EFModelGenerator
                 writer.Write(ex.Message);
                 throw ex;
             }
-
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

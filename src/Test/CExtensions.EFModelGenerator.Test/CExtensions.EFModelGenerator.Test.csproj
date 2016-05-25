@@ -112,7 +112,7 @@
     <Content Include="input\Serializers\ListColumnsCustomSerializer\expected.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Compile Include="SimpleTest.cs" />
+    <Compile Include="CodeGenerationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="input\Serializers\ListColumnsCustomSerializer\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
