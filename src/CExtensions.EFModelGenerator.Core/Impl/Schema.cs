@@ -19,9 +19,11 @@ namespace CExtensions.EFModelGenerator.Core
             GeneratorOptions = options;
         }
 
+       
+
         internal void Init()
         {
-            //Create formatters classes
+            //Create formatters classes for columns
             FormatterCollection<Column> columnFormatters = new FormatterCollection<Column>();
 
             foreach (var formatterName in GeneratorOptions.ColumnNameFormatters)
@@ -53,10 +55,26 @@ namespace CExtensions.EFModelGenerator.Core
                 tableFormatters.AddFormatter(instance);
             }
 
+            FormatterCollection<Table> DbSetFormatters = new FormatterCollection<Table>();
+            foreach (var formatterName in GeneratorOptions.DbSetNameFormatters)
+            {
+                var formatterType = Type.GetType(formatterName);
+
+                if (formatterType == null)
+                {
+                    throw new Exception($"Could not load type {formatterName}");
+                }
+
+                var instance = (INameFormatter<Table>)Activator.CreateInstance(formatterType);
+
+                DbSetFormatters.AddFormatter(instance);
+            }
+
             foreach (var table in Tables)
             {
                 //create the reverse link to table
                 table.FormatterCollection = tableFormatters;
+                table.DbSetFormatters = DbSetFormatters;
             }
 
 

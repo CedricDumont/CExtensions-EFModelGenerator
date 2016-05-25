@@ -38,6 +38,9 @@ namespace CExtensions.EFModelGenerator.Core
         internal FormatterCollection<Table> FormatterCollection { get; set; }
 
         [JsonIgnore]
+        internal FormatterCollection<Table> DbSetFormatters { get; set; }
+
+        [JsonIgnore]
         public IEnumerable<Column> PrimaryKeys
         {
             get
@@ -104,7 +107,7 @@ namespace CExtensions.EFModelGenerator.Core
         internal string Info { get; set; }
 
         [JsonIgnore]
-        public string CollectionName => Utils.Pluralize(CLRTypeName);
+        public string CollectionName => FormatDbSetName();
 
         public override string ToString()
         {
@@ -132,6 +135,32 @@ namespace CExtensions.EFModelGenerator.Core
 
             //Todo change the Info thing with sthg else. basically it is used to check duplicates
             return newTableName + Info;
+        }
+
+        public string FormatDbSetName()
+        {
+            var formatters = DbSetFormatters.GetFormattersFor(this.Name);
+
+            //add a default formatter for tables
+            formatters.Insert(0,new UseClrTypeTableNameFormatter()); 
+            formatters.Insert(1,new PluralizeTableNameFormatter());
+
+            string newTableName = this.Name;
+
+            foreach (var formatter in formatters)
+            {
+                if (formatter.IsApplicable(this, newTableName))
+                {
+                    newTableName = formatter.Apply(this, newTableName);
+
+                    if (formatter.SkipOtherFormatters(this, newTableName))
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return newTableName;
         }
     }
 }

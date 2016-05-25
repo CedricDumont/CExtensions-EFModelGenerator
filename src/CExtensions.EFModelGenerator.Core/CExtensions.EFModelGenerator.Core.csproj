@@ -56,7 +56,7 @@
   <ItemGroup>
     <Compile Include="AbstractProvider.cs" />
     <Compile Include="AbstractSerializer.cs" />
-    <Compile Include="ColumnConfiguration.cs" />
+    <Compile Include="FormatterCollection.cs" />
     <Compile Include="EFMGSettings.cs" />
     <Compile Include="GeneratorOptions.cs" />
     <Compile Include="Impl\Column.cs" />

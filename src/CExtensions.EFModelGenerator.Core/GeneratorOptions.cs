@@ -16,6 +16,7 @@ namespace CExtensions.EFModelGenerator.Core
             IgnoreTableRegex = new string[0];
             ColumnNameFormatters = new string[0];
             TableNameFormatters = new string[0];
+            DbSetNameFormatters = new string[0];
             GenerateTypes = "Model";
             ContextName = "MyDbContext";
         }
@@ -26,8 +27,6 @@ namespace CExtensions.EFModelGenerator.Core
         public string Namespace { get; set; }
 
         public string ImplementingClassPath { get; set; }
-
-    //    public ColumnConfiguration ColumnConfiguration { get; set; }
 
         public string[] IgnoreTableRegex { get; set; }
 
@@ -42,6 +41,8 @@ namespace CExtensions.EFModelGenerator.Core
         public String[] ColumnNameFormatters { get; set; }
 
         public String[] TableNameFormatters { get; set; }
+
+        public String[] DbSetNameFormatters { get; set; }
 
         public string GenerateTypes { get; set; }
         public object ContextName { get; set; }

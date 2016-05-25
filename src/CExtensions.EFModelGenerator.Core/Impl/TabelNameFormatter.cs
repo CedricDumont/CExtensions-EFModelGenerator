@@ -36,6 +36,22 @@ namespace CExtensions.EFModelGenerator.Core
         }
     }
 
+    public class UseClrTypeTableNameFormatter : TableNameFormatter
+    {
+        public override String Apply(Table tbl, string currentName)
+        {
+            return tbl.CLRTypeName;
+        }
+    }
+
+    public class PluralizeTableNameFormatter : TableNameFormatter
+    {
+        public override String Apply(Table tbl, string currentName)
+        {
+            return Utils.Pluralize(currentName);
+        }
+    }
+
     public class TitleCaseTableNameFormatter : TableNameFormatter
     {
         public override String Apply(Table col, string currentName)
