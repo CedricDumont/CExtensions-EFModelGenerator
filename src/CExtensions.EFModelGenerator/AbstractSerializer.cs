@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CExtensions.EFModelGenerator.Common
+namespace CExtensions.EFModelGenerator
 {
     public abstract class AbstractSerializer 
     {

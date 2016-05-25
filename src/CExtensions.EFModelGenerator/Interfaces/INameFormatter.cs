@@ -1,4 +1,4 @@
-﻿namespace CExtensions.EFModelGenerator.Common
+﻿namespace CExtensions.EFModelGenerator.Interfaces
 {
     public interface INameFormatter<T>
     {

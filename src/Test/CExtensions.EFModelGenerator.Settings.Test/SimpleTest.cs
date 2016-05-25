@@ -1,5 +1,4 @@
-﻿using CExtensions.EFModelGenerator.Common;
-using CExtensions.EFModelGenerator;
+﻿using CExtensions.EFModelGenerator;
 using Shouldly;
 using System;
 using System.Collections.Generic;

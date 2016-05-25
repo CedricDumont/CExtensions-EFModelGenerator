@@ -1,5 +1,4 @@
-﻿using CExtensions.EFModelGenerator.Common;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,14 +10,6 @@ namespace CExtensions.EFModelGenerator
 {
     public class Table
     {
-        //private Func<String, String> _NameFormatter = str =>
-        //{
-        //    var yourString = str.ToLower().Replace("_", " ");
-        //    TextInfo info = CultureInfo.CurrentCulture.TextInfo;
-        //    yourString = info.ToTitleCase(yourString).Replace(" ", string.Empty);
-        //    return yourString;
-        //};
-
         internal Table()
         {
             Columns = new List<Column>();

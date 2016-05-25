@@ -1,5 +1,4 @@
-﻿using CExtensions.EFModelGenerator.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator
 {
-    public class InverseProperty : IInverseProperty
+    public class InverseProperty 
     {
         public String ReversePropertyName { get; set; }
 

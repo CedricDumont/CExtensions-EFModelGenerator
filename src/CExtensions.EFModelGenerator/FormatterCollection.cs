@@ -1,4 +1,4 @@
-﻿using CExtensions.EFModelGenerator.Common;
+﻿using CExtensions.EFModelGenerator.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

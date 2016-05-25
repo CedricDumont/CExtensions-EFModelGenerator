@@ -1,4 +1,4 @@
-﻿using CExtensions.EFModelGenerator.Common;
+﻿using CExtensions.EFModelGenerator.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -132,7 +132,7 @@ namespace CExtensions.EFModelGenerator
                 return tables.ToList();
         }
 
-        public IEnumerable<IInverseProperty> InversePropertiesFor(Table table)
+        public IEnumerable<InverseProperty> InversePropertiesFor(Table table)
         {
                 List<InverseProperty> result = new List<InverseProperty>();
 

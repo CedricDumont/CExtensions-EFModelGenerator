@@ -1,4 +1,4 @@
-﻿using CExtensions.EFModelGenerator.Common;
+﻿using CExtensions.EFModelGenerator;
 using CsvHelper;
 using System;
 using System.Collections.Generic;
