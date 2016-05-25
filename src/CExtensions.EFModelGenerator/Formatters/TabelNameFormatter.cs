@@ -10,24 +10,21 @@ using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator.Formatters
 {
-    public class TableNameFormatter : INameFormatter<Table>
+    public abstract class AbstractTableNameFormatter : INameFormatter<Table>
     {
         public virtual bool IsApplicable(Table input, string currentName)
         {
             return true;
         }
 
-        public virtual String Apply(Table input, string currentName)
-        {
-            return currentName;
-        }
+        public abstract String Apply(Table input, string currentName);
 
         public virtual bool SkipOtherFormatters(Table input, string currentName)
         {
             return false;
         }
     }
-    public class UpperFirstLetterTableNameFormatter : TableNameFormatter
+    public class UpperFirstLetterTableNameFormatter : AbstractTableNameFormatter
     {
         public override String Apply(Table col, string currentName)
         {
@@ -37,7 +34,7 @@ namespace CExtensions.EFModelGenerator.Formatters
         }
     }
 
-    public class UseClrTypeTableNameFormatter : TableNameFormatter
+    public class UseClrTypeTableNameFormatter : AbstractTableNameFormatter
     {
         public override String Apply(Table tbl, string currentName)
         {
@@ -45,7 +42,7 @@ namespace CExtensions.EFModelGenerator.Formatters
         }
     }
 
-    public class PluralizeTableNameFormatter : TableNameFormatter
+    public class PluralizeTableNameFormatter : AbstractTableNameFormatter
     {
         public override String Apply(Table tbl, string currentName)
         {
@@ -53,7 +50,7 @@ namespace CExtensions.EFModelGenerator.Formatters
         }
     }
 
-    public class TitleCaseTableNameFormatter : TableNameFormatter
+    public class TitleCaseTableNameFormatter : AbstractTableNameFormatter
     {
         public override String Apply(Table col, string currentName)
         {
@@ -65,7 +62,7 @@ namespace CExtensions.EFModelGenerator.Formatters
         }
     }
 
-    public class RemoveTillFirstUnderscoreTableNameFormatter : TableNameFormatter
+    public class RemoveTillFirstUnderscoreTableNameFormatter : AbstractTableNameFormatter
     {
         public override String Apply(Table tbl, string currentName)
         {

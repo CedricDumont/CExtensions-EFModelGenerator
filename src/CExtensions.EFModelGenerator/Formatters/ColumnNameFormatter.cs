@@ -10,17 +10,14 @@ using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator.Formatters
 {
-    public class ColumnNameFormatter : INameFormatter<Column>
+    public abstract class AbstractColumnNameFormatter : INameFormatter<Column>
     {
         public virtual bool IsApplicable(Column input, string currentName)
         {
             return true;
         }
 
-        public virtual String Apply(Column input, string currentName)
-        {
-            return currentName;
-        }
+        public abstract String Apply(Column input, string currentName);
 
         public virtual bool SkipOtherFormatters(Column input, string currentName)
         {
@@ -28,7 +25,7 @@ namespace CExtensions.EFModelGenerator.Formatters
         }
     }
 
-    public class UpperFirstLetterNameFormatter : ColumnNameFormatter
+    public class UpperFirstLetterNameFormatter : AbstractColumnNameFormatter
     {
         public override String Apply(Column col, string currentName)
         {
@@ -38,7 +35,7 @@ namespace CExtensions.EFModelGenerator.Formatters
         }
     }
 
-    public class TitleCaseNameFormatter : ColumnNameFormatter
+    public class TitleCaseNameFormatter : AbstractColumnNameFormatter
     {
         public override String Apply(Column col, string currentName)
         {
@@ -50,7 +47,7 @@ namespace CExtensions.EFModelGenerator.Formatters
         }
     }
 
-    public class RemoveTillFirstUnderscoreNameFormatter : ColumnNameFormatter
+    public class RemoveTillFirstUnderscoreNameFormatter : AbstractColumnNameFormatter
     {
         public override String Apply(Column col, string currentName)
         {
@@ -69,7 +66,7 @@ namespace CExtensions.EFModelGenerator.Formatters
         }
     }
 
-    public class SafeIdColumnNameFormatter : ColumnNameFormatter
+    public class SafeIdColumnNameFormatter : AbstractColumnNameFormatter
     {
         public override bool IsApplicable(Column col, string currentName)
         {
@@ -100,7 +97,7 @@ namespace CExtensions.EFModelGenerator.Formatters
         }
     }
 
-    public class IDColumnFormatter : ColumnNameFormatter
+    public class IDColumnFormatter : AbstractColumnNameFormatter
     {
         public override bool IsApplicable(Column input, string currentName)
         {

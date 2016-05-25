@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CExtensions.EFModelGenerator.Settings.Test.CustomNameFormatters
 {
-    public class SpecialPersonColumnNameFormatter : ColumnNameFormatter
+    public class SpecialPersonColumnNameFormatter : AbstractColumnNameFormatter
     {
         public override bool IsApplicable(Column col, string currentName)
         {
