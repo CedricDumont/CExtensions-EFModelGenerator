@@ -127,6 +127,8 @@ namespace CExtensions.EFModelGenerator.VSExtension
                         setting.Options.ImplementingClassPath = Path.Combine(projectPath, "bin", "Debug");
                     }
 
+                    Generator.ManageFilePath(selectedItemFullPath, setting);
+
                     var resultFile = Generator.Generate(setting);
 
                     ProjectItem item = projectItem.ContainingProject.ProjectItems.AddFromFile(resultFile);

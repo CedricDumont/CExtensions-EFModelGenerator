@@ -11,7 +11,6 @@ namespace CExtensions.EFModelGenerator
 {
     public class EFMGSettings
     {
-
         public String FilePath { get; set; }
 
         public GenerationOptions Options { get; set; }

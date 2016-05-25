@@ -12,9 +12,9 @@ using System.Security.Policy;
 
 namespace CExtensions.EFModelGenerator
 {
-    public class Generator 
+    public class Generator
     {
-        public Generator(GenerationOptions generatorOptions)
+        private Generator(GenerationOptions generatorOptions)
         {
             GeneratorOptions = generatorOptions;
 
@@ -38,11 +38,56 @@ namespace CExtensions.EFModelGenerator
             Serializer = createInstance(generatorOptions.SerializerType, generatorOptions.SerializerTypeArguments);
         }
 
-        public Generator(AbstractProvider provider, AbstractSerializer serializer, GenerationOptions generatorOptions = null)
+        public static void Generate(String configFilePath)
         {
-            Provider = provider;
-            Serializer = serializer;
-            GeneratorOptions = generatorOptions ?? new GenerationOptions();
+            if (!File.Exists(configFilePath))
+            {
+                throw new Exception($"The file passed as parameter does not exist : {configFilePath}");
+            }
+
+            string fileContent = File.ReadAllText(configFilePath);
+
+            EFMGSettings[] settingCollection = EFMGSettings.Build(fileContent);
+
+            foreach (var setting in settingCollection)
+            {
+                ManageFilePath(configFilePath, setting);
+
+                Generate(setting);
+            }
+        }
+
+        public static string Generate(EFMGSettings settings, TextWriter sw = null)
+        {
+            Debug.WriteLine($"Generating file : {settings.FilePath}");
+
+            var newFileName = settings.FilePath;
+
+            if (File.Exists(newFileName))
+            {
+                File.Delete(newFileName);
+            }
+
+            var tw = sw ?? File.CreateText(newFileName);
+            //generate the code
+            try
+            {
+                Generator generator = new Generator(settings.Options);
+                generator.Generate(tw);
+            }
+            finally
+            {
+                if (sw == null)
+                {
+                    tw.Flush();
+                    tw.Close();
+                    tw.Dispose();
+                }
+            }
+
+
+            return newFileName;
+
         }
 
         public static void ManageFilePath(string configFilePath, EFMGSettings settings)
@@ -63,63 +108,37 @@ namespace CExtensions.EFModelGenerator
             }
 
             FileInfo info = new FileInfo(settings.FilePath);
-            
+
             if (!Path.IsPathRooted(settings.FilePath))
             {
                 var directoryName = Path.GetDirectoryName(configFilePath);
                 var newFileName = Path.Combine(directoryName, settings.FilePath);
                 settings.FilePath = newFileName;
-            } 
-        }
-
-        public static void Generate(String configFilePath)
-        {
-            if (!File.Exists(configFilePath))
-            {
-                throw new Exception($"The file passed as parameter does not exist : {configFilePath}");
-            }
-
-            string fileContent = File.ReadAllText(configFilePath);
-
-            EFMGSettings[] settingCollection = EFMGSettings.Build(fileContent);
-
-            foreach (var settings in settingCollection)
-            {
-                ManageFilePath(configFilePath, settings);
-
-                Generate(settings);
             }
         }
 
-        public static string Generate(EFMGSettings settings, TextWriter sw = null)
+        private void Generate(TextWriter writer)
         {
-            Debug.WriteLine($"Generating file : {settings.FilePath}");
-
-            var newFileName = settings.FilePath;
-
-            if (File.Exists(newFileName))
-            {
-                File.Delete(newFileName);
-            }
-
-            var tw = sw ?? File.CreateText(newFileName);
-            //generate the code
             try
             {
-                Generator generator = new Generator(settings.Options);
-               generator.Generate(tw);
-            }
-            finally
-            {
-                if (sw == null)
-                {
-                    tw.Flush();
-                    tw.Close();
-                    tw.Dispose();
-                }
-            }
+                ModelInitializer initializer = new ModelInitializer(Provider, GeneratorOptions);
 
-            return newFileName;
+                Schema schema = initializer.Initialize(GeneratorOptions.SchemaName);
+
+                string serializedSchema = JsonConvert.SerializeObject(
+                                                        schema,
+                                                        Formatting.None
+                                                        );
+
+                String serializedModel = (string)Utils.CallMethodOnObject(Serializer, "CallSerializeWith", new object[] { serializedSchema });
+
+                writer.Write(serializedModel);
+            }
+            catch (Exception ex)
+            {
+                writer.Write(ex.Message);
+                throw ex;
+            }
         }
 
         private Object createInstance(string typename, object[] arguments)
@@ -182,28 +201,6 @@ namespace CExtensions.EFModelGenerator
 
         public Object Serializer { get; private set; }
 
-        public void Generate(TextWriter writer)
-        {
-            try
-            {
-                ModelInitializer initializer = new ModelInitializer(Provider, GeneratorOptions);
 
-                Schema schema = initializer.Initialize(GeneratorOptions.SchemaName);
-
-                string serializedSchema = JsonConvert.SerializeObject(
-                                                        schema,
-                                                        Formatting.None
-                                                        );
-
-                String serializedModel = (string)Utils.CallMethodOnObject(Serializer, "CallSerializeWith", new object[] { serializedSchema });
-
-                writer.Write(serializedModel);
-            }
-            catch (Exception ex)
-            {
-                writer.Write(ex.Message);
-                throw ex;
-            }
-        }
     }
 }
