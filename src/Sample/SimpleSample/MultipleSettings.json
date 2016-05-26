@@ -1,7 +1,7 @@
 ﻿{
   "DefaultOptions": {
     "SchemaName": "dbo",
-    "ConnectionString": "Server=MC0QKBSC\\SQLEXPRESS;Database=YOURDB;Trusted_Connection=True;",
+    "ConnectionString": "Server=MC0QKBSC\\SQLEXPRESS;Database=FSEND_NET;Trusted_Connection=True;",
     "Namespace": "MyNamespace",
     "IgnoreTableRegex": [ "^backup", "Att_A052_Activity" ],
     "ColumnNameFormatters": [

@@ -116,7 +116,7 @@ namespace CExtensions.EFModelGenerator.Providers
                                 Name = colRdr["ColumnName"].ToString(),
                                 DBType = colRdr["DataType"].ToString(),
                                 DBDataScale = colRdr["DataScale"].ToString(),
-                                IsNullable = "Y".Equals(colRdr["IsNullable"].ToString())
+                                IsNullable = "YES".Equals(colRdr["IsNullable"].ToString())
                             };
 
                             result.Add(col);

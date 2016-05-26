@@ -40,7 +40,7 @@ namespace Relations.MultipleRelationsWithFormatters
         public string Amount { get; set; }   // Orders.Amount
 
         [Column("OR_PERS_ID")]
-        public long PersId_Key { get; set; }  // Orders.OR_PERS_ID (ForeignKey)
+        public long? PersId_Key { get; set; }  // Orders.OR_PERS_ID (ForeignKey)
 
         // ForeignKeys
 
@@ -66,10 +66,10 @@ namespace Relations.MultipleRelationsWithFormatters
         public long? Count { get; set; }   // OrderLines.count
 
         [Column("OL_Person")]
-        public long Person_Key { get; set; }  // OrderLines.OL_Person (ForeignKey)
+        public long? Person_Key { get; set; }  // OrderLines.OL_Person (ForeignKey)
 
         [Column("OL_Orders")]
-        public long Orders_Key { get; set; }  // OrderLines.OL_Orders (ForeignKey)
+        public long? Orders_Key { get; set; }  // OrderLines.OL_Orders (ForeignKey)
 
         // ForeignKeys
 

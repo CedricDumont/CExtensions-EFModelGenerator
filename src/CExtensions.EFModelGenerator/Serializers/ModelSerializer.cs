@@ -66,7 +66,7 @@ namespace CExtensions.EFModelGenerator.Serializers
                     {
                         sb.AppendLine("");
                         sb.AppendLine(Constants.TabProperty + $"[Column(\"{fk.ColumnName}\")]");
-                        sb.AppendLine(Constants.TabProperty + $"public {fk.ColumnCLRType} {fk.ForeignKeyName} {{ get;set; }} {fk.Comment}");
+                        sb.AppendLine(Constants.TabProperty + $"public {fk.Column.CLRTypeWithNullableMark} {fk.ForeignKeyName} {{ get;set; }} {fk.Comment}");
                     }
 
                     sb.AppendLine("");

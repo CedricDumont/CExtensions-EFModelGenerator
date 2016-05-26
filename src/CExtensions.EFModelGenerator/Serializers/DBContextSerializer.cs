@@ -81,7 +81,12 @@ namespace CExtensions.EFModelGenerator.Serializers
 
         private static void writeConstructorSnippet(StringBuilder sb, string contextName)
         {
-            sb.AppendLine(TabClass + $"public {contextName}() : base()");
+            sb.AppendLine(TabClass + $"static {contextName}()");
+            sb.AppendLine(TabClass + "{");
+            sb.AppendLine(TabProperty + $"Database.SetInitializer<{contextName}>(null);");
+            sb.AppendLine(TabClass + "}");
+
+            sb.AppendLine(TabClass + $"public {contextName}() : base(\"Name={contextName}\")");
             sb.AppendLine(TabClass + "{");
             sb.AppendLine(TabProperty + "InitializePartial();");
             sb.AppendLine(TabClass + "}");

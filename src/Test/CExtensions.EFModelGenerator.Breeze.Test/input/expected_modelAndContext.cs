@@ -42,7 +42,7 @@ namespace MyNamespace
         public string Amount { get; set; }   // Orders.Amount
 
         [Column("OR_PERS_ID")]
-        public long OR_PERS_ID_Key { get; set; }  // Orders.OR_PERS_ID (ForeignKey)
+        public long? OR_PERS_ID_Key { get; set; }  // Orders.OR_PERS_ID (ForeignKey)
 
         // ForeignKeys
 
@@ -68,10 +68,10 @@ namespace MyNamespace
         public long? count { get; set; }   // OrderLines.count
 
         [Column("OL_Person")]
-        public long OL_Person_Key { get; set; }  // OrderLines.OL_Person (ForeignKey)
+        public long? OL_Person_Key { get; set; }  // OrderLines.OL_Person (ForeignKey)
 
         [Column("OL_Orders")]
-        public long OL_Orders_Key { get; set; }  // OrderLines.OL_Orders (ForeignKey)
+        public long? OL_Orders_Key { get; set; }  // OrderLines.OL_Orders (ForeignKey)
 
         // ForeignKeys
 
@@ -93,7 +93,12 @@ namespace MyNamespace
         public IDbSet<OrderLines> OrderLines { get; set; } // OrderLines 
 
         // Constructors
-        public MyContext() : base()
+        static MyContext()
+        {
+            Database.SetInitializer<MyContext>(null);
+        }
+        
+        public MyContext() : base("Name=MyContext")
         {
             InitializePartial();
         }

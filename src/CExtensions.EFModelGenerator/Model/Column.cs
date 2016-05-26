@@ -44,7 +44,7 @@ namespace CExtensions.EFModelGenerator.Model
             {
                 string isNullableMark = ""; 
 
-                if(CLRType != "string")
+                if(CLRType != "string" && !CLRType.EndsWith("[]"))
                 {
                     isNullableMark = (IsNullable ? "?" : "");
                 }

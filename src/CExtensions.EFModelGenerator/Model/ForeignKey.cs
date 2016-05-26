@@ -18,9 +18,7 @@ namespace CExtensions.EFModelGenerator.Model
 
         public Column Column { get; set; }
 
-        public String ColumnCLRType => Column.CLRType;
-
-        public String ForeignKeyName => Column.FormattedName;
+       public String ForeignKeyName => Column.FormattedName;
 
         public String ColumnName => Column.Name;
 

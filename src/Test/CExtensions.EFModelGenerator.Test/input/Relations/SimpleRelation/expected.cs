@@ -41,7 +41,7 @@ namespace Relations.SimpleRelation
         public string Amount { get; set; }   // Orders.Amount
 
         [Column("pers_id")]
-        public long pers_id_Key { get; set; }  // Orders.pers_id (ForeignKey)
+        public long? pers_id_Key { get; set; }  // Orders.pers_id (ForeignKey)
 
         // ForeignKeys
 
