@@ -42,17 +42,20 @@ namespace CExtensions.EFModelGenerator.Oracle
                               JOIN all_constraints c_pk ON c.r_owner = c_pk.owner
                                                        AND c.r_constraint_name = c_pk.constraint_name
                              WHERE c.constraint_type = 'R'
-                             and c.owner = 'CSOV'";
+                             and c.owner = '{0}'";
 
 
         #endregion
 
-        public OracleProvider(String connString)
+        public OracleProvider(String connString, String schemaName)
         {
             ConnectionString = connString;
+            Schema = schemaName;
         }
 
         public String ConnectionString { get; private set; }
+
+        public String Schema { get; private set; }
 
         public override IList<string> ListTableNames()
         {
@@ -161,7 +164,9 @@ namespace CExtensions.EFModelGenerator.Oracle
             {
                 dbcon.Open();
 
-                using (var FKCmd = new OracleCommand(FK_SQL, dbcon))
+                string formattedQuery = string.Format(FK_SQL, Schema);
+
+                using (var FKCmd = new OracleCommand(formattedQuery, dbcon))
                 {
                     using (var FkReader = FKCmd.ExecuteReader())
                     {

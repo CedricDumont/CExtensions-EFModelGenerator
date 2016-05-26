@@ -1,19 +1,14 @@
 ﻿{
   "Options": {
     "ElementToGenerate": "All",
-    "SchemaName": "dbo",
-    "ConnectionString": "yourconntooralce",
     "Namespace": "My.Oracle.Entities",
     "ProviderType": "CExtensions.EFModelGenerator.Oracle.OracleProvider, CExtensions.EFModelGenerator.Oracle",
+    "ProviderTypeArguments": [ "yourConn", "yourschema" ],
+    "IgnoreTableRegex": [ "[$]+" ],
     "ColumnNameFormatters": [
       { "Name": "CExtensions.EFModelGenerator.Formatters.IDColumnFormatter" },
-      { "Name": "CExtensions.EFModelGenerator.Formatters.SafeIdColumnNameFormatter" },
-      {
-        "Name": "CExtensions.EFModelGenerator.Formatters.RemoveTillFirstUnderscoreNameFormatter",
-        "Params": [ [ "Col_tag", "Tbl_tag" ] ]
-      },
       { "Name": "CExtensions.EFModelGenerator.Formatters.UpperFirstLetterNameFormatter" }
     ]
   }
-
+  
 }
