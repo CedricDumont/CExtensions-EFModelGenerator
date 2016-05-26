@@ -3,13 +3,16 @@
     "ElementToGenerate": "All",
     "Namespace": "My.Oracle.Entities",
     "ProviderType": "CExtensions.EFModelGenerator.Oracle.OracleProvider, CExtensions.EFModelGenerator.Oracle",
-    "ProviderTypeArguments": [ "yourdb", "yourscheme" ],
-    "IgnoreTableRegex": [ "[$]+" ],
+    "ProviderTypeArguments": [ "yourconstr", "yourschema" ],
+    "IgnoreTableRegex": [ "[$]+", "CV_Travailleur" ],
+    "TableNameFormatters": [
+      "CExtensions.EFModelGenerator.Formatters.TitleCaseTableNameFormatter"
+    ],
     "ColumnNameFormatters": [
       { "Name": "CExtensions.EFModelGenerator.Formatters.IDColumnFormatter" },
       {
         "Name": "CExtensions.EFModelGenerator.Formatters.RemoveTillFirstUnderscoreNameFormatter",
-        "Params": [ [ "(?_ID)" ] ]
+        "Params": [ [ "_ID", "_NOM$", "_ADRESSE", "(?i)codep", "(?i)localite", "(?i)_tag$", "(?i)_cost$", "_PREDICATES$" ] ]
       },
       { "Name": "CExtensions.EFModelGenerator.Formatters.TitleCaseNameFormatter" }
     ]
