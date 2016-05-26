@@ -113,6 +113,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Compile Include="CodeGenerationTest.cs" />
+    <Compile Include="NameFormattersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="input\Serializers\ListColumnsCustomSerializer\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

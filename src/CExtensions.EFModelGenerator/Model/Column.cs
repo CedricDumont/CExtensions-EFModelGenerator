@@ -15,13 +15,17 @@ namespace CExtensions.EFModelGenerator.Model
         {
         }
 
-        internal Column(string tableName, ColumnMetadata metadata)
+        public Column(string tableName, ColumnMetadata metadata)
         {
             TableName = tableName;
-            Name = metadata.Name;
-            DBType = metadata.DBType;
-            DBDataScale = metadata.DBDataScale;
-            IsNullable = metadata.IsNullable;
+
+            if (metadata != null)
+            {
+                Name = metadata.Name;
+                DBType = metadata.DBType;
+                DBDataScale = metadata.DBDataScale;
+                IsNullable = metadata.IsNullable;
+            }
         }
 
         [JsonIgnore]

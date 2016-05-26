@@ -3,10 +3,14 @@
     "ElementToGenerate": "All",
     "Namespace": "My.Oracle.Entities",
     "ProviderType": "CExtensions.EFModelGenerator.Oracle.OracleProvider, CExtensions.EFModelGenerator.Oracle",
-    "ProviderTypeArguments": [ "yourdb", "yourscheme" ],
+    "ProviderTypeArguments": [ "User Id=csov;Password=csov;Data Source=Dev2Bois", "CSOV" ],
     "IgnoreTableRegex": [ "[$]+" ],
     "ColumnNameFormatters": [
       { "Name": "CExtensions.EFModelGenerator.Formatters.IDColumnFormatter" },
+      {
+        "Name": "CExtensions.EFModelGenerator.Formatters.RemoveTillFirstUnderscoreNameFormatter",
+        "Params": [ [ "(?_ID)" ] ]
+      },
       { "Name": "CExtensions.EFModelGenerator.Formatters.TitleCaseNameFormatter" }
     ]
   }
