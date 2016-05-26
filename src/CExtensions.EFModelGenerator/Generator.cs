@@ -57,6 +57,14 @@ namespace CExtensions.EFModelGenerator
             }
         }
 
+        private static void EnsureDirectoryFor(string path)
+        {
+            if (path == null) return;
+            if (Path.GetDirectoryName(path) == null || Path.GetDirectoryName(path) == string.Empty) return;
+
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+        }
+
         public static string Generate(EFMGSettings settings, TextWriter sw = null)
         {
             Debug.WriteLine($"Generating file : {settings.FilePath}");
@@ -67,6 +75,8 @@ namespace CExtensions.EFModelGenerator
             {
                 File.Delete(newFileName);
             }
+
+            EnsureDirectoryFor(newFileName);
 
             var tw = sw ?? File.CreateText(newFileName);
             //generate the code

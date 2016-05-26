@@ -15,30 +15,49 @@ namespace CExtensions.EFModelGenerator
 
         public GenerationOptions Options { get; set; }
 
-
         public static EFMGSettings[] Build(String s)
         {
             List<EFMGSettings> settings = new List<EFMGSettings>();
 
             JObject result = (JObject)JsonConvert.DeserializeObject(s);
 
-            JProperty property = result.First as JProperty;
+            GenerationOptions defaultOptions = GetDefaultOptions(result);
 
-            if (property != null && property.Name == "Settings")
+            JArray settingsArray = result["Settings"] as JArray;
+
+            if (settingsArray != null)
             {
-                foreach (var setting in result["Settings"])
+                foreach (var setting in settingsArray)
                 {
                     var obj = (EFMGSettings)setting.ToObject(typeof(EFMGSettings));
+                    obj.Options.MergeWith(defaultOptions);
                     settings.Add(obj);
                 }
             }
             else
             {
                 var obj = (EFMGSettings)result.ToObject(typeof(EFMGSettings));
+                obj.Options.MergeWith(defaultOptions);
                 settings.Add(obj);
             }
 
             return settings.ToArray();
+        }
+
+       
+
+        private static GenerationOptions GetDefaultOptions(JObject result)
+        {
+            JProperty property = result.First as JProperty;
+
+            GenerationOptions defaults = null;
+
+            if (property != null && property.Name == "DefaultOptions")
+            {
+                defaults = (GenerationOptions)result["DefaultOptions"].ToObject(typeof(GenerationOptions));
+            }
+
+            return defaults;
         }
     }
 }

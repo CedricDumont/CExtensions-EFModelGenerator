@@ -1,0 +1,33 @@
+﻿{
+  "DefaultOptions": {
+    "SchemaName": "dbo",
+    "ConnectionString": "Server=MC0QKBSC\\SQLEXPRESS;Database=FSEND_NET;Trusted_Connection=True;",
+    "Namespace": "MyNamespace",
+    "IgnoreTableRegex": [ "^backup", "Att_A052_Activity" ],
+    "ColumnNameFormatters": [
+      { "Name": "CExtensions.EFModelGenerator.Formatters.IDColumnFormatter" },
+      { "Name": "CExtensions.EFModelGenerator.Formatters.SafeIdColumnNameFormatter" },
+      { "Name": "CExtensions.EFModelGenerator.Formatters.RemoveTillFirstUnderscoreNameFormatter",
+        "Params": [ [ "Col_tag", "Tbl_tag" ] ]
+
+      },
+      { "Name": "CExtensions.EFModelGenerator.Formatters.UpperFirstLetterNameFormatter" }
+    ]
+  },
+  "Settings": [
+    {
+      "FilePath": "MyFolder/Model.cs",
+      "Options": {
+        "ElementToGenerate": "All"
+      }
+    },
+    {
+      "FilePath": "MyFolder/MyBreezeController.cs",
+      "Options": {
+        "SerializerType": "CExtensions.EFModelGenerator.Serializers.BreezeControllerSerializer,CExtensions.EFModelGenerator",
+        "SerializerTypeArguments": [ "MyNamespace", "MyBreezeController", "MyContext" ]
+      }
+    }
+  ]
+
+}

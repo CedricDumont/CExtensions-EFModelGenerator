@@ -25,56 +25,64 @@ namespace CExtensions.EFModelGenerator.Model
         {
             //Create formatters classes for columns
             FormatterCollection<Column> columnFormatters = new FormatterCollection<Column>();
-
-            foreach (var constructorDescription in GeneratorOptions.ColumnNameFormatters)
+            if (GeneratorOptions.ColumnNameFormatters != null)
             {
-                var formatterType = Type.GetType(constructorDescription.Name);
+                foreach (var constructorDescription in GeneratorOptions.ColumnNameFormatters)
+                {
+                    var formatterType = Type.GetType(constructorDescription.Name);
 
-                if(formatterType == null)
-                {
-                    throw new Exception($"Could not load type {constructorDescription.Name}");
-                }
+                    if (formatterType == null)
+                    {
+                        throw new Exception($"Could not load type {constructorDescription.Name}");
+                    }
 
-                INameFormatter<Column> instance;
-                if (constructorDescription.ParamsForConstructor != null)
-                {
-                    instance = (INameFormatter<Column>)Activator.CreateInstance(formatterType, constructorDescription.ParamsForConstructor);
+                    INameFormatter<Column> instance;
+                    if (constructorDescription.ParamsForConstructor != null)
+                    {
+                        instance = (INameFormatter<Column>)Activator.CreateInstance(formatterType, constructorDescription.ParamsForConstructor);
+                    }
+                    else
+                    {
+                        instance = (INameFormatter<Column>)Activator.CreateInstance(formatterType);
+                    }
+                    columnFormatters.AddFormatter(instance);
                 }
-                else
-                {
-                    instance = (INameFormatter<Column>)Activator.CreateInstance(formatterType);
-                }
-                columnFormatters.AddFormatter(instance);
             }
 
             FormatterCollection<Table> tableFormatters = new FormatterCollection<Table>();
-            foreach (var formatterName in GeneratorOptions.TableNameFormatters)
+            if (GeneratorOptions.TableNameFormatters != null)
             {
-                var formatterType = Type.GetType(formatterName);
-
-                if (formatterType == null)
+                foreach (var formatterName in GeneratorOptions.TableNameFormatters)
                 {
-                    throw new Exception($"Could not load type {formatterName}");
+                    var formatterType = Type.GetType(formatterName);
+
+                    if (formatterType == null)
+                    {
+                        throw new Exception($"Could not load type {formatterName}");
+                    }
+
+                    var instance = (INameFormatter<Table>)Activator.CreateInstance(formatterType);
+
+                    tableFormatters.AddFormatter(instance);
                 }
-
-                var instance = (INameFormatter<Table>)Activator.CreateInstance(formatterType);
-
-                tableFormatters.AddFormatter(instance);
             }
 
             FormatterCollection<Table> DbSetFormatters = new FormatterCollection<Table>();
-            foreach (var formatterName in GeneratorOptions.DbSetNameFormatters)
+            if (GeneratorOptions.DbSetNameFormatters != null)
             {
-                var formatterType = Type.GetType(formatterName);
-
-                if (formatterType == null)
+                foreach (var formatterName in GeneratorOptions.DbSetNameFormatters)
                 {
-                    throw new Exception($"Could not load type {formatterName}");
+                    var formatterType = Type.GetType(formatterName);
+
+                    if (formatterType == null)
+                    {
+                        throw new Exception($"Could not load type {formatterName}");
+                    }
+
+                    var instance = (INameFormatter<Table>)Activator.CreateInstance(formatterType);
+
+                    DbSetFormatters.AddFormatter(instance);
                 }
-
-                var instance = (INameFormatter<Table>)Activator.CreateInstance(formatterType);
-
-                DbSetFormatters.AddFormatter(instance);
             }
 
             foreach (var table in Tables)

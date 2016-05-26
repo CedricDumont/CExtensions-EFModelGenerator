@@ -19,11 +19,11 @@ namespace CExtensions.EFModelGenerator
     {
         public GenerationOptions()
         {
-          //  ColumnConfiguration = new ColumnConfiguration();
+            //  ColumnConfiguration = new ColumnConfiguration();
             IgnoreTableRegex = new string[0];
-            ColumnNameFormatters = new TypeConstructorSignature[0];
-            TableNameFormatters = new string[0];
-            DbSetNameFormatters = new string[0];
+           // ColumnNameFormatters = new TypeConstructorSignature[0];
+            //TableNameFormatters = new string[0];
+            //DbSetNameFormatters = new string[0];
             ElementToGenerate = "Model";
             ContextName = "MyDbContext";
         }
@@ -54,5 +54,30 @@ namespace CExtensions.EFModelGenerator
         public string ElementToGenerate { get; set; }
 
         public object ContextName { get; set; }
+
+        public void MergeWith(GenerationOptions options)
+        {
+            if (options == null) { return; }
+
+            //if(options.ColumnNameFormatters.Count() > 0)
+            //{
+            //    this.ColumnNameFormatters = this.ColumnNameFormatters.Concat(options.ColumnNameFormatters).ToArray();
+            //}
+            this.ColumnNameFormatters = options.ColumnNameFormatters ?? this.ColumnNameFormatters;
+            this.TableNameFormatters = options.TableNameFormatters ?? this.TableNameFormatters;
+            this.DbSetNameFormatters = options.DbSetNameFormatters ?? this.DbSetNameFormatters;
+            this.ConnectionString = options.ConnectionString ?? this.ConnectionString;
+            this.ContextName = options.ContextName ?? this.ContextName;
+            this.ElementToGenerate = options.ElementToGenerate ?? this.ElementToGenerate;
+            this.IgnoreTableRegex = options.IgnoreTableRegex ?? this.IgnoreTableRegex;
+            this.ImplementingClassPath = options.ImplementingClassPath ?? this.ImplementingClassPath;
+            this.Namespace = options.Namespace ?? this.Namespace;
+            this.ProviderType = options.ProviderType ?? this.ProviderType;
+            this.ProviderTypeArguments = options.ProviderTypeArguments ?? this.ProviderTypeArguments;
+            this.SchemaName = options.SchemaName ?? this.SchemaName;
+            this.SerializerType = options.SerializerType ?? this.SerializerType;
+            this.SerializerTypeArguments = options.SerializerTypeArguments ?? this.SerializerTypeArguments;
+            
+        }
     }
 }
