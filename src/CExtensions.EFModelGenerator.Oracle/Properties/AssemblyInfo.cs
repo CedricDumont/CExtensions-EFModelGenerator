@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CExtensions.EFModelGenerator.Oracle")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Licence Owner")]
+[assembly: AssemblyCompany("Cedric Dumont")]
 [assembly: AssemblyProduct("CExtensions.EFModelGenerator.Oracle")]
-[assembly: AssemblyCopyright("Copyright © Licence Owner 2016")]
+[assembly: AssemblyCopyright("Copyright © Cedric Dumont 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

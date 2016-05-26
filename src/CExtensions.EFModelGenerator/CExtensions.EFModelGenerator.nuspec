@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
-    <id>CExtensions.EFModelGenerator</id>
-    <version>1.0.0.0-beta1</version>
-    <title>CExtensions.EFModelGenerator</title>
-    <authors>Dumont Cedric</authors>
-    <owners>Dumont Cedric</owners>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$id$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
     <projectUrl>https://github.com/CedricDumont/CExtensions-EFModelGenerator</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Code Generation Tool</description>
     <summary>Code Generation Tool</summary>
-    <copyright>Copyright 2016</copyright>
+    <copyright>Copyright © Cedric Dumont 2016</copyright>
     <tags>Code-Generation</tags>
   </metadata>
   <files />

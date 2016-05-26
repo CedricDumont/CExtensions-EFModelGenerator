@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CExtensions.EFModelGenerator")]
 [assembly: AssemblyDescription("Model generator")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Licence Owner")]
+[assembly: AssemblyCompany("Cedric Dumont")]
 [assembly: AssemblyProduct("CExtensions.EFModelGenerator")]
 [assembly: AssemblyCopyright("Copyright © Licence Owner 2016")]
 [assembly: AssemblyTrademark("")]
