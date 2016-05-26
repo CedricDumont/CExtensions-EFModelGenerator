@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CExtensions.EFModelGenerator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c770eb04a54cf477, processorArchitecture=MSIL">
-      <HintPath>..\packages\CExtensions.EFModelGenerator.1.0.0-CI00001\lib\net45\CExtensions.EFModelGenerator.dll</HintPath>
+      <HintPath>..\packages\CExtensions.EFModelGenerator.1.0.0-CI00002\lib\net45\CExtensions.EFModelGenerator.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Humanizer, Version=2.0.1.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">

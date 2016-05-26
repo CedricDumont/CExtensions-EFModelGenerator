@@ -146,8 +146,21 @@ namespace CExtensions.EFModelGenerator
             }
             catch (Exception ex)
             {
-                writer.Write(ex.Message);
-                throw ex;
+                writer.WriteLine("-----------------------------------------------------------------");
+                writer.WriteLine("!!!! An exception occured while generating the code. !!!!");
+                writer.WriteLine($"Go to  https://github.com/CedricDumont/CExtensions-EFModelGenerator to check for known issues");
+                writer.WriteLine("");
+                writer.WriteLine("Or open an issue with the following Information : ");
+                writer.WriteLine($"Exception Message : {ex.Message}");
+                writer.WriteLine($"Exception Stack : {ex.StackTrace}");
+
+                if(ex.InnerException != null)
+                {
+                    writer.WriteLine("");
+                    writer.WriteLine($"Inner Exception Message : {ex.Message}");
+                    writer.WriteLine($"Inner Exception Stack : {ex.StackTrace}");
+                    writer.WriteLine("-----------------------------------------------------------------");
+                }
             }
         }
 

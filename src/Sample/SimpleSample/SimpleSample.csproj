@@ -33,11 +33,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CExtensions.EFModelGenerator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c770eb04a54cf477, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CExtensions.EFModelGenerator.1.0.0-CI00001\lib\net45\CExtensions.EFModelGenerator.dll</HintPath>
+      <HintPath>..\..\packages\CExtensions.EFModelGenerator.1.0.0-CI00002\lib\net45\CExtensions.EFModelGenerator.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CExtensions.EFModelGenerator.Oracle, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CExtensions.EFModelGenerator.Oracle.1.0.0-CI00001\lib\net45\CExtensions.EFModelGenerator.Oracle.dll</HintPath>
+      <HintPath>..\..\packages\CExtensions.EFModelGenerator.Oracle.1.0.0-CI00002\lib\net45\CExtensions.EFModelGenerator.Oracle.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
