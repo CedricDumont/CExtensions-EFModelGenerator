@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
@@ -6,40 +6,48 @@ using System.Collections.Generic;
 namespace ForeignKeys.ForeignKeysToSelf
 {
 
-    [Table("Person")]
-    public partial class Person
-    {
+   [Table("Person")]
+   public partial class Person
+   {
 
-        [Key]
-        [Column("PERS_ID")]
-        public long PERS_ID { get; set; }  // Person.PERS_ID (PrimaryKey)
+      public Person()
+      {
+         Person_1 = new List<Person>();
+         Person_2 = new List<Person>();
+      }
+      
+      partial void InitializePartial();
 
-        [Required]
-        [Column("PERS_FIRST_NAME")]
-        public string PERS_FIRST_NAME { get; set; }   // Person.PERS_FIRST_NAME
+      [Key]
+      [Column("PERS_ID")]
+      public long PERS_ID { get;set; }  // Person.PERS_ID (PrimaryKey)
 
-        [Column("PERS_PARENT_ID")]
-        public long PERS_PARENT_ID_Key { get; set; }  // Person.PERS_PARENT_ID (ForeignKey)
+      [Required]
+      [Column("PERS_FIRST_NAME")]
+      public string PERS_FIRST_NAME { get;set; }   // Person.PERS_FIRST_NAME
 
-        [Column("PERS_BROTHER_ID")]
-        public long PERS_BROTHER_ID_Key { get; set; }  // Person.PERS_BROTHER_ID (ForeignKey)
+      [Column("PERS_PARENT_ID")]
+      public long PERS_PARENT_ID_Key { get;set; }  // Person.PERS_PARENT_ID (ForeignKey)
 
-        // ForeignKeys
+      [Column("PERS_BROTHER_ID")]
+      public long PERS_BROTHER_ID_Key { get;set; }  // Person.PERS_BROTHER_ID (ForeignKey)
 
-        [ForeignKey("PERS_PARENT_ID_Key")]
-        public virtual Person Person_PERS_PARENT_ID_Key { get; set; }
+      // ForeignKeys
 
-        [ForeignKey("PERS_BROTHER_ID_Key")]
-        public virtual Person Person_PERS_BROTHER_ID_Key { get; set; }
+      [ForeignKey("PERS_PARENT_ID_Key")]
+      public virtual Person Person_PERS_PARENT_ID_Key { get; set; }
 
-        // Reverse Navigation
+      [ForeignKey("PERS_BROTHER_ID_Key")]
+      public virtual Person Person_PERS_BROTHER_ID_Key { get; set; }
 
-        [InverseProperty("PERS_PARENT_ID_Key")]
-        public virtual List<Person> Person_1 { get; set; }
+      // Reverse Navigation
 
-        [InverseProperty("PERS_BROTHER_ID_Key")]
-        public virtual List<Person> Person_2 { get; set; }
+      [InverseProperty("PERS_PARENT_ID_Key")]
+      public virtual List<Person> Person_1 { get; set; }
 
-    }
+      [InverseProperty("PERS_BROTHER_ID_Key")]
+      public virtual List<Person> Person_2 { get; set; }
+
+   }
 
 }

@@ -39,6 +39,21 @@ namespace CExtensions.EFModelGenerator.Serializers
                 sb.AppendLine(Constants.TabClass + "public partial class " + table.CLRTypeName);
                 sb.AppendLine(Constants.TabClass + "{");
 
+                //Constructor
+                sb.AppendLine("");
+                sb.AppendLine(Constants.TabProperty + $"public {table.CLRTypeName}()");
+                sb.AppendLine(Constants.TabProperty + "{");
+                if (schema.InversePropertiesFor(table).Count() > 0)
+                {
+                    foreach (var reverseNavigation in schema.InversePropertiesFor(table))
+                    {
+                        sb.AppendLine(Constants.TabBody + $"{reverseNavigation.PropertyName} = new List<{reverseNavigation.ReverseCLRType}>();");
+                    }
+                }
+                sb.AppendLine(Constants.TabProperty + "}");
+                sb.AppendLine(Constants.TabProperty + "");
+                sb.AppendLine(Constants.TabProperty + "partial void InitializePartial();");
+
                 foreach (var column in table.PrimaryKeys)
                 {
                     sb.AppendLine("");

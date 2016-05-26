@@ -36,6 +36,12 @@ namespace CExtensions.EFModelGenerator.Breeze.Test
                 {
                     Generator.Generate(setting, sw);
                 }
+                //write tests
+                //var pathToExpected = Path.Combine("C:\\projects\\cextensions\\CExtensions-EFModelGenerator\\src\\Test\\CExtensions.EFModelGenerator.Breeze.Test", folder, setting.FilePath); ;
+                //using (TextWriter writer = File.CreateText(pathToExpected))
+                //{
+                //    writer.Write(sb.ToString());
+                //}
                 //3. Assert
                 string expectedOutput = GetFileContent(setting.FilePath, folder);
                 string a = System.Text.RegularExpressions.Regex.Replace(sb.ToString(), @"\s+|\t|\n|\t\n\r\0\x0B", "");

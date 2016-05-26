@@ -1,4 +1,4 @@
-﻿This serialier only list the table and it's columns
+This serialier only list the table and it's columns
 ---------------------------------------------------
 You can pass some infor through constructor
 

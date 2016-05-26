@@ -46,6 +46,13 @@ namespace CExtensions.EFModelGenerator.Test
                 Generator.Generate(settings[0], sw);
             }
 
+            //writeToFile
+            //var pathToExpected = Path.Combine("C:\\projects\\cextensions\\CExtensions-EFModelGenerator\\src\\Test\\CExtensions.EFModelGenerator.Test", folder, expectedFile ?? "expected.cs"); ;
+            //using (TextWriter writer = File.CreateText(pathToExpected))
+            //{
+            //    writer.Write(sb.ToString());
+            //}
+
             //3. Assert
             string a = System.Text.RegularExpressions.Regex.Replace(sb.ToString(), @"\s+|\t|\n|\t\n\r\0\x0B", "");
             string b = System.Text.RegularExpressions.Regex.Replace(expectedOutput, @"\s+|\t|\n|\t\n\r\0\x0B", "");

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
@@ -6,79 +6,100 @@ using System.Collections.Generic;
 namespace Relations.MultipleRelationsWithFormatters
 {
 
-    [Table("Person")]
-    public partial class Person
-    {
+   [Table("Person")]
+   public partial class Person
+   {
 
-        [Key]
-        [Column("PERS_ID")]
-        public long ID { get; set; }  // Person.PERS_ID (PrimaryKey)
+      public Person()
+      {
+         Orders = new List<Orders>();
+         OrderLines = new List<OrderLines>();
+      }
+      
+      partial void InitializePartial();
 
-        [Column("PERS_FIRST_NAME")]
-        public string FirstName { get; set; }   // Person.PERS_FIRST_NAME
+      [Key]
+      [Column("PERS_ID")]
+      public long ID { get;set; }  // Person.PERS_ID (PrimaryKey)
 
-        // Reverse Navigation
+      [Column("PERS_FIRST_NAME")]
+      public string FirstName { get;set; }   // Person.PERS_FIRST_NAME
 
-        [InverseProperty("PersId_Key")]
-        public virtual List<Orders> Orders { get; set; }
+      // Reverse Navigation
 
-        [InverseProperty("Person_Key")]
-        public virtual List<OrderLines> OrderLines { get; set; }
+      [InverseProperty("PersId_Key")]
+      public virtual List<Orders> Orders { get; set; }
 
-    }
+      [InverseProperty("Person_Key")]
+      public virtual List<OrderLines> OrderLines { get; set; }
 
-    [Table("Orders")]
-    public partial class Orders
-    {
+   }
 
-        [Key]
-        [Column("ORDER_ID")]
-        public long ID { get; set; }  // Orders.ORDER_ID (PrimaryKey)
+   [Table("Orders")]
+   public partial class Orders
+   {
 
-        [Required]
-        [Column("Amount")]
-        public string Amount { get; set; }   // Orders.Amount
+      public Orders()
+      {
+         OrderLines = new List<OrderLines>();
+      }
+      
+      partial void InitializePartial();
 
-        [Column("OR_PERS_ID")]
-        public long? PersId_Key { get; set; }  // Orders.OR_PERS_ID (ForeignKey)
+      [Key]
+      [Column("ORDER_ID")]
+      public long ID { get;set; }  // Orders.ORDER_ID (PrimaryKey)
 
-        // ForeignKeys
+      [Required]
+      [Column("Amount")]
+      public string Amount { get;set; }   // Orders.Amount
 
-        [ForeignKey("PersId_Key")]
-        public virtual Person Person { get; set; }
+      [Column("OR_PERS_ID")]
+      public long? PersId_Key { get;set; }  // Orders.OR_PERS_ID (ForeignKey)
 
-        // Reverse Navigation
+      // ForeignKeys
 
-        [InverseProperty("Orders_Key")]
-        public virtual List<OrderLines> OrderLines { get; set; }
+      [ForeignKey("PersId_Key")]
+      public virtual Person Person { get; set; }
 
-    }
+      // Reverse Navigation
 
-    [Table("OrderLines")]
-    public partial class OrderLines
-    {
+      [InverseProperty("Orders_Key")]
+      public virtual List<OrderLines> OrderLines { get; set; }
 
-        [Key]
-        [Column("OL_ID")]
-        public long? ID { get; set; }  // OrderLines.OL_ID (PrimaryKey)
+   }
 
-        [Column("count")]
-        public long? Count { get; set; }   // OrderLines.count
+   [Table("OrderLines")]
+   public partial class OrderLines
+   {
 
-        [Column("OL_Person")]
-        public long? Person_Key { get; set; }  // OrderLines.OL_Person (ForeignKey)
+      public OrderLines()
+      {
+      }
+      
+      partial void InitializePartial();
 
-        [Column("OL_Orders")]
-        public long? Orders_Key { get; set; }  // OrderLines.OL_Orders (ForeignKey)
+      [Key]
+      [Column("OL_ID")]
+      public long? ID { get;set; }  // OrderLines.OL_ID (PrimaryKey)
 
-        // ForeignKeys
+      [Column("count")]
+      public long? Count { get;set; }   // OrderLines.count
 
-        [ForeignKey("Person_Key")]
-        public virtual Person Person { get; set; }
+      [Column("OL_Person")]
+      public long? Person_Key { get;set; }  // OrderLines.OL_Person (ForeignKey)
 
-        [ForeignKey("Orders_Key")]
-        public virtual Orders Orders { get; set; }
+      [Column("OL_Orders")]
+      public long? Orders_Key { get;set; }  // OrderLines.OL_Orders (ForeignKey)
 
-    }
+      // ForeignKeys
+
+      [ForeignKey("Person_Key")]
+      public virtual Person Person { get; set; }
+
+      [ForeignKey("Orders_Key")]
+      public virtual Orders Orders { get; set; }
+
+   }
 
 }

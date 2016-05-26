@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
@@ -6,48 +6,61 @@ using System.Collections.Generic;
 namespace Relations.SimpleRelation
 {
 
-    [Table("Person")]
-    public partial class Person
-    {
+   [Table("Person")]
+   public partial class Person
+   {
 
-        [Key]
-        [Column("PERS_ID")]
-        public long PERS_ID { get; set; }  // Person.PERS_ID (PrimaryKey)
+      public Person()
+      {
+         Orders = new List<Orders>();
+      }
+      
+      partial void InitializePartial();
 
-        [Column("PERS_FIRST_NAME")]
-        public string PERS_FIRST_NAME { get; set; }   // Person.PERS_FIRST_NAME
+      [Key]
+      [Column("PERS_ID")]
+      public long PERS_ID { get;set; }  // Person.PERS_ID (PrimaryKey)
 
-        [Required]
-        [Column("PERS_LAST_NAME")]
-        public string PERS_LAST_NAME { get; set; }   // Person.PERS_LAST_NAME
+      [Column("PERS_FIRST_NAME")]
+      public string PERS_FIRST_NAME { get;set; }   // Person.PERS_FIRST_NAME
 
-        // Reverse Navigation
+      [Required]
+      [Column("PERS_LAST_NAME")]
+      public string PERS_LAST_NAME { get;set; }   // Person.PERS_LAST_NAME
 
-        [InverseProperty("pers_id_Key")]
-        public virtual List<Orders> Orders { get; set; }
+      // Reverse Navigation
 
-    }
+      [InverseProperty("pers_id_Key")]
+      public virtual List<Orders> Orders { get; set; }
 
-    [Table("Orders")]
-    public partial class Orders
-    {
+   }
 
-        [Key]
-        [Column("Id")]
-        public long Id { get; set; }  // Orders.Id (PrimaryKey)
+   [Table("Orders")]
+   public partial class Orders
+   {
 
-        [Required]
-        [Column("Amount")]
-        public string Amount { get; set; }   // Orders.Amount
+      public Orders()
+      {
+      }
+      
+      partial void InitializePartial();
 
-        [Column("pers_id")]
-        public long? pers_id_Key { get; set; }  // Orders.pers_id (ForeignKey)
+      [Key]
+      [Column("Id")]
+      public long Id { get;set; }  // Orders.Id (PrimaryKey)
 
-        // ForeignKeys
+      [Required]
+      [Column("Amount")]
+      public string Amount { get;set; }   // Orders.Amount
 
-        [ForeignKey("pers_id_Key")]
-        public virtual Person Person { get; set; }
+      [Column("pers_id")]
+      public long? pers_id_Key { get;set; }  // Orders.pers_id (ForeignKey)
 
-    }
+      // ForeignKeys
+
+      [ForeignKey("pers_id_Key")]
+      public virtual Person Person { get; set; }
+
+   }
 
 }
