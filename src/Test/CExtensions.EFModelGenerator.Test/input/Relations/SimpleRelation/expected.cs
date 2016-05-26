@@ -13,6 +13,7 @@ namespace Relations.SimpleRelation
       public Person()
       {
          Orders = new List<Orders>();
+         InitializePartial();
       }
       
       partial void InitializePartial();
@@ -41,6 +42,7 @@ namespace Relations.SimpleRelation
 
       public Orders()
       {
+         InitializePartial();
       }
       
       partial void InitializePartial();

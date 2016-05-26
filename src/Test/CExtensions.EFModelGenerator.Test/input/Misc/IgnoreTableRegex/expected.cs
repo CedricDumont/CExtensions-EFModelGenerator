@@ -12,6 +12,7 @@ namespace Misc.IgnoreTableRegex
 
       public Person()
       {
+         InitializePartial();
       }
       
       partial void InitializePartial();

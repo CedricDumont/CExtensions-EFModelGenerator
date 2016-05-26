@@ -50,6 +50,7 @@ namespace CExtensions.EFModelGenerator.Serializers
                         sb.AppendLine(Constants.TabBody + $"{reverseNavigation.PropertyName} = new List<{reverseNavigation.ReverseCLRType}>();");
                     }
                 }
+                sb.AppendLine(Constants.TabBody + "InitializePartial();");
                 sb.AppendLine(Constants.TabProperty + "}");
                 sb.AppendLine(Constants.TabProperty + "");
                 sb.AppendLine(Constants.TabProperty + "partial void InitializePartial();");

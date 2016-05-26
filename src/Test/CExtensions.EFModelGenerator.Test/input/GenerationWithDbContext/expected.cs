@@ -16,6 +16,7 @@ namespace GenerationWithDbContext
       {
          Orders = new List<Orders>();
          OrderLines = new List<OrderLines>();
+         InitializePartial();
       }
       
       partial void InitializePartial();
@@ -44,6 +45,7 @@ namespace GenerationWithDbContext
       public Orders()
       {
          OrderLines = new List<OrderLines>();
+         InitializePartial();
       }
       
       partial void InitializePartial();
@@ -77,6 +79,7 @@ namespace GenerationWithDbContext
 
       public OrderLines()
       {
+         InitializePartial();
       }
       
       partial void InitializePartial();

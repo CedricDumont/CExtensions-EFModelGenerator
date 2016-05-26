@@ -12,6 +12,7 @@ namespace Misc.PropertyWithSameNameAsEnclosingType
 
       public Person()
       {
+         InitializePartial();
       }
       
       partial void InitializePartial();

@@ -12,6 +12,7 @@ namespace Formatters.RemoveTillFirstUnderscoreNameFormatterWithExclusions
 
       public Person()
       {
+         InitializePartial();
       }
       
       partial void InitializePartial();

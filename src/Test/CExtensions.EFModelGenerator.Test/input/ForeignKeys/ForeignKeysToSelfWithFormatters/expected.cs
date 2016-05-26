@@ -14,6 +14,7 @@ namespace ForeignKeys.ForeignKeysToSelfWithFormatters
       {
          Person_1 = new List<Person>();
          Person_2 = new List<Person>();
+         InitializePartial();
       }
       
       partial void InitializePartial();

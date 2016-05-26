@@ -53,7 +53,7 @@ namespace CExtensions.EFModelGenerator.Test
             //    writer.Write(sb.ToString());
             //}
 
-            //3. Assert
+            ////3. Assert
             string a = System.Text.RegularExpressions.Regex.Replace(sb.ToString(), @"\s+|\t|\n|\t\n\r\0\x0B", "");
             string b = System.Text.RegularExpressions.Regex.Replace(expectedOutput, @"\s+|\t|\n|\t\n\r\0\x0B", "");
             bool isTheSame = String.Compare(a, b) == 0;

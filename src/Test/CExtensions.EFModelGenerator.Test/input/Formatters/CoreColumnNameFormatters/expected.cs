@@ -12,6 +12,7 @@ namespace Formatters.CoreColumnNameFormatters
 
       public Person()
       {
+         InitializePartial();
       }
       
       partial void InitializePartial();

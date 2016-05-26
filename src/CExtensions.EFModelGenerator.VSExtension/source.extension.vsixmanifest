@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="CExtensions.EFModelGenerator.VSExtension.Cedric.Dumont.ef7f7e8d-37d7-44d2-a8e1-d00d60e6d5f3" Version="0.4" Language="en-US" Publisher="Dumont Cedric" />
+    <Identity Id="CExtensions.EFModelGenerator.VSExtension.Cedric.Dumont.ef7f7e8d-37d7-44d2-a8e1-d00d60e6d5f3" Version="0.5" Language="en-US" Publisher="Dumont Cedric" />
     <DisplayName>CExtensions.EFModelGenerator</DisplayName>
     <Description xml:space="preserve">This tool is used to generate code based on a database. More information on the status of this extension can be found here : https://github.com/CedricDumont/CExtensions-EFModelGenerator.
 It curently supports Oracle and SqlServer but you can customize it to support other providers. The provider list is an ongrowing list, so please check the status or participate.

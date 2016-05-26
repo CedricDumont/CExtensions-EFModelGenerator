@@ -14,6 +14,7 @@ namespace Relations.MultipleRelationsWithFormatters
       {
          Orders = new List<Orders>();
          OrderLines = new List<OrderLines>();
+         InitializePartial();
       }
       
       partial void InitializePartial();
@@ -42,6 +43,7 @@ namespace Relations.MultipleRelationsWithFormatters
       public Orders()
       {
          OrderLines = new List<OrderLines>();
+         InitializePartial();
       }
       
       partial void InitializePartial();
@@ -75,6 +77,7 @@ namespace Relations.MultipleRelationsWithFormatters
 
       public OrderLines()
       {
+         InitializePartial();
       }
       
       partial void InitializePartial();

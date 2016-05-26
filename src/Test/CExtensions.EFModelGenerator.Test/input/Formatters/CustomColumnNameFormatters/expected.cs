@@ -12,6 +12,7 @@ namespace Formatters.CustomColumnNameFormatters
 
       public Person()
       {
+         InitializePartial();
       }
       
       partial void InitializePartial();
@@ -36,6 +37,7 @@ namespace Formatters.CustomColumnNameFormatters
 
       public Friend()
       {
+         InitializePartial();
       }
       
       partial void InitializePartial();

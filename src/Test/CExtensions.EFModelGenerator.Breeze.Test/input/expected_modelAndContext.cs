@@ -16,6 +16,7 @@ namespace MyNamespace
       {
          Orders = new List<Orders>();
          OrderLines = new List<OrderLines>();
+         InitializePartial();
       }
       
       partial void InitializePartial();
@@ -44,6 +45,7 @@ namespace MyNamespace
       public Orders()
       {
          OrderLines = new List<OrderLines>();
+         InitializePartial();
       }
       
       partial void InitializePartial();
@@ -77,6 +79,7 @@ namespace MyNamespace
 
       public OrderLines()
       {
+         InitializePartial();
       }
       
       partial void InitializePartial();
