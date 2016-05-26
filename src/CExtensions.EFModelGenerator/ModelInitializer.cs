@@ -53,7 +53,7 @@ namespace CExtensions.EFModelGenerator
         {
             foreach (var item in Options.IgnoreTableRegex)
             {
-                var regex = new Regex(item, RegexOptions.IgnoreCase);
+                var regex = new Regex(item);
 
                 if (regex.IsMatch(table))
                 {
