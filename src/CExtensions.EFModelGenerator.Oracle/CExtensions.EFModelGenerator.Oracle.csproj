@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CExtensions.EFModelGenerator, Version=0.3.0.0, Culture=neutral, PublicKeyToken=c770eb04a54cf477, processorArchitecture=MSIL">
-      <HintPath>..\packages\CExtensions.EFModelGenerator.0.3.0-CI00000\lib\net45\CExtensions.EFModelGenerator.dll</HintPath>
+    <Reference Include="CExtensions.EFModelGenerator, Version=0.4.0.0, Culture=neutral, PublicKeyToken=c770eb04a54cf477, processorArchitecture=MSIL">
+      <HintPath>..\packages\CExtensions.EFModelGenerator.0.4.0-CI00005\lib\net45\CExtensions.EFModelGenerator.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Humanizer, Version=2.0.1.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
