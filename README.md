@@ -22,7 +22,7 @@ Available on nuget.org :
 
 
 you will need a config file with some information to generate the code:
- - [simple model)(https://github.com/CedricDumont/CExtensions-EFModelGenerator/blob/master/src/Sample/SimpleSample/Models.json)
+ - [simple model](https://github.com/CedricDumont/CExtensions-EFModelGenerator/blob/master/src/Sample/SimpleSample/Models.json)
  - [Multiple file generation](https://github.com/CedricDumont/CExtensions-EFModelGenerator/blob/master/src/Sample/SimpleSample/MultipleSettings.json)
  - [Sample for Oracle](https://github.com/CedricDumont/CExtensions-EFModelGenerator/blob/master/src/Sample/SimpleSample/OracleSample.json)]
  
