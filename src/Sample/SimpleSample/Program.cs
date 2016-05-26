@@ -12,8 +12,9 @@ namespace SimpleSample
         static void Main(string[] args)
         {
             //string pathToJson = @"C:\projects\cextensions\CExtensions-EFModelGenerator\src\Sample\SimpleSample\Models.json";
-            string pathToJson = @"C:\projects\cextensions\CExtensions-EFModelGenerator\src\Sample\SimpleSample\MultipleSettings.json";
-
+           // string pathToJson = @"C:\projects\cextensions\CExtensions-EFModelGenerator\src\Sample\SimpleSample\MultipleSettings.json";
+            string pathToJson = @"C:\projects\cextensions\CExtensions-EFModelGenerator\src\Sample\SimpleSample\OracleSample.json";
+            
             Generator.Generate(pathToJson);
         }
     }
