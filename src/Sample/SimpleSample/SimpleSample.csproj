@@ -36,8 +36,8 @@
       <HintPath>..\..\packages\CExtensions.EFModelGenerator.0.4.0-CI00005\lib\net45\CExtensions.EFModelGenerator.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CExtensions.EFModelGenerator.Oracle, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CExtensions.EFModelGenerator.Oracle.0.5.0-CI00000\lib\net45\CExtensions.EFModelGenerator.Oracle.dll</HintPath>
+    <Reference Include="CExtensions.EFModelGenerator.Oracle, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CExtensions.EFModelGenerator.Oracle.1.0.0-CI00000\lib\net45\CExtensions.EFModelGenerator.Oracle.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">

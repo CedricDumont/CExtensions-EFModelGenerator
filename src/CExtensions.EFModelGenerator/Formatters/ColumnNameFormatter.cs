@@ -37,6 +37,7 @@ namespace CExtensions.EFModelGenerator.Formatters
 
     public class TitleCaseNameFormatter : AbstractColumnNameFormatter
     {
+
         public override String Apply(Column col, string currentName)
         {
             var yourString = currentName;
