@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>CExtensions.EFModelGenerator.Oracle</title>
+    <authors>Dumont Cedric</authors>
+    <owners>Dumont Cedric</owners>
+    <projectUrl>https://github.com/CedricDumont/CExtensions-EFModelGenerator</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Code Generation Tool used for oracle generation</description>
+    <summary>Code Generation Tool used for oracle generation</summary>
+    <copyright>Copyright 2016</copyright>
+    <tags>Code-Generation</tags>
+    <dependencies>
+      <dependency id="CExtensions-EFModelGenerator" version="$version$"/>
+    </dependencies>
+  </metadata>
+  <files />
+</package>

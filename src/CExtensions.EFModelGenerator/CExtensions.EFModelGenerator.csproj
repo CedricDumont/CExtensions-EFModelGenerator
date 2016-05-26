@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CExtensions.EFModelGenerator.nuspec" />
     <Compile Include="Helpers\TypeConstructorSignature.cs" />
     <Compile Include="Providers\AbstractProvider.cs" />
     <Compile Include="Serializers\AbstractSerializer.cs" />

@@ -30,14 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CExtensions.EFModelGenerator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c770eb04a54cf477, processorArchitecture=MSIL">
-      <HintPath>..\packages\CExtensions.EFModelGenerator.1.0.0-CI00004\lib\net45\CExtensions.EFModelGenerator.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Humanizer, Version=2.0.1.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Humanizer.Core.2.0.1\lib\dotnet\Humanizer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -61,7 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="CExtensions.EFModelGenerator.Oracle.nuspec" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CExtensions.EFModelGenerator\CExtensions.EFModelGenerator.csproj">
+      <Project>{570e27db-b255-4541-b211-34f124ad4a8e}</Project>
+      <Name>CExtensions.EFModelGenerator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
