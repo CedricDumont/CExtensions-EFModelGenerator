@@ -25,7 +25,7 @@ namespace CExtensions.EFModelGenerator.Test
         [InlineData("input\\Relations\\SimpleRelation", null, null, null)]
         [InlineData("input\\GenerationWithDbContext", null, null, null)]
         [InlineData("input\\Serializers\\ListColumnsCustomSerializer", null, null, "expected.txt")]
-        
+        [InlineData("input\\Serializers\\CoreSerializerOnlyDbContext", null, null, "expected.txt")]
         public void ShouldSerializeModel(string folder, string configFile =null, string schemaFile = null, string expectedFile = null)
         {
             //1. Arrange

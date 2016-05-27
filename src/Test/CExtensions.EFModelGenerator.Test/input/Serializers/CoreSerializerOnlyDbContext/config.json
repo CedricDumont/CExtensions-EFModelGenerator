@@ -1,0 +1,7 @@
+﻿{
+  "Options": {
+    "ElementToGenerate": "Dbcontext",
+    "Namespace": "Serializers.CoreSerializerOnlyDbContext",
+    "ContextName": "SampleDbContext"
+  }
+}

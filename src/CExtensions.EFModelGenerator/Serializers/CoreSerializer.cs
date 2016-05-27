@@ -50,9 +50,12 @@ namespace CExtensions.EFModelGenerator.Serializers
             sb.AppendLine("");
             sb.AppendLine($"namespace {NameSpace}");
             sb.AppendLine("{");
-            ModelSerializer.SerializeTables(schema, sb);
+            if (DoSerializeModel)
+            {
+                ModelSerializer.SerializeTables(schema, sb);
+            }
             sb.AppendLine("");
-            if(DoSerializeDbContext)
+            if (DoSerializeDbContext)
             {
                 DBContextSerializer.SerializeDbContext(schema, ContextName, sb);
             }
@@ -69,7 +72,16 @@ namespace CExtensions.EFModelGenerator.Serializers
             }
         }
 
-        private static void SerializeUsings(StringBuilder sb, ElementToGenerateEnum mode)
+        public bool DoSerializeModel
+        {
+            get
+            {
+                return this.SerializationType == ElementToGenerateEnum.Model ||
+                    this.SerializationType == ElementToGenerateEnum.All;
+            }
+        }
+
+        private void SerializeUsings(StringBuilder sb, ElementToGenerateEnum mode)
         {
             foreach (var entry in GetUsings(mode))
             {
@@ -77,15 +89,15 @@ namespace CExtensions.EFModelGenerator.Serializers
             }
         }
 
-        public static IList<string> GetUsings(ElementToGenerateEnum mode)
+        public IList<string> GetUsings(ElementToGenerateEnum mode)
         {
             IList<string> usingsFromModelSerializer = new List<string>();
             IList<string> usingsFromDBContextSerializer = new List<string>();
-            if (mode == ElementToGenerateEnum.Model || mode == ElementToGenerateEnum.All)
+            if (DoSerializeModel)
             {
                usingsFromModelSerializer = ModelSerializer.GetUsings();
             }
-            if (mode == ElementToGenerateEnum.DbContext || mode == ElementToGenerateEnum.All)
+            if (DoSerializeDbContext)
             {
                usingsFromDBContextSerializer = DBContextSerializer.GetUsings();
             }

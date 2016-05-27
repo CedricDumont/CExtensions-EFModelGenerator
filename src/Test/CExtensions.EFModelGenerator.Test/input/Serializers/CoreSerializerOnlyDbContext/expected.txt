@@ -1,0 +1,48 @@
+using System.Data.Entity;
+using System.Data.Common;
+
+namespace Serializers.CoreSerializerOnlyDbContext
+{
+
+   public partial class SampleDbContext: DbContext {
+
+      public IDbSet<Person> People { get; set; } // Person 
+
+      public IDbSet<Orders> Orders { get; set; } // Orders 
+
+      public IDbSet<OrderLines> OrderLines { get; set; } // OrderLines 
+
+      // Constructors
+      static SampleDbContext()
+      {
+            Database.SetInitializer<SampleDbContext>(null);
+      }
+      public SampleDbContext() : base("Name=SampleDbContext")
+      {
+            InitializePartial();
+      }
+      
+      public SampleDbContext(string connectionString) : base(connectionString)
+      {
+            InitializePartial();
+      }
+      
+      public SampleDbContext(string connectionString, System.Data.Entity.Infrastructure.DbCompiledModel model) : base(connectionString, model)
+      {
+            InitializePartial();
+      }
+      
+      public SampleDbContext(DbConnection existingConn) : base(existingConn, true)
+      {
+            InitializePartial();
+      }
+      
+      protected override void Dispose(bool disposing)
+      {
+            base.Dispose(disposing);
+      }
+
+      partial void InitializePartial();
+
+   }
+}
