@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="BreezeSample.json" />
     <None Include="OracleSample.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

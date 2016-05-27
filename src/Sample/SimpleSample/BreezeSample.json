@@ -1,0 +1,10 @@
+﻿{
+  "FilePath": "Controllers\\CsovController.cs",
+  "Options": {
+    "SchemaName": "dbo",
+    "ConnectionString": "Server=MC0QKBSC\\SQLEXPRESS;Database=YOUR_DB;Trusted_Connection=True;",
+    "Namespace": "My.Own.Namespace",
+    "SerializerType": "CExtensions.EFModelGenerator.Serializers.BreezeControllerSerializer,CExtensions.EFModelGenerator",
+    "SerializerTypeArguments": [ "Csov.Odata.Api", "CsovController", "CsovContext" ]
+  }
+}
