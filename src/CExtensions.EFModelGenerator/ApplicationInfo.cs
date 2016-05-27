@@ -78,13 +78,13 @@ namespace CExtensions.EFModelGenerator
             sb.AppendLine("");
             sb.AppendLine("- Exception Details:");
             sb.AppendLine($"Message : {ex.Message}");
-            sb.AppendLine($"Stack : {Environment.NewLine}{ex.StackTrace}");
+            if (!TestMode) { sb.AppendLine($"Stack : {Environment.NewLine}{ex.StackTrace}"); }
 
             if (ex.InnerException != null)
             {
                 sb.AppendLine("");
                 sb.AppendLine($"Inner Exception Message : {ex.Message}");
-                sb.AppendLine($"Inner Exception Stack :{Environment.NewLine} {ex.StackTrace}");
+                if (!TestMode) { sb.AppendLine($"Inner Exception Stack :{Environment.NewLine} {ex.StackTrace}"); }
             }
             sb.AppendLine("");
             sb.AppendLine("***********************************************************");
