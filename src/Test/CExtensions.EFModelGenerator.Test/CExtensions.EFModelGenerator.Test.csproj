@@ -93,6 +93,9 @@
     <Compile Include="input\GenerationWithDbContext\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Content Include="input\Misc\ErrorDisplay\expected.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="input\Relations\MultipleRelationsWithFormatters\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -113,6 +116,9 @@
     <Compile Include="input\Serializers\CoreSerializerOnlyModel\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Content Include="input\Misc\ErrorDisplay\schema.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="input\Serializers\CoreSerializerOnlyModel\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -177,6 +183,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="input\GenerationWithDbContext\config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="input\Misc\ErrorDisplay\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="input\Relations\MultipleRelationsWithFormatters\config.json">

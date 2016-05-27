@@ -18,7 +18,7 @@ namespace CExtensions.EFModelGenerator
 
         private Generator(GenerationOptions generatorOptions)
         {
-            _applicationInfo.AddStep("In Generetor constructor");
+            _applicationInfo.AddStep("In Generator constructor");
             GeneratorOptions = generatorOptions;
 
             //Initialize the provider
@@ -149,7 +149,7 @@ namespace CExtensions.EFModelGenerator
                 _applicationInfo.AddStep($"Creating ModelInitializer");
                 ModelInitializer initializer = new ModelInitializer(Provider, GeneratorOptions);
 
-                _applicationInfo.AddStep($"Initializing ModelInitializer for GeneratorOptions.SchemaName");
+                _applicationInfo.AddStep($"Initializing ModelInitializer for schema : [{GeneratorOptions.SchemaName}]");
                 Schema schema = initializer.Initialize(GeneratorOptions.SchemaName);
 
                 _applicationInfo.AddStep($"Got schema object {schema}");
@@ -170,7 +170,7 @@ namespace CExtensions.EFModelGenerator
             }
             catch (Exception ex)
             {
-                _applicationInfo.AddStep($"error occured {ex.Message}");
+                _applicationInfo.AddStep($"exception message : {ex.Message}");
                 writer.WriteLine(_applicationInfo.FormatException(ex, GeneratorOptions));
             }
         }

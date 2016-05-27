@@ -62,29 +62,32 @@ namespace CExtensions.EFModelGenerator
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("-----------------------------------------------------------------");
-            sb.AppendLine("!!!! An exception occured while generating the code. !!!!");
+            sb.AppendLine("Oups !! An exception occured while generating the code !");
             sb.AppendLine($"Go to  https://github.com/CedricDumont/CExtensions-EFModelGenerator to check for known issues");
-            sb.AppendLine("");
             sb.AppendLine("Or open an issue with the following Information : ");
             sb.AppendLine("");
-            sb.AppendLine("[");
-            sb.AppendLine($"Generated with {GeneratingMutatingAssemblyInfo()}");
-            sb.AppendLine($"Generation steps :");
-            sb.AppendLine($"Generation steps with {_GenerationSteps.ToString()}");
-            sb.AppendLine($"Exception Message : {ex.Message}");
-            sb.AppendLine($"Exception Stack : {ex.StackTrace}");
+            sb.AppendLine("***********************************************************");
+            sb.AppendLine("");
+            sb.AppendLine($"- Generation Module Info : {GeneratingMutatingAssemblyInfo()}");
+            sb.AppendLine("");
+            sb.AppendLine($"- Generation steps :");
+            sb.AppendLine($"{_GenerationSteps.ToString()}");
+            sb.AppendLine("");
+            sb.AppendLine("- Options:");
+            sb.AppendLine($"{JsonConvert.SerializeObject(options, Formatting.Indented)}");
+            sb.AppendLine("");
+            sb.AppendLine("- Exception Details:");
+            sb.AppendLine($"Message : {ex.Message}");
+            sb.AppendLine($"Stack : {Environment.NewLine}{ex.StackTrace}");
 
             if (ex.InnerException != null)
             {
                 sb.AppendLine("");
                 sb.AppendLine($"Inner Exception Message : {ex.Message}");
-                sb.AppendLine($"Inner Exception Stack : {ex.StackTrace}");
-                sb.AppendLine("-----------------------------------------------------------------");
+                sb.AppendLine($"Inner Exception Stack :{Environment.NewLine} {ex.StackTrace}");
             }
-
-            sb.AppendLine($"Options: {Environment.NewLine}{JsonConvert.SerializeObject(options, Formatting.Indented)}");
-
-            sb.AppendLine("]");
+            sb.AppendLine("");
+            sb.AppendLine("***********************************************************");
 
             return sb.ToString();
         }

@@ -1,0 +1,59 @@
+-----------------------------------------------------------------
+Oups !! An exception occured while generating the code !
+Go to  https://github.com/CedricDumont/CExtensions-EFModelGenerator to check for known issues
+Or open an issue with the following Information : 
+
+***********************************************************
+
+- Generation Module Info : [Generation in test mode : mutating info skipped]
+
+- Generation steps :
+   1: In Generator constructor
+   2: Creating Provider of type Test.Helpers.TestSchemaProvider, Test.Helpers
+   3: Set Default Serializer
+   4: Creating Serializer of type Test.Helpers.TestSchemaProvider, Test.Helpers
+   5: Creating ModelInitializer
+   6: Initializing ModelInitializer for schema : []
+   7: exception message : parsing "((" - Not enough )'s.
+
+
+- Options:
+{
+  "ConnectionString": null,
+  "SchemaName": null,
+  "Namespace": "Misc.ErrorDisplay",
+  "ImplementingClassPath": null,
+  "IgnoreTableRegex": [
+    "(("
+  ],
+  "ProviderType": "Test.Helpers.TestSchemaProvider, Test.Helpers",
+  "ProviderTypeArguments": [
+    "COLUMN, Person, PERS_ID, number, 0, false\r\nCOLUMN, Person, PERS_FIRST_NAME, varchar, 0, true\r\nCOLUMN, Person, PERS_LAST_NAME, varchar, 0, false\r\nCOLUMN, Person, PERS_ADRESS, varchar, 0, true\r\nCOLUMN, Person, OTHER_ADRESS, varchar, 0, true\r\nCOLUMN, Orders, Id, number, 0, false\r\nCOLUMN, Orders, pers_id, number, 0, true\r\nCOLUMN, Orders, Amount, varchar, 0, false\r\nCOLUMN, Orders, lines, number, 0, true\r\nPK,Person, PERS_ID\r\nPK,Orders, Id\r\nFK,Orders, pers_id, Person"
+  ],
+  "SerializerType": "CExtensions.EFModelGenerator.Serializers.CoreSerializer, CExtensions.EFModelGenerator",
+  "SerializerTypeArguments": [
+    "All",
+    "Misc.ErrorDisplay",
+    null
+  ],
+  "ColumnNameFormatters": null,
+  "TableNameFormatters": null,
+  "DbSetNameFormatters": null,
+  "ElementToGenerate": "All",
+  "ContextName": null
+}
+
+- Exception Details:
+Message : parsing "((" - Not enough )'s.
+Stack : 
+   at System.Text.RegularExpressions.RegexParser.ScanRegex()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern)
+   at CExtensions.EFModelGenerator.ModelInitializer.IgnoreTable(String table) in C:\projects\cextensions\CExtensions-EFModelGenerator\src\CExtensions.EFModelGenerator\ModelInitializer.cs:line 58
+   at CExtensions.EFModelGenerator.ModelInitializer.LoadTables(Schema schema) in C:\projects\cextensions\CExtensions-EFModelGenerator\src\CExtensions.EFModelGenerator\ModelInitializer.cs:line 43
+   at CExtensions.EFModelGenerator.ModelInitializer.Initialize(String schemaName) in C:\projects\cextensions\CExtensions-EFModelGenerator\src\CExtensions.EFModelGenerator\ModelInitializer.cs:line 26
+   at CExtensions.EFModelGenerator.Generator.Generate(TextWriter writer) in C:\projects\cextensions\CExtensions-EFModelGenerator\src\CExtensions.EFModelGenerator\Generator.cs:line 153
+
+***********************************************************
+

@@ -19,6 +19,7 @@ namespace CExtensions.EFModelGenerator.Test
         [InlineData("input\\Formatters\\CoreColumnNameFormatters", null, null, null)]
         [InlineData("input\\Formatters\\CustomColumnNameFormatters", null, null, null)]
         [InlineData("input\\Formatters\\RemoveTillFirstUnderscoreNameFormatterWithExclusions", null, null, null)]
+        [InlineData("input\\Misc\\ErrorDisplay", null, null, "expected.txt")]
         [InlineData("input\\Misc\\IgnoreTableRegex", null, null, null)]
         [InlineData("input\\Misc\\PropertyWithSameNameAsEnclosingType", null, null, null)]
         [InlineData("input\\Relations\\MultipleRelationsWithFormatters", null, null, null)]
