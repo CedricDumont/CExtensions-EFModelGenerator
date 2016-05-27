@@ -55,11 +55,21 @@ namespace CExtensions.EFModelGenerator.Serializers
                 sb.AppendLine(Constants.TabProperty + "");
                 sb.AppendLine(Constants.TabProperty + "partial void InitializePartial();");
 
+                int KeyCount = 0;
+
                 foreach (var column in table.PrimaryKeys)
                 {
+                    KeyCount++;
                     sb.AppendLine("");
                     sb.AppendLine(Constants.TabProperty + "[Key]");
-                    sb.AppendLine(Constants.TabProperty + $"[Column(\"{column.Name}\")]");
+                    if (table.PrimaryKeys.Count() > 1)
+                    {
+                        sb.AppendLine(Constants.TabProperty + $"[Column(\"{column.Name}\", Order={KeyCount})]");
+                    }
+                    else
+                    {
+                        sb.AppendLine(Constants.TabProperty + $"[Column(\"{column.Name}\")]");
+                    }
                     var comment = $" // {table.Name}.{column.Name} (PrimaryKey)";
                     sb.AppendLine(Constants.TabProperty + $"public {column.CLRTypeWithNullableMark} {column.FormattedName} {{ get;set; }} {comment}");
                 }

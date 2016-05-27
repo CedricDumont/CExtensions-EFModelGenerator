@@ -31,10 +31,10 @@ namespace Relations.MultipleRelationsWithFormatters
 
       // Reverse Navigation
 
-      [InverseProperty("PersId_Key")]
+      [InverseProperty("Person")]
       public virtual List<Orders> Orders { get; set; }
 
-      [InverseProperty("Person_Key")]
+      [InverseProperty("Person")]
       public virtual List<OrderLines> OrderLines { get; set; }
 
    }
@@ -69,7 +69,7 @@ namespace Relations.MultipleRelationsWithFormatters
 
       // Reverse Navigation
 
-      [InverseProperty("Orders_Key")]
+      [InverseProperty("Orders")]
       public virtual List<OrderLines> OrderLines { get; set; }
 
    }

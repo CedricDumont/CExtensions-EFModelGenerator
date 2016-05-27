@@ -135,44 +135,45 @@ namespace CExtensions.EFModelGenerator.Model
             return table;
         }
 
-        public List<Column> RelatedTablesFor(Table table)
+        public List<Column> RelationsOf(Table table)
         {
-           
-                var tables = from c in this.AllColumns
-                             where c.ForeignTable?.Name == table.Name
-                             select c;
 
-                return tables.ToList();
+            var tables = from c in this.AllColumns
+                         where c.ForeignTable?.Name == table.Name
+                         select c;
+
+            return tables.ToList();
         }
 
         public IEnumerable<InverseProperty> InversePropertiesFor(Table table)
         {
-                List<InverseProperty> result = new List<InverseProperty>();
+            List<InverseProperty> result = new List<InverseProperty>();
 
-                if (this.RelatedTablesFor(table).Count() > 0)
+            if (this.RelationsOf(table).Count() > 0)
+            {
+                int counter = 1;
+                List<String> tracker = new List<string>();
+                foreach (var reverseNavigation in this.RelationsOf(table))
                 {
-                    int counter = 1;
-                    List<String> tracker = new List<string>();
-                    foreach (var reverseNavigation in this.RelatedTablesFor(table))
+                    var propertyName = reverseNavigation.TableCLRTypeName + ((reverseNavigation.TableCLRTypeName == table.CLRTypeName) ? $"_{counter++}" : "");
+                    if (tracker.Contains(propertyName))
                     {
-                        var propertyName = reverseNavigation.TableCLRTypeName + ((reverseNavigation.TableCLRTypeName == table.CLRTypeName) ? $"_{counter++}" : "");
-                        if (tracker.Contains(propertyName))
-                        {
-                            propertyName += counter++;
-                        }
-                        tracker.Add(propertyName);
-
-                        result.Add(new InverseProperty()
-                        {
-                            PropertyName = propertyName,
-                            ReversePropertyName = reverseNavigation.FormattedName,
-                            ReverseCLRType = reverseNavigation.TableCLRTypeName
-                        });
+                        propertyName += counter++;
                     }
+                    tracker.Add(propertyName);
 
+
+                    result.Add(new InverseProperty()
+                    {
+                        PropertyName = propertyName,
+                        ReversePropertyName = new ForeignKey(reverseNavigation).PropertyName,
+                        ReverseCLRType = reverseNavigation.TableCLRTypeName
+                    });
                 }
 
-                return result;
+            }
+
+            return result;
         }
 
         public override string ToString()

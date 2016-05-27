@@ -48,6 +48,8 @@ namespace CExtensions.EFModelGenerator
 
         public object ContextName { get; set; }
 
+        public bool? SkipTableWithoutKey { get; set; }
+
         public void MergeWith(GenerationOptions options)
         {
             if (options == null) { return; }
@@ -70,7 +72,8 @@ namespace CExtensions.EFModelGenerator
             this.SchemaName = options.SchemaName ?? this.SchemaName;
             this.SerializerType = options.SerializerType ?? this.SerializerType;
             this.SerializerTypeArguments = options.SerializerTypeArguments ?? this.SerializerTypeArguments;
-            
+            this.SkipTableWithoutKey =  options.SkipTableWithoutKey ?? this.SkipTableWithoutKey;
+
         }
     }
 }

@@ -31,10 +31,10 @@ namespace Serializers.CoreSerializerOnlyModel
 
       // Reverse Navigation
 
-      [InverseProperty("OR_PERS_ID_Key")]
+      [InverseProperty("Person")]
       public virtual List<Orders> Orders { get; set; }
 
-      [InverseProperty("OL_Person_Key")]
+      [InverseProperty("Person")]
       public virtual List<OrderLines> OrderLines { get; set; }
 
    }
@@ -69,7 +69,7 @@ namespace Serializers.CoreSerializerOnlyModel
 
       // Reverse Navigation
 
-      [InverseProperty("OL_Orders_Key")]
+      [InverseProperty("Orders")]
       public virtual List<OrderLines> OrderLines { get; set; }
 
    }

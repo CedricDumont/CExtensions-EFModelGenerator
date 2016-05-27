@@ -46,10 +46,10 @@ namespace ForeignKeys.ForeignKeysToSelf
 
       // Reverse Navigation
 
-      [InverseProperty("PERS_PARENT_ID_Key")]
+      [InverseProperty("Person_PERS_PARENT_ID_Key")]
       public virtual List<Person> Person_1 { get; set; }
 
-      [InverseProperty("PERS_BROTHER_ID_Key")]
+      [InverseProperty("Person_PERS_BROTHER_ID_Key")]
       public virtual List<Person> Person_2 { get; set; }
 
    }

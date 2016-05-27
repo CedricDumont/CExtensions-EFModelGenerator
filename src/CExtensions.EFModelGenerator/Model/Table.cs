@@ -52,7 +52,8 @@ namespace CExtensions.EFModelGenerator.Model
 
                 foreach (var col in list)
                 {
-                    var key = new ForeignKey(this, col);
+                   
+                    var key = new ForeignKey(col);
 
                     result.Add(key);
                 }

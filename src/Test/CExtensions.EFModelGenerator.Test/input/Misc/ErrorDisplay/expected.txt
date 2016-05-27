@@ -40,7 +40,8 @@ Or open an issue with the following Information :
   "TableNameFormatters": null,
   "DbSetNameFormatters": null,
   "ElementToGenerate": "All",
-  "ContextName": null
+  "ContextName": null,
+  "SkipTableWithoutKey": null
 }
 
 - Exception Details:

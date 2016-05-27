@@ -134,6 +134,22 @@ namespace CExtensions.EFModelGenerator
 
         private void ArrangeIntegrity(Schema schema)
         {
+            //remove table without pk if set in options
+            if(Options.SkipTableWithoutKey.GetValueOrDefault())
+            {
+                var newTableList =  new List<Table>();
+
+                foreach (var table in schema.Tables)
+                {
+                    if(table.PrimaryKeys.Count() > 0)
+                    {
+                        newTableList.Add(table);
+                    }
+                }
+
+                schema.Tables.Clear();
+                schema.Tables.AddRange(newTableList);
+            }
             //check duplicate table names in collection
             foreach (var table in schema.Tables)
             {
@@ -149,6 +165,8 @@ namespace CExtensions.EFModelGenerator
                     }
                 }
             }
+
+            
         }
 
        

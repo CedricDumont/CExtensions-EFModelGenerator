@@ -34,7 +34,7 @@ namespace Relations.SimpleRelation
 
       // Reverse Navigation
 
-      [InverseProperty("pers_id_Key")]
+      [InverseProperty("Person")]
       public virtual List<Orders> Orders { get; set; }
 
    }
