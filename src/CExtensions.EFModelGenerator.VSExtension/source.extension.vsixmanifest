@@ -3,9 +3,15 @@
   <Metadata>
     <Identity Id="CExtensions.EFModelGenerator.VSExtension.Cedric.Dumont.ef7f7e8d-37d7-44d2-a8e1-d00d60e6d5f3" Version="0.5" Language="en-US" Publisher="Dumont Cedric" />
     <DisplayName>CExtensions.EFModelGenerator</DisplayName>
-    <Description xml:space="preserve">This tool is used to generate code based on a database. More information on the status of this extension can be found here : https://github.com/CedricDumont/CExtensions-EFModelGenerator.
-It curently supports Oracle and SqlServer but you can customize it to support other providers. The provider list is an ongrowing list, so please check the status or participate.
-The customization is done by implementing some interfaces. There are already common implementation that could fit your needs</Description>
+    <Description xml:space="preserve">Currently in beta and preview : for more info, check : https://github.com/CedricDumont/CExtensions-EFModelGenerator.
+CExtensions.EFModelGenerator is a tool to generate code first model from a database schema.
+The tool is configurable and customizable and currently supports Oracle and SqlServer out of the box.
+Check CExtensions.EFModelGenerator.Oracle or CExtensions.EFModelGenerator.SqlServer  for an example on how to implement a provider
+
+
+check CExtensions.EFModelGenerator.Serializers for an example on how to implement serializers.
+this tool is alos available as a visual studio exetension and available on http://nuget.org</Description>
+    <Icon>file_3.png</Icon>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />

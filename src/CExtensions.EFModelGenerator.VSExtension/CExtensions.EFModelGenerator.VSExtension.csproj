@@ -69,6 +69,7 @@
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
     <Content Include="index.html" />
+    <Content Include="Resources\EfModelCommand_Icon.ico" />
     <Content Include="Resources\GenerateEfModelCommand.png" />
     <Content Include="Resources\GenerateEfModelCommandPackage.ico" />
     <Content Include="stylesheet.css" />
@@ -86,8 +87,8 @@
     <Reference Include="EnvDTE90, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Humanizer, Version=2.0.1.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Humanizer.Core.2.0.1\lib\dotnet\Humanizer.dll</HintPath>
+    <Reference Include="Humanizer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.0.0\lib\dotnet\Humanizer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
@@ -174,6 +175,10 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.2400\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
@@ -191,6 +196,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CExtensions.EFModelGenerator.Oracle\CExtensions.EFModelGenerator.Oracle.csproj">
+      <Project>{30bf4f1c-757f-404e-b86d-0c46215c7b19}</Project>
+      <Name>CExtensions.EFModelGenerator.Oracle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CExtensions.EFModelGenerator\CExtensions.EFModelGenerator.csproj">
       <Project>{570e27db-b255-4541-b211-34f124ad4a8e}</Project>
       <Name>CExtensions.EFModelGenerator</Name>

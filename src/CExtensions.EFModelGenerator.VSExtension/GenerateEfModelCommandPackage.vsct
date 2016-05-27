@@ -54,9 +54,9 @@
           If you do not want an image next to your command, remove the Icon node /> -->
       <Button guid="guidGenerateEfModelCommandPackageCmdSet" id="GenerateEfModelCommandId" priority="0x0100" type="Button">
         <Parent guid="guidGenerateEfModelCommandPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon  guid="EfModelCommand_Icon_Symbol" id="EfModelCommand_Icon_ID" />
         <Strings>
-          <ButtonText>Generate EF Model</ButtonText>
+          <ButtonText>EFModelGenerator Generate...</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -69,6 +69,8 @@
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
       <Bitmap guid="guidImages" href="Resources\GenerateEfModelCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+      <Bitmap guid="EfModelCommand_Icon_Symbol" href="Resources\EfModelCommand_Icon.ico" usedList="EfModelCommand_Icon_ID"/>
+    
     </Bitmaps>
   </Commands>
 
@@ -89,6 +91,9 @@
       <IDSymbol name="bmpPicX" value="4" />
       <IDSymbol name="bmpPicArrows" value="5" />
       <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+    <GuidSymbol name="EfModelCommand_Icon_Symbol" value="{363F9640-FBB7-4403-AB20-9A53EA067ECA}">
+      <IDSymbol name="EfModelCommand_Icon_ID" value="1" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>
