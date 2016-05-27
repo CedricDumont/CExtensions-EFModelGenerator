@@ -19,8 +19,6 @@ namespace CExtensions.EFModelGenerator.Model
             GeneratorOptions = options;
         }
 
-       
-
         internal void Init()
         {
             //Create formatters classes for columns
@@ -175,6 +173,11 @@ namespace CExtensions.EFModelGenerator.Model
                 }
 
                 return result;
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Name} Table Count: {this.Tables?.Count}";
         }
 
     }

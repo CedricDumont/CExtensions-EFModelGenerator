@@ -77,6 +77,7 @@
     </None>
     <None Include="MultipleSettings.json" />
     <None Include="packages.config" />
+    <None Include="Debug.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CExtensions.EFModelGenerator.Oracle\CExtensions.EFModelGenerator.Oracle.csproj">

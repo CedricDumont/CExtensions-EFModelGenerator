@@ -69,6 +69,8 @@ namespace CExtensions.EFModelGenerator
             sb.AppendLine("");
             sb.AppendLine("[");
             sb.AppendLine($"Generated with {GeneratingMutatingAssemblyInfo()}");
+            sb.AppendLine($"Generation steps :");
+            sb.AppendLine($"Generation steps with {_GenerationSteps.ToString()}");
             sb.AppendLine($"Exception Message : {ex.Message}");
             sb.AppendLine($"Exception Stack : {ex.StackTrace}");
 
@@ -85,6 +87,15 @@ namespace CExtensions.EFModelGenerator
             sb.AppendLine("]");
 
             return sb.ToString();
+        }
+
+        public StringBuilder _GenerationSteps = new StringBuilder();
+
+        private int stepCounter = 0;
+        public void AddStep(string stepInfo)
+        {
+            stepCounter++;
+            _GenerationSteps.AppendLine($"   {stepCounter}: {stepInfo}");
         }
     }
 }

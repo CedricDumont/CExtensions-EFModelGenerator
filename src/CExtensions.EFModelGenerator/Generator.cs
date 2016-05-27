@@ -18,30 +18,36 @@ namespace CExtensions.EFModelGenerator
 
         private Generator(GenerationOptions generatorOptions)
         {
+            _applicationInfo.AddStep("In Generetor constructor");
             GeneratorOptions = generatorOptions;
 
             //Initialize the provider
             if (generatorOptions.ProviderType == null)
             {
+                _applicationInfo.AddStep("Set Default Provider");
                 //default to sqlserver provider
                 generatorOptions.ProviderType = "CExtensions.EFModelGenerator.Providers.SqlDataProvider, CExtensions.EFModelGenerator";
                 generatorOptions.ProviderTypeArguments = new Object[] { generatorOptions.ConnectionString, generatorOptions.SchemaName };
             }
 
+            _applicationInfo.AddStep($"Creating Provider of type {generatorOptions.ProviderType}");
             Provider = createInstance(generatorOptions.ProviderType, generatorOptions.ProviderTypeArguments);
 
             //initialize the serializer
             if (generatorOptions.SerializerType == null)
             {
+                _applicationInfo.AddStep("Set Default Serializer");
                 generatorOptions.SerializerType = "CExtensions.EFModelGenerator.Serializers.CoreSerializer, CExtensions.EFModelGenerator";
                 generatorOptions.SerializerTypeArguments = new Object[] { generatorOptions.ElementToGenerate, generatorOptions.Namespace, generatorOptions.ContextName };
             }
+            _applicationInfo.AddStep($"Creating Serializer of type {generatorOptions.ProviderType}");
 
             Serializer = createInstance(generatorOptions.SerializerType, generatorOptions.SerializerTypeArguments);
         }
 
         public static void Generate(String configFilePath)
         {
+            
             if (!File.Exists(configFilePath))
             {
                 throw new Exception($"The file passed as parameter does not exist : {configFilePath}");
@@ -140,23 +146,31 @@ namespace CExtensions.EFModelGenerator
         {
             try
             {
+                _applicationInfo.AddStep($"Creating ModelInitializer");
                 ModelInitializer initializer = new ModelInitializer(Provider, GeneratorOptions);
 
+                _applicationInfo.AddStep($"Initializing ModelInitializer for GeneratorOptions.SchemaName");
                 Schema schema = initializer.Initialize(GeneratorOptions.SchemaName);
 
+                _applicationInfo.AddStep($"Got schema object {schema}");
                 string serializedSchema = JsonConvert.SerializeObject(
                                                         schema,
                                                         Formatting.None
                                                         );
+                _applicationInfo.AddStep($"Got schema serialized, calling serializer {Serializer}");
 
                 String serializedModel = (string)Utils.CallMethodOnObject(Serializer, "CallSerializeWith", new object[] { serializedSchema });
 
+                _applicationInfo.AddStep($"writing application info to top of the file");
+
                 WriteGenerationInfoAndLicence(writer);
                 writer.Write("");
+                _applicationInfo.AddStep($"writing model");
                 writer.Write(serializedModel);
             }
             catch (Exception ex)
             {
+                _applicationInfo.AddStep($"error occured {ex.Message}");
                 writer.WriteLine(_applicationInfo.FormatException(ex, GeneratorOptions));
             }
         }
