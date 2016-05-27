@@ -45,10 +45,17 @@ namespace CExtensions.EFModelGenerator
                 return "[Generation in test mode : mutating info skipped]";
             }
 
-            var assemblyName = Assembly.GetExecutingAssembly().GetName().FullName;
-            var informationalVersion = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+            try
+            {
+                var assemblyName = Assembly.GetExecutingAssembly().GetName().FullName;
+                var informationalVersion = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 
-            return $"{ assemblyName} - {informationalVersion} [on { DateTime.Now}]";
+                return $"{ assemblyName} - {informationalVersion} [on { DateTime.Now}]";
+            }
+            catch (Exception ex)
+            {
+                return $"Error while getting assembly info : {ex.Message}";
+            }
         }
 
         public String FormatException(Exception ex, GenerationOptions options)
