@@ -109,6 +109,12 @@
     <Content Include="input\Formatters\RemoveTillFirstUnderscoreNameFormatterWithExclusions\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Compile Include="input\Serializers\CoreSerializerOnlyModel\expected.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Content Include="input\Serializers\CoreSerializerOnlyModel\schema.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="input\Serializers\CoreSerializerOnlyDbContext\schema.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -182,6 +188,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="input\Misc\IgnoreTableRegex\config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="input\Serializers\CoreSerializerOnlyModel\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="input\Serializers\CoreSerializerOnlyDbContext\config.json">
