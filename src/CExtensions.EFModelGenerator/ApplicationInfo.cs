@@ -22,10 +22,10 @@ namespace CExtensions.EFModelGenerator
                 {
                     StringBuilder sb = new StringBuilder();
 
-                    var assemblyName = Assembly.GetExecutingAssembly().GetName().FullName;
+                   
                     if (!TestMode)
                     {
-                        sb.AppendLine($"// This code was generated with {assemblyName} on {DateTime.Now}");
+                        sb.AppendLine($"// This code was generated with {GeneratingMutatingAssemblyInfo()}");
                     }
                     sb.AppendLine(@"// please visit : https://github.com/CedricDumont/CExtensions-EFModelGenerator");
                     sb.AppendLine($"// Copyright © Cedric Dumont 2016 (http://www.cedric-dumont.com)");
@@ -37,6 +37,20 @@ namespace CExtensions.EFModelGenerator
             }
 
         }
+
+        private String GeneratingMutatingAssemblyInfo()
+        {
+            if (TestMode)
+            {
+                return "[Generation in test mode : mutating info skipped]";
+            }
+
+            var assemblyName = Assembly.GetExecutingAssembly().GetName().FullName;
+            var informationalVersion = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+
+            return $"{ assemblyName} - {informationalVersion} [on { DateTime.Now}]";
+        }
+
         public String FormatException(Exception ex, GenerationOptions options)
         {
             StringBuilder sb = new StringBuilder();
@@ -45,6 +59,9 @@ namespace CExtensions.EFModelGenerator
             sb.AppendLine($"Go to  https://github.com/CedricDumont/CExtensions-EFModelGenerator to check for known issues");
             sb.AppendLine("");
             sb.AppendLine("Or open an issue with the following Information : ");
+            sb.AppendLine("");
+            sb.AppendLine("[");
+            sb.AppendLine($"Generated with {GeneratingMutatingAssemblyInfo()}");
             sb.AppendLine($"Exception Message : {ex.Message}");
             sb.AppendLine($"Exception Stack : {ex.StackTrace}");
 
@@ -56,7 +73,9 @@ namespace CExtensions.EFModelGenerator
                 sb.AppendLine("-----------------------------------------------------------------");
             }
 
-            sb.AppendLine($"Options: {Environment.NewLine}{JsonConvert.SerializeObject(options)}");
+            sb.AppendLine($"Options: {Environment.NewLine}{JsonConvert.SerializeObject(options, Formatting.Indented)}");
+
+            sb.AppendLine("]");
 
             return sb.ToString();
         }
