@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -33,10 +34,31 @@ namespace CExtensions.EFModelGenerator
                 }
 
                 return _generationInfo;
-
-
             }
 
+        }
+        public String FormatException(Exception ex, GenerationOptions options)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("-----------------------------------------------------------------");
+            sb.AppendLine("!!!! An exception occured while generating the code. !!!!");
+            sb.AppendLine($"Go to  https://github.com/CedricDumont/CExtensions-EFModelGenerator to check for known issues");
+            sb.AppendLine("");
+            sb.AppendLine("Or open an issue with the following Information : ");
+            sb.AppendLine($"Exception Message : {ex.Message}");
+            sb.AppendLine($"Exception Stack : {ex.StackTrace}");
+
+            if (ex.InnerException != null)
+            {
+                sb.AppendLine("");
+                sb.AppendLine($"Inner Exception Message : {ex.Message}");
+                sb.AppendLine($"Inner Exception Stack : {ex.StackTrace}");
+                sb.AppendLine("-----------------------------------------------------------------");
+            }
+
+            sb.AppendLine($"Options: {Environment.NewLine}{JsonConvert.SerializeObject(options)}");
+
+            return sb.ToString();
         }
     }
 }

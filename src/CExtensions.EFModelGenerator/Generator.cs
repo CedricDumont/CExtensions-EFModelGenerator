@@ -14,7 +14,7 @@ namespace CExtensions.EFModelGenerator
 {
     public class Generator
     {
-        public ApplicationInfo _licenceInfo = new ApplicationInfo();
+        public ApplicationInfo _applicationInfo = new ApplicationInfo();
 
         private Generator(GenerationOptions generatorOptions)
         {
@@ -133,7 +133,7 @@ namespace CExtensions.EFModelGenerator
 
         private void WriteGenerationInfoAndLicence(TextWriter writer)
         {
-            writer.WriteLine(_licenceInfo.GenerationInfo);
+            writer.WriteLine(_applicationInfo.GenerationInfo);
         }
 
         private void Generate(TextWriter writer)
@@ -157,23 +157,7 @@ namespace CExtensions.EFModelGenerator
             }
             catch (Exception ex)
             {
-                writer.WriteLine("-----------------------------------------------------------------");
-                writer.WriteLine("!!!! An exception occured while generating the code. !!!!");
-                writer.WriteLine($"Go to  https://github.com/CedricDumont/CExtensions-EFModelGenerator to check for known issues");
-                writer.WriteLine("");
-                writer.WriteLine("Or open an issue with the following Information : ");
-                writer.WriteLine($"Exception Message : {ex.Message}");
-                writer.WriteLine($"Exception Stack : {ex.StackTrace}");
-
-                if(ex.InnerException != null)
-                {
-                    writer.WriteLine("");
-                    writer.WriteLine($"Inner Exception Message : {ex.Message}");
-                    writer.WriteLine($"Inner Exception Stack : {ex.StackTrace}");
-                    writer.WriteLine("-----------------------------------------------------------------");
-                }
-
-                writer.WriteLine($"Options: {Environment.NewLine}{JsonConvert.SerializeObject(GeneratorOptions)}");
+                writer.WriteLine(_applicationInfo.FormatException(ex, GeneratorOptions));
             }
         }
 
@@ -236,7 +220,5 @@ namespace CExtensions.EFModelGenerator
         public Object Provider { get; private set; }
 
         public Object Serializer { get; private set; }
-
-
     }
 }
