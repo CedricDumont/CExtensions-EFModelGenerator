@@ -1,5 +1,4 @@
-﻿using CExtensions.EFModelGenerator.Misc;
-using CExtensions.EFModelGenerator.Model;
+﻿using CExtensions.EFModelGenerator.Model;
 using CExtensions.EFModelGenerator.Providers;
 using CExtensions.EFModelGenerator.Serializers;
 using Newtonsoft.Json;
@@ -15,7 +14,7 @@ namespace CExtensions.EFModelGenerator
 {
     public class Generator
     {
-        public GenerationInfo _licenceInfo = new GenerationInfo();
+        public ApplicationInfo _licenceInfo = new ApplicationInfo();
 
         private Generator(GenerationOptions generatorOptions)
         {
@@ -134,7 +133,7 @@ namespace CExtensions.EFModelGenerator
 
         private void WriteGenerationInfoAndLicence(TextWriter writer)
         {
-            writer.WriteLine(_licenceInfo.Value);
+            writer.WriteLine(_licenceInfo.GenerationInfo);
         }
 
         private void Generate(TextWriter writer)
@@ -173,6 +172,8 @@ namespace CExtensions.EFModelGenerator
                     writer.WriteLine($"Inner Exception Stack : {ex.StackTrace}");
                     writer.WriteLine("-----------------------------------------------------------------");
                 }
+
+                writer.WriteLine($"Options: {Environment.NewLine}{JsonConvert.SerializeObject(GeneratorOptions)}");
             }
         }
 

@@ -56,7 +56,7 @@
   <ItemGroup>
     <None Include="CExtensions.EFModelGenerator.nuspec" />
     <Compile Include="Helpers\TypeConstructorSignature.cs" />
-    <Compile Include="Misc\LicenceInfo.cs" />
+    <Compile Include="ApplicationInfo.cs" />
     <Compile Include="Providers\AbstractProvider.cs" />
     <Compile Include="Serializers\AbstractSerializer.cs" />
     <Compile Include="FormatterCollection.cs" />

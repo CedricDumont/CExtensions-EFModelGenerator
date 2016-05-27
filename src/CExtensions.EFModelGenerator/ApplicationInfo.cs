@@ -5,14 +5,15 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CExtensions.EFModelGenerator.Misc
+namespace CExtensions.EFModelGenerator
 {
-    public class GenerationInfo
+    public class ApplicationInfo
     {
+        public static bool TestMode = false;
+
         public string _generationInfo;
 
-
-        public string Value
+        public string GenerationInfo
         {
             get
             {
@@ -21,8 +22,10 @@ namespace CExtensions.EFModelGenerator.Misc
                     StringBuilder sb = new StringBuilder();
 
                     var assemblyName = Assembly.GetExecutingAssembly().GetName().FullName;
-
-                    sb.AppendLine($"// This code was generated with {assemblyName} on {DateTime.Now}");
+                    if (!TestMode)
+                    {
+                        sb.AppendLine($"// This code was generated with {assemblyName} on {DateTime.Now}");
+                    }
                     sb.AppendLine(@"// please visit : https://github.com/CedricDumont/CExtensions-EFModelGenerator");
                     sb.AppendLine($"// Copyright © Cedric Dumont 2016 (http://www.cedric-dumont.com)");
 

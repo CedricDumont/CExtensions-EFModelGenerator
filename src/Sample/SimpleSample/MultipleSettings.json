@@ -16,9 +16,15 @@
   },
   "Settings": [
     {
+      "FilePath": "MyFolder/DbContext.cs",
+      "Options": {
+        "ElementToGenerate": "DbContext"
+      }
+    },
+    {
       "FilePath": "MyFolder/Model.cs",
       "Options": {
-        "ElementToGenerate": "All"
+        "ElementToGenerate": "Model"
       }
     },
     {

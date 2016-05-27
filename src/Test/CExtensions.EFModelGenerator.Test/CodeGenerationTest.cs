@@ -29,6 +29,7 @@ namespace CExtensions.EFModelGenerator.Test
         [InlineData("input\\Serializers\\CoreSerializerOnlyModel", null, null, "expected.cs")]
         public void ShouldSerializeModel(string folder, string configFile =null, string schemaFile = null, string expectedFile = null)
         {
+            ApplicationInfo.TestMode = true;
             //1. Arrange
             string content = GetFileContent(configFile ?? "config.json", folder);
             string schema = GetFileContent(schemaFile ?? "schema.txt", folder);
@@ -53,6 +54,7 @@ namespace CExtensions.EFModelGenerator.Test
             //{
             //    writer.Write(sb.ToString());
             //}
+            //Assert.False(true);
 
             ////3. Assert
             string a = System.Text.RegularExpressions.Regex.Replace(sb.ToString(), @"\s+|\t|\n|\t\n\r\0\x0B", "");

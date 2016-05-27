@@ -17,6 +17,7 @@ namespace CExtensions.EFModelGenerator.Breeze.Test
 
         public void ShouldSerializeModel(string folder, string configFile = null, string schemaFile = null, string expectedFile = null)
         {
+            ApplicationInfo.TestMode = true;
             //1. Arrange
             string content = GetFileContent(configFile ?? "config.json", folder);
             string schema = GetFileContent(schemaFile ?? "schema.txt", folder);
@@ -42,6 +43,8 @@ namespace CExtensions.EFModelGenerator.Breeze.Test
                 //{
                 //    writer.Write(sb.ToString());
                 //}
+
+
                 //3. Assert
                 string expectedOutput = GetFileContent(setting.FilePath, folder);
                 string a = System.Text.RegularExpressions.Regex.Replace(sb.ToString(), @"\s+|\t|\n|\t\n\r\0\x0B", "");
@@ -51,7 +54,8 @@ namespace CExtensions.EFModelGenerator.Breeze.Test
 
             }
 
-            
+            //Assert.False(true);
+
         }
     }
 }

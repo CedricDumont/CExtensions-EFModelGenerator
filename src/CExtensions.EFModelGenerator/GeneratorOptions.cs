@@ -19,13 +19,6 @@ namespace CExtensions.EFModelGenerator
     {
         public GenerationOptions()
         {
-            //  ColumnConfiguration = new ColumnConfiguration();
-            IgnoreTableRegex = new string[0];
-           // ColumnNameFormatters = new TypeConstructorSignature[0];
-            //TableNameFormatters = new string[0];
-            //DbSetNameFormatters = new string[0];
-            ElementToGenerate = "Model";
-            ContextName = "MyDbContext";
         }
         public String ConnectionString { get; set; }
 

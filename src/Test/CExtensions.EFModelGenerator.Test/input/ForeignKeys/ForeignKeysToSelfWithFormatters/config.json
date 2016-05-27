@@ -1,5 +1,6 @@
 ﻿{
   "Options": {
+    "ElementToGenerate": "Model",
     "Namespace": "ForeignKeys.ForeignKeysToSelfWithFormatters",
     "ColumnNameFormatters": [
       { "Name": "CExtensions.EFModelGenerator.Formatters.IDColumnFormatter" },

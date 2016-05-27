@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomSerializer\ListColumnSerializer.cs" />
+    <Compile Include="GenerationOptionsTest.cs" />
     <Compile Include="GeneratorUnitTest.cs" />
     <Compile Include="input\ForeignKeys\ForeignKeysToSelfWithFormatters\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -51,13 +51,16 @@ namespace CExtensions.EFModelGenerator
 
         private Boolean IgnoreTable(string table)
         {
-            foreach (var item in Options.IgnoreTableRegex)
+            if (Options.IgnoreTableRegex != null)
             {
-                var regex = new Regex(item);
-
-                if (regex.IsMatch(table))
+                foreach (var item in Options.IgnoreTableRegex)
                 {
-                    return true;
+                    var regex = new Regex(item);
+
+                    if (regex.IsMatch(table))
+                    {
+                        return true;
+                    }
                 }
             }
 

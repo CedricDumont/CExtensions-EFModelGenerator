@@ -1,5 +1,6 @@
 ﻿{
   "Options": {
+    "ElementToGenerate": "Model",
     "Namespace": "Misc.PropertyWithSameNameAsEnclosingType"
   }
 }

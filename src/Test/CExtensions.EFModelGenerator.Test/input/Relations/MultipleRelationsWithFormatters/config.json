@@ -1,5 +1,6 @@
 ﻿{
   "Options": {
+    "ElementToGenerate": "Model",
     "Namespace": "Relations.MultipleRelationsWithFormatters",
     "ColumnNameFormatters": [
       { "Name": "CExtensions.EFModelGenerator.Formatters.IDColumnFormatter" },

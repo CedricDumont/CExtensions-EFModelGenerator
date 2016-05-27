@@ -1,5 +1,6 @@
 ﻿{
   "Options": {
+    "ElementToGenerate": "Model",
     "Namespace": "Formatters.CustomColumnNameFormatters",
     "ColumnNameFormatters": [
       { "Name": "CExtensions.EFModelGenerator.Test.CustomNameFormatters.SpecialPersonColumnNameFormatter,CExtensions.EFModelGenerator.Test" },
