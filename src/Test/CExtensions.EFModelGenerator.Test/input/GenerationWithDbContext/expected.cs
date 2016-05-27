@@ -1,3 +1,7 @@
+// This code was generated with CExtensions.EFModelGenerator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c770eb04a54cf477 on 27/05/2016 10:46:56
+// please visit : https://github.com/CedricDumont/CExtensions-EFModelGenerator
+// Copyright © Cedric Dumont 2016 (http://www.cedric-dumont.com)
+
 using System;
 using System.Data.Entity;
 using System.Data.Common;

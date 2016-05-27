@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Cedric Dumont")]
 [assembly: AssemblyProduct("CExtensions.EFModelGenerator")]
-[assembly: AssemblyCopyright("Copyright © Licence Owner 2016")]
+[assembly: AssemblyCopyright("Copyright © Cedric Dumont 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

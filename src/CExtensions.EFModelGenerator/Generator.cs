@@ -1,4 +1,5 @@
-﻿using CExtensions.EFModelGenerator.Model;
+﻿using CExtensions.EFModelGenerator.Misc;
+using CExtensions.EFModelGenerator.Model;
 using CExtensions.EFModelGenerator.Providers;
 using CExtensions.EFModelGenerator.Serializers;
 using Newtonsoft.Json;
@@ -14,6 +15,8 @@ namespace CExtensions.EFModelGenerator
 {
     public class Generator
     {
+        public GenerationInfo _licenceInfo = new GenerationInfo();
+
         private Generator(GenerationOptions generatorOptions)
         {
             GeneratorOptions = generatorOptions;
@@ -64,6 +67,8 @@ namespace CExtensions.EFModelGenerator
 
             Directory.CreateDirectory(Path.GetDirectoryName(path));
         }
+
+
 
         public static string Generate(EFMGSettings settings, TextWriter sw = null)
         {
@@ -127,6 +132,11 @@ namespace CExtensions.EFModelGenerator
             }
         }
 
+        private void WriteGenerationInfoAndLicence(TextWriter writer)
+        {
+            writer.WriteLine(_licenceInfo.Value);
+        }
+
         private void Generate(TextWriter writer)
         {
             try
@@ -142,6 +152,8 @@ namespace CExtensions.EFModelGenerator
 
                 String serializedModel = (string)Utils.CallMethodOnObject(Serializer, "CallSerializeWith", new object[] { serializedSchema });
 
+                WriteGenerationInfoAndLicence(writer);
+                writer.Write("");
                 writer.Write(serializedModel);
             }
             catch (Exception ex)
