@@ -45,15 +45,6 @@ Or open an issue with the following Information :
 
 - Exception Details:
 Message : parsing "((" - Not enough )'s.
-Stack : 
-   at System.Text.RegularExpressions.RegexParser.ScanRegex()
-   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
-   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
-   at System.Text.RegularExpressions.Regex..ctor(String pattern)
-   at CExtensions.EFModelGenerator.ModelInitializer.IgnoreTable(String table) in C:\projects\cextensions\CExtensions-EFModelGenerator\src\CExtensions.EFModelGenerator\ModelInitializer.cs:line 58
-   at CExtensions.EFModelGenerator.ModelInitializer.LoadTables(Schema schema) in C:\projects\cextensions\CExtensions-EFModelGenerator\src\CExtensions.EFModelGenerator\ModelInitializer.cs:line 43
-   at CExtensions.EFModelGenerator.ModelInitializer.Initialize(String schemaName) in C:\projects\cextensions\CExtensions-EFModelGenerator\src\CExtensions.EFModelGenerator\ModelInitializer.cs:line 26
-   at CExtensions.EFModelGenerator.Generator.Generate(TextWriter writer) in C:\projects\cextensions\CExtensions-EFModelGenerator\src\CExtensions.EFModelGenerator\Generator.cs:line 153
 
 ***********************************************************
 
