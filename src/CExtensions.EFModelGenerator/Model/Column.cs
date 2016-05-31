@@ -84,6 +84,19 @@ namespace CExtensions.EFModelGenerator.Model
         [JsonIgnore]
         public Table ForeignTable { get; set; }
 
+        [JsonIgnore]
+        public bool IsFixedLength
+        {
+            get
+            {
+                if(this.DBType == "char" || this.DBType == "nchar")
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
         public string ReferencedTableName { get; set; }
 
         public void AddFormatter(String pattern, Func<Column, string> ColumnFormatter)
@@ -133,6 +146,8 @@ namespace CExtensions.EFModelGenerator.Model
         {
             return Table.ToString() + "." + FormattedName + $" [{this.Name}]";
         }
+
+        
 
         string GetPropertyType(string sqlType, string dataScale)
         {

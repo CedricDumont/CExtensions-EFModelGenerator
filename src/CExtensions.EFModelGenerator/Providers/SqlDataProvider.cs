@@ -19,7 +19,9 @@ namespace CExtensions.EFModelGenerator.Providers
                                             COLUMN_NAME as ColumnName,
                                             DATA_TYPE as DataType,
                                             NUMERIC_SCALE as DataScale,
-                                            IS_NULLABLE as IsNullable
+                                            IS_NULLABLE as IsNullable,
+                                            CAST(ISNULL(CHARACTER_MAXIMUM_LENGTH, 0) AS INT) as MaxLength,
+                                            CAST(ISNULL(NUMERIC_PRECISION, 0) AS INT) AS [Precision]
                                             FROM INFORMATION_SCHEMA.COLUMNS
                                             WHERE TABLE_SCHEMA='{0}'
                                             AND TABLE_NAME = '{1}'
@@ -116,7 +118,9 @@ namespace CExtensions.EFModelGenerator.Providers
                                 Name = colRdr["ColumnName"].ToString(),
                                 DBType = colRdr["DataType"].ToString(),
                                 DBDataScale = colRdr["DataScale"].ToString(),
-                                IsNullable = "YES".Equals(colRdr["IsNullable"].ToString())
+                                IsNullable = "YES".Equals(colRdr["IsNullable"].ToString()),
+                                MaxLength = Int32.Parse(colRdr["MaxLength"]?.ToString()),
+                                Precision = Int32.Parse(colRdr["Precision"]?.ToString())
                             };
 
                             result.Add(col);

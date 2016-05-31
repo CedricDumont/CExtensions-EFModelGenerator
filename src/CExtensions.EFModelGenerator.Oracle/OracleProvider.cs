@@ -20,6 +20,8 @@ namespace CExtensions.EFModelGenerator.Oracle
         private const String COLUMN_SQL = @"select table_name TableName, 
                                      column_name ColumnName, 
                                      data_type DataType, 
+                                     NVL(data_length,0) MaxLength,
+                                     NVL(data_precision,0) Precision,
                                      data_scale DataScale,
                                      nullable IsNullable
                                      from USER_TAB_COLS utc 
@@ -109,7 +111,9 @@ namespace CExtensions.EFModelGenerator.Oracle
                                 Name = colRdr["ColumnName"].ToString(),
                                 DBType = colRdr["DataType"].ToString(),
                                 DBDataScale = colRdr["DataScale"].ToString(),
-                                IsNullable = "Y".Equals(colRdr["IsNullable"].ToString())
+                                IsNullable = "Y".Equals(colRdr["IsNullable"].ToString()),
+                                MaxLength = Int32.Parse(colRdr["MaxLength"]?.ToString()),
+                                Precision = Int32.Parse(colRdr["Precision"]?.ToString())
                             };
 
                             result.Add(col);

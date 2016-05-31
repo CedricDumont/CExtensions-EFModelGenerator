@@ -18,5 +18,10 @@ namespace CExtensions.EFModelGenerator
 
         public bool IsNullable { get; set; }
 
+        public int? MaxLength { get; set; }
+
+        public int? Precision { get; set; }
+
+
     }
 }

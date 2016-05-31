@@ -36,13 +36,21 @@ namespace Test.Helpers
                     }
                     if (type == "COLUMN")
                     {
+                        //get precision and max length
+                        int? maxLength = 0;
+                        int? precision = 0;
+                        try { maxLength = reader.GetField<int?>(6); } catch { }
+                        try { precision = reader.GetField<int?>(7); } catch { }
+
                         //COLUMN, Person, PERS_ID, number, 0, false
                         Columns.Add(GetTestmetdata(
                             reader.GetField<string>(1).Trim(),
                             reader.GetField<string>(2).Trim(),
                             reader.GetField<string>(3).Trim(),
                             reader.GetField<string>(4).Trim(),
-                            reader.GetField<bool>(5)));
+                            reader.GetField<bool>(5),
+                            maxLength,
+                            precision));
                     }
                     if (type == "FK")
                     {
@@ -81,7 +89,7 @@ namespace Test.Helpers
             return result.ToList();
         }
 
-        public ColumnMetadata GetTestmetdata(string tableName, string name, string dbtype, string datascale, bool isNullable)
+        public ColumnMetadata GetTestmetdata(string tableName, string name, string dbtype, string datascale, bool isNullable, int? maxLength, int? precision)
         {
             return new ColumnMetadata()
             {
@@ -89,7 +97,9 @@ namespace Test.Helpers
                 Name = name,
                 DBType = dbtype,
                 DBDataScale = datascale,
-                IsNullable = isNullable
+                IsNullable = isNullable,
+                MaxLength = maxLength,
+                Precision = precision
             };
         }
 
