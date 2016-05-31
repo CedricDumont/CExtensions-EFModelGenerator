@@ -4,6 +4,8 @@
 
 [![cextensions-efmodelgenerator MyGet Build Status](https://www.myget.org/BuildSource/Badge/cextensions-efmodelgenerator?identifier=a699acc9-c13f-462c-8526-3050bbceda1c)](https://www.myget.org/)
 
+Want to contribute : check issues marked with [Help Wanted Label](https://github.com/CedricDumont/CExtensions-EFModelGenerator/labels/help%20wanted)
+
 
 CExtensions.EFModelGenerator is a tool to generate code first model from a database schema.
 
