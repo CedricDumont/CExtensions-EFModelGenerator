@@ -25,6 +25,8 @@ namespace CExtensions.EFModelGenerator.Model
                 DBType = metadata.DBType;
                 DBDataScale = metadata.DBDataScale;
                 IsNullable = metadata.IsNullable;
+                MaxLength = metadata.MaxLength;
+                Precision = metadata.Precision;
             }
         }
 

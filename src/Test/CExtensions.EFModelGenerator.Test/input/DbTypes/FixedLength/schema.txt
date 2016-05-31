@@ -1,0 +1,2 @@
+﻿COLUMN, Person, PERS_SHORT_NAME, char, 0, false, 5,
+COLUMN, Person, PERS_LAST_NAME, varchar, 0, false, 20,

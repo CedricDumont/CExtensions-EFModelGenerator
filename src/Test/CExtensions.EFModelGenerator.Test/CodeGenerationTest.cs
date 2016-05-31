@@ -14,6 +14,7 @@ namespace CExtensions.EFModelGenerator.Test
     public class CodeGenerationTest : BaseUnitTest
     {
         [Theory(DisplayName = "ShouldSerializeModel")]
+        [InlineData("input\\DbTypes\\FixedLength", null, null, null)]
         [InlineData("input\\ForeignKeys\\ForeignKeysToSelf", null, null, null)]
         [InlineData("input\\ForeignKeys\\ForeignKeysToSelfWithFormatters", null, null, null)]
         [InlineData("input\\Formatters\\CoreColumnNameFormatters", null, null, null)]

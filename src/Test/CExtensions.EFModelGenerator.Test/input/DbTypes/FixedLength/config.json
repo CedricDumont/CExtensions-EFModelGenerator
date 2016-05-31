@@ -1,0 +1,6 @@
+﻿{
+  "Options": {
+    "ElementToGenerate": "Model",
+    "Namespace": "DbTypes.FixedLength"
+  }
+}

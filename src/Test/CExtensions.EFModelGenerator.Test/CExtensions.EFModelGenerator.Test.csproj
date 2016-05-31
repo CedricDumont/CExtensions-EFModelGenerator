@@ -75,6 +75,9 @@
     <Compile Include="CustomSerializer\ListColumnSerializer.cs" />
     <Compile Include="GenerationOptionsTest.cs" />
     <Compile Include="GeneratorUnitTest.cs" />
+    <Compile Include="input\DbTypes\FixedLength\expected.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="input\ForeignKeys\ForeignKeysToSelfWithFormatters\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -93,6 +96,9 @@
     <Compile Include="input\GenerationWithDbContext\expected.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Content Include="input\DbTypes\FixedLength\schema.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="input\Misc\ErrorDisplay\expected.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -167,6 +173,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="App.config" />
+    <None Include="input\DbTypes\FixedLength\config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="input\ForeignKeys\ForeignKeysToSelfWithFormatters\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -81,6 +81,18 @@ namespace CExtensions.EFModelGenerator.Serializers
                     {
                         sb.AppendLine(Constants.TabProperty + "[Required]");
                     }
+                    if (column.IsFixedLength)
+                    {
+                        sb.AppendLine(Constants.TabProperty + $"[StringLength({column.MaxLength}, MinimumLength = {column.MaxLength})]");
+                    }
+                    else if (column.MaxLength > 0)
+                    {
+                        sb.AppendLine(Constants.TabProperty + $"[MaxLength({column.MaxLength})]");
+                    }
+                    if (column.Precision > 0)
+                    {
+                        sb.AppendLine(Constants.TabProperty + $"[Precision({column.Precision}, {column.Scale})]");
+                    }
                     sb.AppendLine(Constants.TabProperty + $"[Column(\"{column.Name}\")]");
                     var comment = $" // {table.Name}.{column.Name}";
                     sb.AppendLine(Constants.TabProperty + $"public {column.CLRTypeWithNullableMark} {column.FormattedName} {{ get;set; }}  {comment}");

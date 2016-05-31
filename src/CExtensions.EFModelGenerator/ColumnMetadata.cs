@@ -18,9 +18,25 @@ namespace CExtensions.EFModelGenerator
 
         public bool IsNullable { get; set; }
 
-        public int? MaxLength { get; set; }
+        public int MaxLength { get; set; }
 
-        public int? Precision { get; set; }
+        public int Precision { get; set; }
+
+        public int? Scale
+        {
+            get
+            {
+                int? scale = null;
+
+                if(DBDataScale != null)
+                {
+                    scale = Int32.Parse(DBDataScale);
+                }
+
+                return scale;
+            }
+        }
+
 
 
     }

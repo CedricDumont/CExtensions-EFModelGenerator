@@ -37,10 +37,10 @@ namespace Test.Helpers
                     if (type == "COLUMN")
                     {
                         //get precision and max length
-                        int? maxLength = 0;
-                        int? precision = 0;
-                        try { maxLength = reader.GetField<int?>(6); } catch { }
-                        try { precision = reader.GetField<int?>(7); } catch { }
+                        int maxLength = 0;
+                        int precision = 0;
+                        try { maxLength = reader.GetField<int>(6); } catch { }
+                        try { precision = reader.GetField<int>(7); } catch { }
 
                         //COLUMN, Person, PERS_ID, number, 0, false
                         Columns.Add(GetTestmetdata(
@@ -89,7 +89,7 @@ namespace Test.Helpers
             return result.ToList();
         }
 
-        public ColumnMetadata GetTestmetdata(string tableName, string name, string dbtype, string datascale, bool isNullable, int? maxLength, int? precision)
+        public ColumnMetadata GetTestmetdata(string tableName, string name, string dbtype, string datascale, bool isNullable, int maxLength, int precision)
         {
             return new ColumnMetadata()
             {
