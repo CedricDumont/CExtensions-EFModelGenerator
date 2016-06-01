@@ -9,9 +9,9 @@ Want to start coding in c# or you have a need for this kind of tool, then check 
 
 ### Description 
 
-CExtensions.EFModelGenerator is a tool used to generate code first model (more widely files) from a database schema.
+CExtensions.EFModelGenerator is a tool used to generate code from a database schema. It can be used as *poco generator*, but can also generate other kind of files
 
-The tool is configurable, customizable and currently supports Oracle and SqlServer out of the box. It is possible to write your own Provider. Check CExtensions.EFModelGenerator.Oracle as an example on how to implement a provider.
+The tool is configurable, customizable and currently supports **Oracle** and **SqlServer** out of the box. It is possible to write your own Provider. Check CExtensions.EFModelGenerator.Oracle as an example on how to implement a provider.
 
 The code is generated using Serializers. There is a serilizer to generate Poco classes and a DbContext. You can write your own serilizer and it does not have to generate c# code. Check CExtensions.EFModelGenerator.Serializers for implementations.
 
