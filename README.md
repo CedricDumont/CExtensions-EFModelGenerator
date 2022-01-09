@@ -5,7 +5,7 @@
 [![cextensions-efmodelgenerator MyGet Build Status](https://www.myget.org/BuildSource/Badge/cextensions-efmodelgenerator?identifier=a699acc9-c13f-462c-8526-3050bbceda1c)](https://www.myget.org/)
 
 ### Contribute
-Want to start coding in c# or you have a need for this kind of tool, then check issues marked with [Help Wanted Label](https://github.com/CedricDumont/CExtensions-EFModelGenerator/labels/help%20wanted).
+Want to start coding in c# or you have a need for this kind of tool, then check issues marked with [Help Wanted Label](https://github.com/CedricDumont/CExtensionss-EFModelGenerator/labels/help%20wanted).
 
 ### Description 
 
